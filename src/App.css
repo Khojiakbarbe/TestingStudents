@@ -8,7 +8,7 @@
 
 .home {
     background-color: #FBB500;
-    background-image: url();
+    background-image: url(images/bg/bg.png);
     width: 100%;
     background-size: 100%;
     background-repeat: no-repeat;
@@ -37,4 +37,51 @@
     color: white;
     width: 100%;
     margin-top: 2%;
+}
+
+/* Exam page */
+.startBtn {
+    width: 100%;
+    padding: 1%;
+    font-size: 150%;
+    font-weight: 700;
+    border: none;
+    background: #FBB500;
+    border-radius: 10px;
+    margin-bottom: 2%;
+}
+
+.startBtnCLicked {
+    opacity: 0.5;
+}
+
+.examQuestion {
+    background: rgba(251, 181, 0, 0.11);
+    border-radius: 30px;
+    padding: 5%;
+}
+
+.answer input {
+    width: 100%;
+    padding: 2%;
+    border: 1px solid #FBB500;
+    border-radius: 10px;
+}
+
+.answerBtnActive {
+    width: 100%;
+    padding: 2%;
+    border: none;
+    color: black;
+    background: #FBB500;
+    border-radius: 10px;
+}
+
+.answerBtnDisable {
+    width: 100%;
+    padding: 2%;
+    border: none;
+    color: #A47600;
+    background: rgba(251, 181, 0, 0.3);
+    border-radius: 10px;
 }
