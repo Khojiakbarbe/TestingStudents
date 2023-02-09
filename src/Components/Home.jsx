@@ -26,7 +26,7 @@ export default function Home() {
                     <div className="col-4">
                         <h6>Mavzuni tanlang</h6>
                         <select className="form-select form-select-sm p-2" aria-label=".form-select-sm example" onChange={(e) => setTheme(e.target.value)} >
-                            <option value='forWhile' >For & While</option>
+                            <option value='forLoop' >For & While</option>
                             <option value="boolean">Boolean</option>
                             <option value="intager">Intager</option>
                             <option value="minMax">Min & Max</option>

@@ -17,11 +17,7 @@ export default function ExamPage() {
     const { state } = useLocation();
     const { theme, count, time } = state;
 
-    useEffect(() => {
-        if (minutes < 1 && seconds === 1) {
-            alert('Your time is ended')
-        }
-    })
+
 
     const [inputValue, setInputValue] = useState('')
     return (
@@ -33,6 +29,8 @@ export default function ExamPage() {
                     <h1>Your test count is : {count}</h1>
                 </div>
                 <Timer />
+
+
 
                 <div className="row">
                     <div className="col-6 answer">
@@ -48,11 +46,12 @@ export default function ExamPage() {
                     </div>
                 </div>
 
+
                 <div className="row mt-5">
-                    <div className="col-3" style={{color: "#18AC00"}}>
+                    <div className="col-3" style={{ color: "#18AC00" }}>
                         <h4>To'gri javoblar : ?</h4>
                     </div>
-                    <div className="col-3" style={{color: "#FF0000"}}>
+                    <div className="col-3" style={{ color: "#FF0000" }}>
                         <h4>Noto'g'ri javoblar : ?</h4>
                     </div>
                 </div>
