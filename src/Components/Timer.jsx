@@ -8,7 +8,6 @@ function Timer({ expiryTimestamp }) {
     const {
         seconds,
         minutes,
-        hours,
         isRunning,
         restart,
     } = useTimer({ expiryTimestamp, onExpire: () => console.warn('onExpire called') });
