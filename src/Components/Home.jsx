@@ -8,7 +8,7 @@ export default function Home() {
 
     const navigate = useNavigate();
 
-    const [theme, setTheme] = useState('for')
+    const [theme, setTheme] = useState('forLoop')
     const [count, setCount] = useState('5')
 
     const [time, setTime] = useContext(timeContext)
