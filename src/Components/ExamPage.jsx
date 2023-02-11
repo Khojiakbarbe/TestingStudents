@@ -78,8 +78,6 @@ export default function ExamPage() {
         navigate('/results', { state: { id: 1, currect: currect, mistake: mistake } })
     }
 
-
-
     const [showModal, setShowModal] = useState('modal')
 
     useEffect(() => {
