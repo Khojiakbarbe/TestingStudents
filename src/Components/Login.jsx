@@ -42,8 +42,8 @@ export default function Login() {
                 }
             }
         } else {
-            setTelRequest('⚡')
-            setParolRequest('⚡')
+            setTelRequest('⚠')
+            setParolRequest('⚠')
         }
 
     }
