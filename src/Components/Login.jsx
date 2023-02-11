@@ -21,22 +21,30 @@ export default function Login() {
     const [password, setPassword] = useState('')
 
     const loginLength = login.length;
-    function check() {
-        for (let i = 0; i < loginLength; i += 2) {
-            if (login[i].tel == tel && login[i].password == password) {
-                navigate('/home')
-            } else {
-                for (let i = 1; i < loginLength; i += 2) {
-                    if (login[i].tel == tel && login[i].password == password) {
-                        navigate('/home')
-                    }else{
-                        i--;
-                    }
-                }
-                i++;
-            }
-        }
 
+    const [telRequest, setTelRequest] = useState('login : ')
+    const [parolRequest, setParolRequest] = useState('parol : ')
+
+    function check() {
+        if (tel.length > 1 && password.length > 1) {
+            for (let i = 0; i < loginLength; i += 2) {
+                if (login[i].tel == tel && login[i].password == password) {
+                    navigate('/home')
+                } else {
+                    for (let i = 1; i < loginLength; i += 2) {
+                        if (login[i].tel == tel && login[i].password == password) {
+                            navigate('/home')
+                        } else {
+                            i--;
+                        }
+                    }
+                    i++;
+                }
+            }
+        } else {
+            setTelRequest('⚡')
+            setParolRequest('⚡')
+        }
 
     }
 
@@ -62,16 +70,16 @@ export default function Login() {
                             <line opacity="0.2" y1="0.5" x2="150" y2="0.5" stroke="black" />
                         </svg>
                         <p className="loginInfo">
-                            <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti possimus distinctio ad unde sunt vel</span>
+                            <span>Testda qatnashish uchun iltimos Login va Parolni kiriting</span>
                         </p>
                     </div>
 
                     <div className=" container p-5">
                         <div className="w-50" style={{ margin: '0 auto' }}>
-                            <span>Tel raqam: </span>
-                            <input type="text" className="form-control mb-3" placeholder="tel: " onChange={(e) => setTel(e.target.value)} />
+                            <span>Loginni kiriting: </span>
+                            <input type="text" className="form-control mb-3" placeholder={telRequest} value={tel} onChange={(e) => setTel(e.target.value)} required />
                             <span>Parol : </span>
-                            <input type="text" className="form-control  mb-3" placeholder="******" onChange={(e) => setPassword(e.target.value)} />
+                            <input type="text" className="form-control  mb-3" placeholder={parolRequest} value={password} onChange={(e) => setPassword(e.target.value)} />
                             <button className="btn w-100  btn-danger" onClick={() => check()}>Login</button>
                         </div>
                     </div>
