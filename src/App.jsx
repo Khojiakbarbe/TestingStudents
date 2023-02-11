@@ -8,12 +8,10 @@ import ExamPage from "./Components/ExamPage.jsx";
 import Results from "./Components/Results.jsx";
 
 import './App.css'
-import MyModal from "./Components/Modal.jsx";
 
 
 function App() {
   return (
-    // <MyModal/>
     <Router>
       <TimeProvider>
         <TimeMinutProvider>
