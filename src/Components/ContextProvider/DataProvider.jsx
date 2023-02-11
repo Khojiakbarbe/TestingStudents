@@ -66,3 +66,15 @@ export function AnswerProvider(props) {
         </answerContext.Provider>
     )
 }
+
+
+// Right
+export const rightContext = createContext()
+export function RightProvider() {
+    const [right, setRight] = useState();
+
+    return (
+        <rightContext.Provider>
+        </rightContext.Provider>
+    )
+}

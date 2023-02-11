@@ -5,12 +5,15 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { TimeSecondsProvider, TimeProvider, TimeMinutProvider, AnswerProvider } from "./Components/ContextProvider/DataProvider.jsx";
 
 import ExamPage from "./Components/ExamPage.jsx";
+import Results from "./Components/Results.jsx";
 
 import './App.css'
+import MyModal from "./Components/Modal.jsx";
 
 
 function App() {
   return (
+    // <MyModal/>
     <Router>
       <TimeProvider>
         <TimeMinutProvider>
@@ -20,6 +23,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/examPage" element={<ExamPage />} />
+                <Route path="/results" element={<Results />} />
               </Routes>
             </AnswerProvider>
           </TimeSecondsProvider>

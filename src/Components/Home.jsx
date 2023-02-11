@@ -1,3 +1,4 @@
+import { Modal } from "bootstrap";
 import React, { useContext, useState } from "react";
 import { useNavigate } from 'react-router-dom'
 
@@ -20,7 +21,7 @@ export default function Home() {
         <div className="home">
             <h2 className="text-center">Bilmingizni biz bilan mustahkamlang</h2>
             <h6 className="text-center mt- mb-5" >Quyida mavzu va test sonini tanlang </h6>
-
+            {/* <Modal /> */}
             <div className=" homeRow">
                 <div className="row">
                     <div className="col-4">

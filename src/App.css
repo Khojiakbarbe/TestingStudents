@@ -11,10 +11,9 @@
     background-image: url(images/bg/bg.png);
     width: 100%;
     background-size: 100%;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     height: 86.5vh !important;
     padding-top: 4%;
-    overflow-y: hidden;
 }
 
 
@@ -84,4 +83,53 @@
     color: #A47600;
     background: rgba(251, 181, 0, 0.3);
     border-radius: 10px;
+}
+
+@media only screen and (max-width: 992px) {
+    .answer {
+        width: 100%;
+        margin-bottom: 3%;
+    }
+
+    .answersBtnResponsive {
+        width: 100%;
+    }
+
+    .answersText h4 {
+        font-size: 50%;
+    }
+}
+
+/* Modal */
+.popUp-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #c6c0c0b5;
+}
+
+.myModal {
+    width: 25%;
+    margin: 0 auto;
+    position: relative;
+    top: 20%;
+    background: #FFFFFF;
+    border-radius: 60px;
+    padding: 2%;
+    box-shadow: 0 5px 5px gray;
+    text-align: center;
+}
+
+.myModal img {
+    width: 60%;
+}
+
+.myModal button {
+    background-color: white;
+    border: none;
+    position: relative;
+    left: 45%;
+    top: -20%;
 }

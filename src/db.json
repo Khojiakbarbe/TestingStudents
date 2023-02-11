@@ -44,6 +44,11 @@
             "id": 9,
             "question": "9 * 8",
             "result": 72
+        },
+        {
+            "id": 10,
+            "question": "9 * 8",
+            "result": 72
         }
     ],
     "boolean": [
@@ -53,9 +58,49 @@
             "result": 72
         },
         {
-           "id" : 2,
-           "questtion" : "70 / 10",
-           "result" : "7" 
+            "id": 2,
+            "questtion": "70 / 10",
+            "result": "7"
+        },
+        {
+            "id": 3,
+            "question": "5 * 8",
+            "result": 40
+        },
+        {
+            "id": 4,
+            "question": "8 * 8",
+            "result": 64
+        },
+        {
+            "id": 5,
+            "question": "6 * 6",
+            "result": 36
+        },
+        {
+            "id": 6,
+            "question": "7 * 3",
+            "result": 21
+        },
+        {
+            "id": 7,
+            "question": "2 * 9",
+            "result": 18
+        },
+        {
+            "id": 8,
+            "question": "6 * 5",
+            "result": 30
+        },
+        {
+            "id": 9,
+            "question": "9 * 8",
+            "result": 72
+        },
+        {
+            "id": 10,
+            "question": "9 * 8",
+            "result": 72
         }
     ]
 }
