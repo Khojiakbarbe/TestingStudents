@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import kirishImg from '../images/bg/kirishImg.png'
 
 export default function Login() {
 
@@ -21,7 +21,6 @@ export default function Login() {
     const [password, setPassword] = useState('')
 
     const loginLength = login.length;
-    // useEffect(() => {
     function check() {
         for (let i = 0; i < loginLength; i += 2) {
             if (login[i].tel == tel && login[i].password == password) {
@@ -31,13 +30,12 @@ export default function Login() {
                     if (login[i].tel == tel && login[i].password == password) {
                         navigate('/home')
                     }else{
-                        i--
+                        i--;
                     }
                 }
-                i++
+                i++;
             }
         }
-        // })
 
 
     }
@@ -51,6 +49,7 @@ export default function Login() {
                         <p style={{ color: '#7A3700' }}>Infinity</p>
                         <p>boshqaruv </p>
                         <p>tizimi</p>
+                        <img src={kirishImg} alt="" />
                     </div>
                 </div>
                 <div className="col-6 loginResponsive">
