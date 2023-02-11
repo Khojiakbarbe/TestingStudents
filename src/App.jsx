@@ -17,7 +17,7 @@ function App() {
         <TimeMinutProvider>
           <TimeSecondsProvider>
             <AnswerProvider>
-              <Navbar />
+              {/* <Navbar /> */}
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/examPage" element={<ExamPage />} />

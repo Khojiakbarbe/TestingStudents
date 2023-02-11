@@ -10,7 +10,7 @@ function Timer({ expiryTimestamp }) {
         minutes,
         isRunning,
         restart,
-    } = useTimer({ expiryTimestamp, onExpire: () => console.warn('onExpire called') });
+    } = useTimer({ expiryTimestamp, onExpire: () => console.warn('onExpire called ') });
 
     const navigate = useNavigate();
 

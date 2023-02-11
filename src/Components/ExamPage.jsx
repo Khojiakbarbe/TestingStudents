@@ -6,6 +6,7 @@ import timeOver from '../images/modal/timeOver.png'
 import close from '../images/modal/close.png'
 
 import axios from "axios";
+import Navbar from "./Navbar";
 
 
 export default function ExamPage() {
@@ -67,9 +68,8 @@ export default function ExamPage() {
                 setQuestionIndx(questionIndx + 1)
                 setMistake(mistake + 1);
             }
-        } else {
-            alert('Your results : currect  ' + currect + "; mistake " + mistake)
         }
+        setInputValue('')
     }
 
     // if test over , navigate to other page
@@ -89,7 +89,6 @@ export default function ExamPage() {
     })
 
     function closeModal() {
-        setStartBtn('close')
         setForModal('close')
         setShowModal('close')
     }
@@ -97,64 +96,69 @@ export default function ExamPage() {
 
 
     return (
-        <div className="container p-5">
-            <div className="examPage">
-                <div className="examQuestion">
-                    {
-                        startBtn === '' ?
-                            info[questionIndx] && <p key={info[questionIndx].id}>{info[questionIndx].question} = ?</p>
-                            :
-                            <p>Test is here</p>
-                    }
-                </div>
-                <Timer />
-
-                {
-                    showModal.length == 0 ?
-                        <div className="popUp-modal">
-                            <div className="myModal">
-                                <button onClick={() => closeModal()}><img src={close} alt="" /></button>
-                                <br />
-                                <img src={timeOver} />
-                                <h5>Tog'ri javoblar : {currect}</h5>
-                                <h5>Noto'g'ri javoblar : {mistake}</h5>
-                            </div>
-                        </div>
-                        :
-                        null
-                }
-
-                <div className="row">
-                    <div className="col-6 answer">
+        <>
+            <Navbar />
+            <div className="container p-5">
+                <div className="examPage">
+                    <div className="examQuestion">
                         {
                             startBtn === '' ?
-                                <input type="text" placeholder="Natijani kiriting" onChange={(e) => setInputValue(e.target.value)} />
+                                info[questionIndx] && <p key={info[questionIndx].id}>{info[questionIndx].question} = ?</p>
                                 :
-                                <input type="text" placeholder="Natijani kiriting" onChange={(e) => setInputValue(e.target.value)} disabled />
-
+                                <p>Test is here</p>
                         }
                     </div>
-                    <div className="col-6 answersBtnResponsive">
-                        {
-                            startBtn === '' && inputValue.length > 0 ?
-                                <button className="answerBtnActive " onClick={() => topshirishBtn()}>Topshirish</button>
-                                :
-                                <button className="answerBtnDisable " disabled>Topshirish</button>
-                        }
-                    </div>
-                </div>
+                    <Timer />
 
-                <div className="row mt-5">
-                    <div className="col-3 answersText" style={{ color: "#18AC00" }}>
-                        <h4>To'gri javoblar : {currect}</h4>
+                    {/* Modal */}
+                    {
+                        showModal.length == 0 ?
+                            <div className="popUp-modal">
+                                <div className="myModal">
+                                    <button onClick={() => closeModal()}><img src={close} alt="" /></button>
+                                    <br />
+                                    <img src={timeOver} />
+                                    <h5>Tog'ri javoblar : {currect}</h5>
+                                    <h5>Noto'g'ri javoblar : {mistake}</h5>
+                                </div>
+                            </div>
+                            :
+                            null
+                    }
+
+                    <div className="row">
+                        <div className="col-6 answer">
+                            {/* Answer input */}
+                            {
+                                startBtn === '' ?
+                                    <input type="text" placeholder="Natijani kiriting" value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+                                    :
+                                    <input type="text" placeholder="Natijani kiriting" disabled />
+
+                            }
+                        </div>
+                        <div className="col-6 answersBtnResponsive">
+                            {/* Send answer btn */}
+                            {
+                                startBtn === '' && inputValue.length > 0 ?
+                                    <button className="answerBtnActive " onClick={() => topshirishBtn()}>Topshirish</button>
+                                    :
+                                    <button className="answerBtnDisable " disabled>Topshirish</button>
+                            }
+                        </div>
                     </div>
-                    <div className="col-3 answersText" style={{ color: "#FF0000" }}>
-                        <h4>Noto'g'ri javoblar : {mistake}</h4>
+
+                    <div className="row mt-5">
+                        <div className="col-3 answersText" style={{ color: "#18AC00" }}>
+                            <h4>To'gri javoblar : {currect}</h4>
+                        </div>
+                        <div className="col-3 answersText" style={{ color: "#FF0000" }}>
+                            <h4>Noto'g'ri javoblar : {mistake}</h4>
+                        </div>
                     </div>
                 </div>
             </div>
-
-        </div>
+        </>
     )
 
 }
