@@ -1,3 +1,68 @@
+.logIn {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+.logInBg {
+    background-position: bottom;
+    background-image: url(images/bg/LoginBg.jfif);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    padding: 2.4%;
+}
+
+.textTizim {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(27px);
+    border-radius: 50px;
+    padding: 5%;
+    padding-top: 25%;
+    padding-bottom: 25%;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.textTizim p {
+    color: white;
+    font-size: 400%;
+    font-weight: 900;
+}
+
+/* Login side */
+
+.loginInputs {
+    text-align: center;
+    margin-top: 30%;
+    overflow: hidden;
+}
+
+.loginInputs h1 {
+    font-size: 300%;
+    font-weight: 900;
+}
+
+.loginInputs svg {
+    margin-bottom: -10%;
+}
+
+.line1 {
+    position: relative;
+    left: -28%;
+}
+
+.line2 {
+    position: relative;
+    right: -28%;
+}
+
+.loginInfo {
+    margin: 0 auto;
+    width: 40%;
+    color:#7A3700;
+}
+
+
 .myNavbar {
     background-color: #FBB500;
     text-align: center;
@@ -85,6 +150,16 @@
 }
 
 @media only screen and (max-width: 992px) {
+    .textTizim p {
+        font-size: 200%;
+    }
+
+    .loginResponsive{
+        width: 100%;
+    }
+
+    /* examPage */
+
     .answer {
         width: 100%;
         margin-bottom: 3%;
