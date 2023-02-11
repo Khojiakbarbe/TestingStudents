@@ -72,6 +72,7 @@ export default function ExamPage() {
         setInputValue('')
     }
 
+
     // if test over , navigate to other page
     if (questionIndx > count - 1) {
         navigate('/results', { state: { id: 1, currect: currect, mistake: mistake } })
@@ -91,6 +92,8 @@ export default function ExamPage() {
     function closeModal() {
         setForModal('close')
         setShowModal('close')
+        setCurrect(0)
+        setMistake(0)
     }
 
 
