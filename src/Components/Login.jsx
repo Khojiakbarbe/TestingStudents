@@ -25,27 +25,34 @@ export default function Login() {
     const [telRequest, setTelRequest] = useState('login : ')
     const [parolRequest, setParolRequest] = useState('parol : ')
 
+
+    const [notFound, setNotFound] = useState('')
+
     function check() {
         if (tel.length > 1 && password.length > 1) {
             for (let i = 0; i < loginLength; i += 2) {
                 if (login[i].tel == tel && login[i].password == password) {
                     navigate('/home')
+                    window.location.reload();
                 } else {
                     for (let i = 1; i < loginLength; i += 2) {
                         if (login[i].tel == tel && login[i].password == password) {
                             navigate('/home')
+                            window.location.reload();
                         } else {
                             i--;
                         }
                     }
                     i++;
+                    setNotFound("Login yoki parol notog'ri")
                 }
             }
         } else {
             setTelRequest('⚠')
             setParolRequest('⚠')
         }
-
+        setTel('')
+        setPassword('')
     }
 
 
@@ -75,8 +82,8 @@ export default function Login() {
                     </div>
 
                     <div className=" container p-5">
-                        <div className="w-50" style={{ margin: '0 auto' }}>
-                            <span>Loginni kiriting: </span>
+                        <div className="w-50" style={{ margin: '0 auto', textAlign: 'left' }}>
+                            <span>Loginni kiriting: <span style={{ color: 'red' }}>{notFound}</span></span>
                             <input type="text" className="form-control mb-3" placeholder={telRequest} value={tel} onChange={(e) => setTel(e.target.value)} required />
                             <span>Parol : </span>
                             <input type="text" className="form-control  mb-3" placeholder={parolRequest} value={password} onChange={(e) => setPassword(e.target.value)} />

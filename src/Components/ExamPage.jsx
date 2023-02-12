@@ -58,6 +58,7 @@ export default function ExamPage() {
     const [currect, setCurrect] = useState(0)
     const [mistake, setMistake] = useState(0)
 
+
     function topshirishBtn() {
         setForModal('')
         if (questionIndx < count) {
@@ -86,6 +87,8 @@ export default function ExamPage() {
             console.log(showModal);
         }
     })
+
+
 
     function closeModal() {
         setForModal('close')
