@@ -20,8 +20,8 @@ export default function Home() {
 
     return (
         <>
-        <Navbar />
         <div className="home">
+        <Navbar />
             <h2 className="text-center">Bilmingizni biz bilan mustahkamlang</h2>
             <h6 className="text-center mt- mb-5" >Quyida mavzu va test sonini tanlang </h6>
             {/* <Modal /> */}

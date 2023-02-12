@@ -1,7 +1,7 @@
 .logIn {
-    width: 100%;
     height: 100%;
-    overflow-x: hidden;
+    width: 100%;
+    overflow: hidden;
 }
 
 .logInBg {
@@ -10,6 +10,9 @@
     background-size: 100%;
     background-repeat: no-repeat;
     padding: 2.4%;
+    position: absolute;
+    width: 50%;
+    height: 100%;
 }
 
 .textTizim {
@@ -17,15 +20,16 @@
     backdrop-filter: blur(27px);
     border-radius: 50px;
     padding: 5%;
-    padding-top: 18%;
-    padding-bottom: 25.3%;
+    padding-top: 15%;
+    padding-bottom: 15%;
     width: 60%;
     margin: 0 auto;
+    margin-top: 10vh;
 }
 
 .textTizim p {
     color: white;
-    font-size: 400%;
+    font-size: 300%;
     font-weight: 900;
 }
 
@@ -35,6 +39,9 @@
     text-align: center;
     margin-top: 15%;
     overflow: hidden;
+    position: absolute;
+    width: 50%;
+    right: 0;
 }
 
 .loginInputs h1 {
@@ -59,25 +66,28 @@
 .loginInfo {
     margin: 0 auto;
     width: 40%;
-    color:#7A3700;
+    color: #7A3700;
 }
 
 
 .myNavbar {
     background-color: #FBB500;
     text-align: center;
-    margin-bottom: 0;
     border-bottom: 1px solid white;
     padding: 1%;
+    position: relative;
+    top: -5%;
 }
 
 .home {
     background-color: #FBB500;
     background-image: url(images/bg/bg.png);
+    position: absolute;
     width: 100%;
+    height: 100%;
     background-size: 100%;
     padding-top: 4%;
-    padding-bottom: 16.8%;
+    padding-bottom: -16.8%;
 }
 
 
@@ -103,6 +113,7 @@
 }
 
 /* Exam page */
+
 .startBtn {
     width: 100%;
     padding: 1%;
@@ -150,11 +161,16 @@
 }
 
 @media only screen and (max-width: 992px) {
+
+    .loginInputs {
+        position: relative;
+    }
+
     .textTizim p {
         font-size: 200%;
     }
 
-    .loginResponsive{
+    .loginResponsive {
         width: 100%;
     }
 
@@ -172,6 +188,9 @@
     .answersText h4 {
         font-size: 50%;
     }
+
+
+
 }
 
 /* Modal */
@@ -201,9 +220,9 @@
 }
 
 .myModal button {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.051);
     border: none;
     position: relative;
-    left: 45%;
+    left: 40%;
     top: -20%;
 }

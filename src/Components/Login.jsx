@@ -60,8 +60,8 @@ export default function Login() {
                         <img src={kirishImg} alt="" />
                     </div>
                 </div>
-                <div className="col-6 loginResponsive">
-                    <div className="loginInputs">
+                <div className="col-6 loginInputs loginResponsive">
+                    <div >
                         <h1 >Infinity</h1>
                         <svg xmlns="http://www.w3.org/2000/svg" className="line1" width="200" height="1.5" viewBox="0 0 150 1" fill="none">
                             <line opacity="0.2" y1="0.5" x2="150" y2="0.5" stroke="black" />

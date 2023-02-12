@@ -92,6 +92,7 @@ export default function ExamPage() {
         setShowModal('close')
         setCurrect(0)
         setMistake(0)
+        navigate('/')
     }
 
 
@@ -116,7 +117,7 @@ export default function ExamPage() {
                         showModal.length == 0 ?
                             <div className="popUp-modal">
                                 <div className="myModal">
-                                    <button onClick={() => closeModal()}><img src={close} alt="" /></button>
+                                    <button  onClick={() => closeModal()}><img src={close} alt=""  /></button>
                                     <br />
                                     <img src={timeOver} />
                                     <h5>Tog'ri javoblar : {currect}</h5>
