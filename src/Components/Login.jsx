@@ -23,7 +23,7 @@ export default function Login() {
     const loginLength = login.length;
 
     const [telRequest, setTelRequest] = useState('login : ')
-    const [parolRequest, setParolRequest] = useState('parol : ')
+    const [parolRequest, setParolRequest] = useState('*****')
 
 
     const [notFound, setNotFound] = useState('')
@@ -45,11 +45,13 @@ export default function Login() {
                     }
                     i++;
                     setNotFound("Login yoki parol notog'ri")
+                    setTelRequest("login : ")
+                    setParolRequest("*****")
                 }
             }
         } else {
-            setTelRequest('⚠')
-            setParolRequest('⚠')
+            setTelRequest("To'ldirilmagan ⚠")
+            setParolRequest("To'ldirilmagan ⚠")
         }
         setTel('')
         setPassword('')
@@ -81,9 +83,10 @@ export default function Login() {
                         </p>
                     </div>
 
-                    <div className=" container p-5">
+                    <div className=" container W-50 p-5">
+                        <h4 style={{ color: 'red' }}>{notFound}</h4>
                         <div className="w-50" style={{ margin: '0 auto', textAlign: 'left' }}>
-                            <span>Loginni kiriting: <span style={{ color: 'red' }}>{notFound}</span></span>
+                            <span>Loginni kiriting: </span>
                             <input type="text" className="form-control mb-3" placeholder={telRequest} value={tel} onChange={(e) => setTel(e.target.value)} required />
                             <span>Parol : </span>
                             <input type="text" className="form-control  mb-3" placeholder={parolRequest} value={password} onChange={(e) => setPassword(e.target.value)} />

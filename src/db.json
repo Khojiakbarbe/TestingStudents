@@ -91,8 +91,8 @@
         },
         {
             "id": 2,
-            "questtion": "70 / 10",
-            "result": "7"
+            "questtion": "70 * 10",
+            "result": 7
         },
         {
             "id": 3,
