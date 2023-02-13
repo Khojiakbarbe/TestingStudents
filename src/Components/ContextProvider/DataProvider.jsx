@@ -1,6 +1,18 @@
 import React, { createContext, useState } from "react";
 
 
+// LogIn
+export const loginContext = createContext();
+export function LoginProvider(props) {
+    const [login, setLogin] = useState(false)
+    
+    return(
+        <loginContext.Provider value={[login , setLogin]}>
+            {props.children}
+        </loginContext.Provider>
+    )
+}
+
 // GivenTime
 export const timeContext = createContext();
 export function TimeProvider(props) {

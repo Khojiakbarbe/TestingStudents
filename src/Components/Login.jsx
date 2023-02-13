@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
+import { loginContext } from "./ContextProvider/DataProvider";
 import { useNavigate } from "react-router-dom";
 import kirishImg from '../images/bg/kirishImg.png'
 
 export default function Login() {
+
+    const [loginCon, setLoginCon] = useContext(loginContext)
 
     const navigate = useNavigate();
 
@@ -32,14 +35,15 @@ export default function Login() {
         if (tel.length > 1 && password.length > 1) {
             for (let i = 0; i < loginLength; i += 2) {
                 if (login[i].tel == tel && login[i].password == password) {
+                    setLoginCon(true)
                     navigate('/home')
-                    window.location.reload();
                 } else {
                     for (let i = 1; i < loginLength; i += 2) {
                         if (login[i].tel == tel && login[i].password == password) {
+                            setLoginCon(true)
                             navigate('/home')
-                            window.location.reload();
                         } else {
+                            setLoginCon('false')
                             i--;
                         }
                     }
