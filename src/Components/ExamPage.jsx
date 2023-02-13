@@ -96,6 +96,7 @@ export default function ExamPage() {
         setCurrect(0)
         setMistake(0)
         navigate('/')
+        window.location.reload();
     }
 
 
