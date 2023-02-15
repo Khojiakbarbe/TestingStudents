@@ -70,6 +70,16 @@
 }
 
 
+.linkToRegistrate:hover{
+    cursor: pointer;
+    color: #A47600;
+    transition: 0.2s;
+    font-size: 150%;
+}
+
+
+/* Home page start */
+
 .myNavbar {
     background-color: #FBB500;
     text-align: center;
@@ -228,4 +238,9 @@
     position: relative;
     left: 40%;
     top: -20%;
+}
+
+/* Registrate */
+.hiddenCheckRegistrate{
+    display: none;
 }

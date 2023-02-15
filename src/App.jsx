@@ -7,8 +7,11 @@ import Results from "./Components/Results.jsx";
 import Login from "./Components/Login.jsx";
 import ProtectRoutes from "./Components/ProtectRoutes.jsx";
 import Error from "./Components/Error.jsx";
-
+import AddNewQuestions from "./Components/AddNewQuestions.jsx";
+import Registrate from "./Components/Registrate.jsx";
 import './App.css'
+
+
 
 function App() {
   return (
@@ -25,6 +28,8 @@ function App() {
                     <Route path="/examPage" element={<ExamPage />} />
                     <Route path="/results" element={<Results />} />
                   </Route>
+                  <Route path="/registrate" element={<Registrate />} />
+                  <Route path="/addQuestions" element={<AddNewQuestions />}/>
                   <Route path="*" elemen={<Error />} />
                 </Routes>
               </AnswerProvider>

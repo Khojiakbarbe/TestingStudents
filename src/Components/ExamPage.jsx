@@ -24,8 +24,8 @@ export default function ExamPage() {
 
 
     const { state } = useLocation();
-    const { theme, count } = state;
-
+    const { type, theme, count } = state;
+    console.log(type);
     const [inputValue, setInputValue] = useState('')
 
     const [info, setInfo] = useState([]);
@@ -33,21 +33,21 @@ export default function ExamPage() {
 
 
     useEffect(() => {
-        axios.get('http://localhost:4000/questions/' + theme)
+        axios.get('http://localhost:4000/questions/' + type)
             .then(res => {
                 console.log(res.data);
-                let usedIndx = [];
-                let questions = [];
-                for (let i = 0; i < count; i++) {
-                    let randomized = Math.floor(Math.random() * res.data.length);
-                    while (usedIndx.includes(randomized)) {
-                        randomized = Math.floor(Math.random() * res.data.length);
-                    }
-                    let currIndx = res.data[randomized];
-                    usedIndx.push(randomized);
-                    questions.push(currIndx);
-                }
-                setInfo(questions);
+                // let usedIndx = [];
+                // let questions = [];
+                // for (let i = 0; i < count; i++) {
+                //     let randomized = Math.floor(Math.random() * res.data.length);
+                //     while (usedIndx.includes(randomized)) {
+                //         randomized = Math.floor(Math.random() * res.data.length);
+                //     }
+                //     let currIndx = res.data[randomized];
+                //     usedIndx.push(randomized);
+                //     questions.push(currIndx);
+                // }
+                // setInfo(questions);
             })
             .catch(err => console.log(err));
     }, []);
@@ -122,7 +122,7 @@ export default function ExamPage() {
                         showModal.length == 0 ?
                             <div className="popUp-modal">
                                 <div className="myModal">
-                                    <button  onClick={() => closeModal()}><img src={close} alt=""  /></button>
+                                    <button onClick={() => closeModal()}><img src={close} alt="" /></button>
                                     <br />
                                     <img src={timeOver} />
                                     <h5>Tog'ri javoblar : {currect}</h5>

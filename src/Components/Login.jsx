@@ -13,7 +13,7 @@ export default function Login() {
     const [login, setLogin] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:9000/login')
+        axios.get('http://localhost:4000/users')
             .then(res => {
                 setLogin(res.data)
             })
@@ -32,15 +32,14 @@ export default function Login() {
     const [notFound, setNotFound] = useState('')
 
     function check() {
-        navigate('/home')
         if (tel.length > 1 && password.length > 1) {
             for (let i = 0; i < loginLength; i += 2) {
-                if (login[i].tel == tel && login[i].password == password) {
+                if (login[i].login == tel && login[i].password == password) {
                     setLoginCon(true)
                     navigate('/home')
                 } else {
                     for (let i = 1; i < loginLength; i += 2) {
-                        if (login[i].tel == tel && login[i].password == password) {
+                        if (login[i].login == tel && login[i].password == password) {
                             setLoginCon(true)
                             navigate('/home')
                         } else {
@@ -96,6 +95,7 @@ export default function Login() {
                             <span>Parol : </span>
                             <input type="text" className="form-control  mb-3" placeholder={parolRequest} value={password} onChange={(e) => setPassword(e.target.value)} />
                             <button className="btn w-100  btn-danger" onClick={() => check()}>Login</button>
+                            <p className="mt-3 linkToRegistrate" onClick={() => navigate('/registrate')}>Registrate</p>
                         </div>
                     </div>
                 </div>
