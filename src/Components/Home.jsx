@@ -9,7 +9,7 @@ export default function Home() {
 
     const navigate = useNavigate();
 
-    const [theme, setTheme] = useState('forLoop')
+    const [theme, setTheme] = useState('')
     const [count, setCount] = useState('5')
 
     const [time, setTime] = useContext(timeContext)
@@ -38,8 +38,8 @@ export default function Home() {
                                 <div className="col-3 answer">
                                     <h6>Mavzuni tanlang</h6>
                                     <select className="form-select form-select-sm p-2" aria-label=".form-select-sm example" onChange={(e) => setTheme(e.target.value)} >
-                                        <option value='general' >General</option>
-                                        <option value="ielts">IELTS</option>
+                                        <option value='tarix' >General</option>
+                                        <option value="tarix">IELTS</option>
                                         <option value="englishKids">English kids</option>
                                     </select>
                                 </div>
@@ -51,10 +51,10 @@ export default function Home() {
                                 <div className="col-3 answer">
                                     <h6>Mavzuni tanlang</h6>
                                     <select className="form-select form-select-sm p-2" aria-label=".form-select-sm example" onChange={(e) => setTheme(e.target.value)} >
-                                        <option value='forLoop' >Matematika</option>
-                                        <option value="boolean">Boolean</option>
-                                        <option value="intager">Intager</option>
-                                        <option value="minMax">Min & Max</option>
+                                        <option value='matem' >Matematika</option>
+                                        <option value="matem">Boolean</option>
+                                        <option value="matem">Intager</option>
+                                        <option value="matem">Min & Max</option>
                                     </select>
                                 </div>
                                 :
@@ -65,10 +65,10 @@ export default function Home() {
                                 <div className="col-3 answer">
                                     <h6>Mavzuni tanlang</h6>
                                     <select className="form-select form-select-sm p-2" aria-label=".form-select-sm example" onChange={(e) => setTheme(e.target.value)} >
-                                        <option value='forLoop' >For & While</option>
-                                        <option value="boolean">Boolean</option>
-                                        <option value="intager">Intager</option>
-                                        <option value="minMax">Min & Max</option>
+                                        <option value='programming' >For & While</option>
+                                        <option value="programming">Boolean</option>
+                                        <option value="programming">Intager</option>
+                                        <option value="programming">Min & Max</option>
                                     </select>
                                 </div>
                                 :

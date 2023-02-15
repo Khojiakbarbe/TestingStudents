@@ -32,6 +32,7 @@ export default function Login() {
     const [notFound, setNotFound] = useState('')
 
     function check() {
+        navigate('/home')
         if (tel.length > 1 && password.length > 1) {
             for (let i = 0; i < loginLength; i += 2) {
                 if (login[i].tel == tel && login[i].password == password) {
@@ -68,7 +69,7 @@ export default function Login() {
                 <div className="col-6 loginResponsive logInBg">
                     <div className="textTizim">
                         <p style={{ color: '#7A3700' }}>Infinity</p>
-                        <p>boshqaruv </p>
+                        <p>test </p>
                         <p>tizimi</p>
                         <img src={kirishImg} alt="" />
                     </div>

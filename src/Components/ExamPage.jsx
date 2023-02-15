@@ -33,8 +33,9 @@ export default function ExamPage() {
 
 
     useEffect(() => {
-        axios.get('http://localhost:9000/' + theme)
+        axios.get('http://localhost:4000/questions/' + theme)
             .then(res => {
+                console.log(res.data);
                 let usedIndx = [];
                 let questions = [];
                 for (let i = 0; i < count; i++) {
@@ -62,10 +63,10 @@ export default function ExamPage() {
     function topshirishBtn() {
         setForModal('')
         if (questionIndx < count) {
-            if (inputValue == info[questionIndx].result) {
+            if (inputValue == info[questionIndx].answer) {
                 setQuestionIndx(questionIndx + 1)
                 setCurrect(currect + 1)
-            } else if (inputValue !== info[questionIndx].result) {
+            } else if (inputValue !== info[questionIndx].answer) {
                 setQuestionIndx(questionIndx + 1)
                 setMistake(mistake + 1);
             }

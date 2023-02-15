@@ -29,6 +29,11 @@
             "id": 6,
             "tel": 999999809,
             "password": "parolimiz"
+        },
+        {
+            "id" : 7,
+            "tel": 911067693,
+            "password" : "xojiakbarbek"
         }
     ],
     "forLoop": [
@@ -91,12 +96,12 @@
         },
         {
             "id": 2,
-            "questtion": "70 * 10",
+            "questtion": "70 + 10",
             "result": 7
         },
         {
             "id": 3,
-            "question": "5 * 8",
+            "question": "5 / 8",
             "result": 40
         },
         {
@@ -111,7 +116,7 @@
         },
         {
             "id": 6,
-            "question": "7 * 3",
+            "question": "7 - 3",
             "result": 21
         },
         {
@@ -126,7 +131,7 @@
         },
         {
             "id": 9,
-            "question": "9 * 8",
+            "question": "9 + 8",
             "result": 72
         },
         {
