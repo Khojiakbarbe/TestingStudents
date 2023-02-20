@@ -25,7 +25,6 @@ export default function ExamPage() {
 
     const { state } = useLocation();
     const { type, theme, count } = state;
-    console.log(type);
     const [inputValue, setInputValue] = useState('')
 
     const [info, setInfo] = useState([]);
@@ -33,21 +32,21 @@ export default function ExamPage() {
 
 
     useEffect(() => {
-        axios.get('http://localhost:4000/questions/' + type)
+        axios.get('http://localhost:4000/questions/' + type + "/" + theme)
             .then(res => {
                 console.log(res.data);
-                // let usedIndx = [];
-                // let questions = [];
-                // for (let i = 0; i < count; i++) {
-                //     let randomized = Math.floor(Math.random() * res.data.length);
-                //     while (usedIndx.includes(randomized)) {
-                //         randomized = Math.floor(Math.random() * res.data.length);
-                //     }
-                //     let currIndx = res.data[randomized];
-                //     usedIndx.push(randomized);
-                //     questions.push(currIndx);
-                // }
-                // setInfo(questions);
+                let usedIndx = [];
+                let questions = [];
+                for (let i = 0; i < count; i++) {
+                    let randomized = Math.floor(Math.random() * res.data.length);
+                    while (usedIndx.includes(randomized)) {
+                        randomized = Math.floor(Math.random() * res.data.length);
+                    }
+                    let currIndx = res.data[randomized];
+                    usedIndx.push(randomized);
+                    questions.push(currIndx);
+                }
+                setInfo(questions);
             })
             .catch(err => console.log(err));
     }, []);

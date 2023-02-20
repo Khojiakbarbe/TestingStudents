@@ -20,12 +20,12 @@ export default function Home() {
     useEffect(() => {
         axios.get('http://localhost:4000/questions')
             .then(res => {
-                setTypeForTheme(res.data)
-                for (let i = 0; i < forFilterType.length; i++) {
-                    if (forFilterType[i].type.includes(type.type)) {
-                        i++
-                    }
-                }
+                setType(res.data)
+                // for (let i = 0; i < forFilterType.length; i++) {
+                //     if (forFilterType[i].type.includes(type.type)) {
+                //         i++
+                //     }
+                // }
             })
             .catch(err => console.log(err))
     }, [])
@@ -94,7 +94,7 @@ export default function Home() {
                             </select>
                         </div>
                     </div>
-                    <button id="boshlashBtn" onClick={() => navigate('/examPage', { state: { id: 1, type : type , theme: theme, count: count } })}>Boshlash</button>
+                    <button id="boshlashBtn" onClick={() => navigate('/examPage', { state: { id: 1, type : typeForTheme , theme: theme, count: count } })}>Boshlash</button>
                 </div>
             </div>
         </>
