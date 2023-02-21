@@ -10,8 +10,10 @@ export default function Home() {
 
     const navigate = useNavigate();
 
-    const [forFilterType, setForFilterType] = useState('')
-    const [type, setType] = useState([])
+    const [allType, setAllType] = useState([])
+
+    const [type, setType] = useState([]) // ["dasturlash"]
+
     const [typeForTheme, setTypeForTheme] = useState('')
     const [choosenTheme, setChoosenTheme] = useState('')
 
@@ -20,12 +22,14 @@ export default function Home() {
     useEffect(() => {
         axios.get('http://localhost:4000/questions')
             .then(res => {
-                setType(res.data)
-                // for (let i = 0; i < forFilterType.length; i++) {
-                //     if (forFilterType[i].type.includes(type.type)) {
-                //         i++
-                //     }
-                // }
+                setAllType(res.data)
+                let allTypes = [];
+                for (let i = 0; i < res.data.length; i++) {
+                    if (!allTypes.includes(res.data[i].type)) {
+                        allTypes.push(res.data[i].type)
+                    }
+                }
+                setType(allTypes);
             })
             .catch(err => console.log(err))
     }, [])
@@ -33,8 +37,14 @@ export default function Home() {
 
 
     function handleTheme() {
-        const filter = type.filter(find => find.type.toLowerCase().includes(typeForTheme.toLowerCase()))
-        setChoosenTheme(filter)
+        const filter = allType.filter(find => find.type.toLowerCase().includes(typeForTheme.toLowerCase()))
+        let allTheme = []
+        for (let i = 0; i < filter.length; i++) {
+            if (!allTheme.includes(filter[i].theme)) {
+                allTheme.push(filter[i].theme)
+            }
+        }
+        setChoosenTheme(allTheme)
     }
 
 
@@ -55,9 +65,9 @@ export default function Home() {
                         <div className="col-3 answer">
                             <h6>Yonalishni tanlang</h6>
                             <select className="form-select form-select-sm p-2" aria-label="form-select-sm example" onClick={handleTheme} onChange={(e) => setTypeForTheme(e.target.value)} >
-                                {type && type.map(post => {
+                                {type && type.map((post, inx) => {
                                     return (
-                                        <option key={post.id} value={post.type}>{post.type}</option>
+                                        <option key={inx} value={post}>{post}</option>
                                     )
                                 })}
                             </select>
@@ -68,7 +78,7 @@ export default function Home() {
                             <select className="form-select form-select-sm p-2" aria-label=".form-select-sm example" onChange={(e) => setTheme(e.target.value)} >
                                 {choosenTheme && choosenTheme.map(post => {
                                     return (
-                                        <option key={post.id} value={post.theme}>{post.theme}</option>
+                                        <option key={post.id} value={post.theme}>{post}</option>
                                     )
                                 })
                                 }
@@ -94,7 +104,7 @@ export default function Home() {
                             </select>
                         </div>
                     </div>
-                    <button id="boshlashBtn" onClick={() => navigate('/examPage', { state: { id: 1, type : typeForTheme , theme: theme, count: count } })}>Boshlash</button>
+                    <button id="boshlashBtn" onClick={() => navigate('/examPage', { state: { id: 1, type: typeForTheme, theme: theme, count: count } })}>Boshlash</button>
                 </div>
             </div>
         </>

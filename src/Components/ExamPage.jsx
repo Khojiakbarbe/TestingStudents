@@ -25,6 +25,7 @@ export default function ExamPage() {
 
     const { state } = useLocation();
     const { type, theme, count } = state;
+    const countToResultPage = count;
     const [inputValue, setInputValue] = useState('')
 
     const [info, setInfo] = useState([]);
@@ -76,7 +77,7 @@ export default function ExamPage() {
 
     // if test over , navigate to other page
     if (questionIndx > count - 1) {
-        navigate('/results', { state: { id: 1, currect: currect, mistake: mistake } })
+        navigate('/results', { state: { id: 1, count: countToResultPage, currect: currect, mistake: mistake } })
     }
 
     const [showModal, setShowModal] = useState('modal')
@@ -84,7 +85,6 @@ export default function ExamPage() {
     useEffect(() => {
         if (forModal.length == 0 && minutes < 1 && seconds < 1) {
             setShowModal('')
-            console.log(showModal);
         }
     })
 
@@ -124,8 +124,9 @@ export default function ExamPage() {
                                     <button onClick={() => closeModal()}><img src={close} alt="" /></button>
                                     <br />
                                     <img src={timeOver} />
-                                    <h5>Tog'ri javoblar : {currect}</h5>
-                                    <h5>Noto'g'ri javoblar : {mistake}</h5>
+                                    <h5>Testlar soni: {count} </h5>
+                                    <h5 style={{ color: '#18AC00' }}>Tog'ri javoblar : {currect}</h5>
+                                    <h5 style={{ color: '#FF0000' }}>Noto'g'ri javoblar : {mistake}</h5>
                                 </div>
                             </div>
                             :

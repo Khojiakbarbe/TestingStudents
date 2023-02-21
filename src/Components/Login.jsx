@@ -87,14 +87,16 @@ export default function Login() {
                         </p>
                     </div>
 
-                    <div className=" container W-50 p-5">
+                    <div className=" container  p-5">
+                        <a href="addQuestions">Add questions page</a> <br />
+                        <a href="/deleteQuestions">Delete page</a>
                         <h4 style={{ color: 'red' }}>{notFound}</h4>
                         <div className="w-50" style={{ margin: '0 auto', textAlign: 'left' }}>
                             <span>Loginni kiriting: </span>
                             <input type="text" className="form-control mb-3" placeholder={telRequest} value={tel} onChange={(e) => setTel(e.target.value)} required />
                             <span>Parol : </span>
                             <input type="text" className="form-control  mb-3" placeholder={parolRequest} value={password} onChange={(e) => setPassword(e.target.value)} />
-                            <button className="btn w-100  btn-danger" onClick={() => check()}>Login</button>
+                            <button className="btn w-100  btn-danger" onClick={() => check()}>Tizimga kirish</button>
                             <p className="mt-3 linkToRegistrate" onClick={() => navigate('/registrate')}>Registrate</p>
                         </div>
                     </div>

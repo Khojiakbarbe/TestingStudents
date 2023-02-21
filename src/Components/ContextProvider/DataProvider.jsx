@@ -4,7 +4,7 @@ import React, { createContext, useState } from "react";
 // LogIn
 export const loginContext = createContext();
 export function LoginProvider(props) {
-    const [login, setLogin] = useState(false)
+    const [login, setLogin] = useState(true)
     
     return(
         <loginContext.Provider value={[login , setLogin]}>
