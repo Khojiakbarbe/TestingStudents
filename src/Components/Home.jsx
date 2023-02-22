@@ -87,21 +87,11 @@ export default function Home() {
 
                         <div className="col-3 answer">
                             <h6>Testlar soni</h6>
-                            <select className="form-select form-select-sm p-2" aria-label=".form-select-sm example" onChange={(e) => setCount(e.target.value)}>
-                                <option value='5'>5</option>
-                                <option value="10">10</option>
-                                <option value="15">15</option>
-                                <option value="20">20</option>
-                            </select>
+                            <input type="number" placeholder="testlar sonini kiriting" className="form-contro p-2" onChange={(e) => setCount(e.target.value)} />
                         </div>
                         <div className="col-3 answer">
                             <h6>Vaqtni tanlang (minut)</h6>
-                            <select className="form-select form-select-sm p-2" aria-label=".form-select-sm example" onClick={(e) => setTime(e.target.value)} >
-                                <option value='1'>1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                            </select>
+                            <input type="text" placeholder="Test vaqtini kiriting" onChange={(e) => setTime(e.target.value)} />
                         </div>
                     </div>
                     <button id="boshlashBtn" onClick={() => navigate('/examPage', { state: { id: 1, type: typeForTheme, theme: theme, count: count } })}>Boshlash</button>
