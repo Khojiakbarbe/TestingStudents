@@ -9,9 +9,10 @@ import ProtectRoutes from "./Components/ProtectRoutes.jsx";
 import Error from "./Components/Error.jsx";
 import AddNewQuestions from "./Components/AddNewQuestions.jsx";
 import Registrate from "./Components/Registrate.jsx";
-import './App.css'
 import DeletePage from "./Components/DeletePage.jsx";
+import NewQuestions from "./Components/NewQuestions.jsx";
 
+import './App.css'
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
                   </Route>
                   <Route path="/registrate" element={<Registrate />} />
                   <Route path="/addQuestions" element={<AddNewQuestions />} />
+                  <Route path="/newQuestions" element={<NewQuestions />} />
                   <Route path="/deleteQuestions" element={<DeletePage />} />
                   <Route path="*" elemen={<Error />} />
                 </Routes>

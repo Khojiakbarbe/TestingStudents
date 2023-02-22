@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios'
+import Navbar from "./Navbar";
 
 import { useNavigate } from 'react-router-dom'
 
@@ -22,26 +23,7 @@ export default function AddNewQuestions() {
 
     // For post
     const [type, setType] = useState('')
-    const [question, setQuestion] = useState('')
-    const [answer, setAnswer] = useState('')
-    const [questionImg, setQuestionImg] = useState('')
     const [theme, setTheme] = useState('')
-
-
-    function sendQuestion() {
-        axios.post('http://localhost:4000/questions', {
-            type,
-            question,
-            answer,
-            questionImg,
-            theme
-        })
-            .then(res => {
-                console.log(res.data, 'data is saved');
-                navigate('/')
-            })
-            .catch(err => console.log(err))
-    }
 
 
 
@@ -62,58 +44,57 @@ export default function AddNewQuestions() {
 
     const [newDirection, setNewDirection] = useState(false)
     return (
-        <div className="container mt-5 p-5">
-            <h1>Yangi savol qoshish</h1>
-            <div className="row mt-5">
-                <div className="col-4 answer">
-                    <h3>Yo'nalish</h3>
-                    <select className="form-select form-select-sm p-2" aria-label=".form-select-sm example" onChange={(e) => { setType(e.target.value); if (e.target.value == 'boshqasi') setNewDirection(true); else setNewDirection(false); }}  >
-                        <option value="">Yo'nalishni tanlang</option>
-                        {forType.map((post, ind) => {
-                            return (
-                                <option key={ind} value={post}>{post}</option>
-                            )
-                        })}
-                        <option value="boshqasi">boshqasi</option>
-                    </select>
-                    {
-                        newDirection ?
-                            <input placeholder="yangi yo'nalishni kiriting" type="text" className="form-control mb-3 mt-3" onChange={(e) => setType(e.target.value)} />
-                            :
-                            null
-                    }
-
-                </div>
-                <div className="col-4 answer">
-                    <h3>Mavzu kiriting</h3>
-                    {
-                        newDirection ?
-                            <input type="text" placeholder="yangi mavzuni kiriting" className="form-control mb-3 mt-3" onChange={(e) => setTheme(e.target.value)} />
-                            :
-                            <select className="form-select form-select-sm p-2" aria-label=".form-select-sm example" onChange={(e) => setTheme(e.target.value)} >
-                                <option value="">Mavzuni tanlang</option>
-                                {forTheme.map((post, ind) => {
+        <div className="home  p-5">
+            <Navbar />
+            <div className="container ">
+                <h2 style={{ textAlign: 'center' }}>Test tuzish</h2>
+                <h4 style={{ textAlign: 'center' }}>Fan va mavzuni tanlang</h4>
+                <div className="newQuestions">
+                    <div className="row mt-5" style={{ margin: '0 auto' }} >
+                        <div className="col-6 answer">
+                            <h3>Fan</h3>
+                            <select className="form-select form-select-sm p-2" aria-label=".form-select-sm example" onChange={(e) => { setType(e.target.value); if (e.target.value == 'boshqasi') setNewDirection(true); else setNewDirection(false); }}  >
+                                <option value="">Yo'nalishni tanlang</option>
+                                {forType.map((post, ind) => {
                                     return (
                                         <option key={ind} value={post}>{post}</option>
                                     )
                                 })}
+                                <option value="boshqasi">boshqasi</option>
                             </select>
+                            {
+                                newDirection ?
+                                    <input placeholder="yangi yo'nalishni kiriting" type="text" className="form-control mb-3 mt-3" onChange={(e) => setType(e.target.value)} />
+                                    :
+                                    null
+                            }
+                        </div>
+                        <div className="col-6 answer">
+                            <h3>Mavzu</h3>
+                            {
+                                newDirection ?
+                                    <input type="text" placeholder="yangi mavzuni kiriting" className="form-control mb-3 mt-3" onChange={(e) => setTheme(e.target.value)} />
+                                    :
+                                    <select className="form-select form-select-sm p-2" aria-label=".form-select-sm example" onChange={(e) => setTheme(e.target.value)} >
+                                        <option value="">Mavzuni tanlang</option>
+                                        {forTheme.map((post, ind) => {
+                                            return (
+                                                <option key={ind} value={post}>{post}</option>
+                                            )
+                                        })}
+                                    </select>
+                            }
+                        </div>
+                    </div>
+                    {
+                        type.length > 3 && theme.length > 3 ?
+                            <button className="btn btn-danger mt-3" onClick={() => navigate('/newQuestions', { state: { id: 1, type: type, theme: theme } })}>Test kiritish</button>
+                            :
+                            <button className="btn btn-danger mt-3" onClick={() => navigate('/newQuestions', { state: { id: 1, type: type, theme: theme } })} disabled>Test kiritish</button>
+
                     }
                 </div>
-                <div className="col-4 answer">
-                    <h3>Savolni kiriting</h3>
-                    <input type="text" className="form-control mb-3 mt-3" onChange={(e) => setQuestion(e.target.value)} />
-                </div>
-                <div className="col-4 answer">
-                    <h3>Javobni kiriting</h3>
-                    <input type="text" className="form-control mb-3 mt-3" onChange={(e) => setAnswer(e.target.value)} />
-                </div>
-                <div className="col-4 answer">
-                    <h3>Savol rasmi bolsa tanlang</h3>
-                    <input type="text" className="form-control mb-3 mt-3" onChange={(e) => setQuestionImg(e.target.value)} />
-                </div>
             </div>
-            <button className="btn btn-danger" onClick={sendQuestion}>Joylash</button>
         </div >
     )
 }

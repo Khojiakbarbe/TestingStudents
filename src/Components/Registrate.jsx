@@ -61,8 +61,6 @@ export default function Registrate() {
                     </div>
                 </div>
             </div>
-            {/* {
-                checkClass == 'hiddenCheckRegistrate' ? */}
             <div className="logIn">
 
                 <div className="row">
@@ -110,9 +108,6 @@ export default function Registrate() {
                     </div>
                 </div>
             </div >
-            {/* :
-                    null
-            } */}
         </>
     )
 }

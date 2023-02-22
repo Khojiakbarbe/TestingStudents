@@ -59,7 +59,6 @@ export default function Home() {
                 <Navbar />
                 <h2 className="text-center">Bilmingizni biz bilan mustahkamlang</h2>
                 <h6 className="text-center mt- mb-5" >Quyida mavzu va test sonini tanlang </h6>
-                {/* <Modal /> */}
                 <div className=" homeRow">
                     <div className="row">
                         <div className="col-3 answer">
