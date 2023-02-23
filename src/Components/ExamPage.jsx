@@ -114,13 +114,15 @@ export default function ExamPage() {
                                 :
                                 <p>Test is here</p>
                         }
+                    {/* <img src={info[questionIndx].questionImg} style={{ width: '100%' }} alt="" /> */}
+                   
                     </div>
-                    {
+                    {/* <img src={`https://localhost:4000/${info[questionIndx].questionImg}`} style={{ width: '100%' }} alt="" /> */}
+                    {/* {
                         info[questionIndx].questionImg.length !== 'none' ?
-                            <img src={info[questionIndx].questionImg} style={{ width: '100%' }} alt="" />
-                            :
-                            null
-                    }
+                        :
+                        null
+                    } */}
 
                     {/* <img src={`https://localhost:4000/${uploads.questionImg}`} alt="" />  */}
                     <Timer />
