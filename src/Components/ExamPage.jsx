@@ -101,6 +101,7 @@ export default function ExamPage() {
 
 
 
+
     return (
         <>
             <Navbar />
@@ -109,14 +110,19 @@ export default function ExamPage() {
                     <div className="examQuestion">
                         {
                             startBtn === '' ?
-                                info[questionIndx] && <p key={info[questionIndx].id}>{info[questionIndx].question} = ?</p>
+                                info[questionIndx] && <p key={info[questionIndx].id}>{info[questionIndx].question}</p>
                                 :
                                 <p>Test is here</p>
                         }
                     </div>
-                    {/* <img src={info[questionIndx].questionImg} alt="" /> */}
-                   
-                   {/* <img src={`https://localhost:4000/${uploads.questionImg}`} alt="" />  */}
+                    {
+                        info[questionIndx].questionImg.length !== 'none' ?
+                            <img src={info[questionIndx].questionImg} style={{ width: '100%' }} alt="" />
+                            :
+                            null
+                    }
+
+                    {/* <img src={`https://localhost:4000/${uploads.questionImg}`} alt="" />  */}
                     <Timer />
 
                     {/* Modal */}
