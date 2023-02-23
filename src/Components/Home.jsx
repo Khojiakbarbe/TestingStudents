@@ -64,6 +64,7 @@ export default function Home() {
                         <div className="col-3 answer">
                             <h6>Yonalishni tanlang</h6>
                             <select className="form-select form-select-sm p-2" aria-label="form-select-sm example" onClick={handleTheme} onChange={(e) => setTypeForTheme(e.target.value)} >
+                            <option value="">Fanni tanlang</option>
                                 {type && type.map((post, inx) => {
                                     return (
                                         <option key={inx} value={post}>{post}</option>
@@ -75,6 +76,7 @@ export default function Home() {
                         <div className="col-3 answer">
                             <h6>Mavzuni tanlang</h6>
                             <select className="form-select form-select-sm p-2" aria-label=".form-select-sm example" onChange={(e) => setTheme(e.target.value)} >
+                                <option value="">Mavzuni tanlang</option>
                                 {choosenTheme && choosenTheme.map(post => {
                                     return (
                                         <option key={post.id} value={post.theme}>{post}</option>

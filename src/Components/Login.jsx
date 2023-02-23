@@ -88,16 +88,26 @@ export default function Login() {
                     </div>
 
                     <div className=" container  p-5">
-                        <a href="addQuestions">Add questions page</a> <br />
-                        <a href="/deleteQuestions">Delete page</a>
                         <h4 style={{ color: 'red' }}>{notFound}</h4>
                         <div className="w-50" style={{ margin: '0 auto', textAlign: 'left' }}>
                             <span>Loginni kiriting: </span>
                             <input type="text" className="form-control mb-3" placeholder={telRequest} value={tel} onChange={(e) => setTel(e.target.value)} required />
                             <span>Parol : </span>
                             <input type="text" className="form-control  mb-3" placeholder={parolRequest} value={password} onChange={(e) => setPassword(e.target.value)} />
-                            <button className="btn w-100  btn-danger" onClick={() => check()}>Tizimga kirish</button>
-                            <p className="mt-3 linkToRegistrate" onClick={() => navigate('/registrate')}>Registrate</p>
+                            <button className="btn w-100 " style={{ background: "#FBC400" }} onClick={() => check()}><strong>Tizimga kirish</strong></button>
+                            <p className="mt-3 text-center" >
+                                <span className="loginLinks" onClick={() => navigate('/registrate')}>
+                                    Registrate
+                                </span>
+                                |
+                                <span className="loginLinks" onClick={() => navigate('/addQuestions')}>
+                                    Test kiritish
+                                </span>
+                                |
+                                <span className="loginLinks" onClick={() => navigate('/home')}>
+                                    O'zingizni sinang
+                                </span>
+                            </p>
                         </div>
                     </div>
                 </div>

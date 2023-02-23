@@ -114,6 +114,9 @@ export default function ExamPage() {
                                 <p>Test is here</p>
                         }
                     </div>
+                    {/* <img src={info[questionIndx].questionImg} alt="" /> */}
+                   
+                   {/* <img src={`https://localhost:4000/${uploads.questionImg}`} alt="" />  */}
                     <Timer />
 
                     {/* Modal */}
