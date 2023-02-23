@@ -107,16 +107,21 @@ export default function ExamPage() {
             <Navbar />
             <div className="container p-5">
                 <div className="examPage">
-                    <div className="examQuestion">
+                    <div className="examQuestion row">
+                        <div className="col-md-6">
+                            {
+                                startBtn === '' ?
+                                    info[questionIndx] && <p key={info[questionIndx].id}>{info[questionIndx].question}</p>
+                                    :
+                                    <p>Test is here</p>
+                            }
+                        </div>
+
                         {
-                            startBtn === '' ?
-                                info[questionIndx] && <p key={info[questionIndx].id}>{info[questionIndx].question}</p>
-                                :
-                                <p>Test is here</p>
-                        }
-                        {
-                            startBtn === '' && info[questionIndx].questionImg.length > 1 ? 
-                                <img src={`http://localhost:4000/${info[questionIndx].questionImg}`} className='img-fluid w-50' alt="" />
+                            startBtn === '' && info[questionIndx].questionImg.length > 1 ?
+                                <div className="col-md-6">
+                                    <img src={`http://localhost:4000/${info[questionIndx].questionImg}`} className='img-fluid w-50' alt="" />
+                                </div>
                                 :
                                 null
                         }

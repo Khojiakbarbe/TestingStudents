@@ -92,7 +92,7 @@ export default function Home() {
                         </div>
                         <div className="col-3 answer">
                             <h6>Vaqtni tanlang (minut)</h6>
-                            <input type="text" placeholder="Test vaqtini kiriting" onChange={(e) => setTime(e.target.value)} />
+                            <input type="number" placeholder="Test vaqtini kiriting" onChange={(e) => setTime(e.target.value)} />
                         </div>
                     </div>
                     <button id="boshlashBtn" onClick={() => navigate('/examPage', { state: { id: 1, type: typeForTheme, theme: theme, count: count } })}>Boshlash</button>

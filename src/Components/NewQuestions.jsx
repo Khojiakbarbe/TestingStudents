@@ -18,6 +18,7 @@ export default function NewQuestions() {
     const [count, setCount] = useState(1)
 
 
+
     function sendQuestion() {
         if (question.length > 5 && answer.length > 1) {
             const formDate = new FormData();
@@ -54,7 +55,7 @@ export default function NewQuestions() {
                     <div className="answer col ">
                         <div className="mb-3">
                             <label htmlFor="exampleFormControlTextarea1" className="form-label">{count}-savol</label>
-                            <textarea className="textArea" id="exampleFormControlTextarea1" placeholder="Savolni kiriting" value={question} onChange={(e) => setQuestion(e.target.value)} rows="12"></textarea>
+                            <textarea className="textArea" id="exampleFormControlTextarea1" placeholder="Savolni kiriting" value={question} onChange={(e) => setQuestion(e.target.value)} rows="10"></textarea>
                         </div>
                     </div>
                     <div className="col-md-3  chooseImg">
@@ -63,9 +64,9 @@ export default function NewQuestions() {
 
                         {
                             questionImg.length == '' ?
-                                <p> Ixtiyoriy</p>
+                                <p style={{ opacity: '0.5' }}> Ixtiyoriy</p>
                                 :
-                                <p>{questionImg.name}</p>
+                                <p>{questionImg.name} is sellected</p>
                         }
                     </div>
                 </div>
