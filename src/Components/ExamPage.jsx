@@ -48,7 +48,7 @@ export default function ExamPage() {
                     questions.push(currIndx);
                 }
                 setInfo(questions);
-                
+
             })
             .catch(err => console.log(err));
     }, []);
@@ -63,10 +63,10 @@ export default function ExamPage() {
     function topshirishBtn() {
         setForModal('')
         if (questionIndx < count) {
-            if (inputValue == info[questionIndx].answer) {
+            if (inputValue.toLowerCase() == info[questionIndx].answer.toLowerCase()) {
                 setQuestionIndx(questionIndx + 1)
                 setCurrect(currect + 1)
-            } else if (inputValue !== info[questionIndx].answer) {
+            } else if (inputValue.toLowerCase() !== info[questionIndx].answer.toLowerCase()) {
                 setQuestionIndx(questionIndx + 1)
                 setMistake(mistake + 1);
             }
@@ -114,14 +114,16 @@ export default function ExamPage() {
                                 :
                                 <p>Test is here</p>
                         }
-                    {/* <img src={info[questionIndx].questionImg} style={{ width: '100%' }} alt="" /> */}
-                   
-                    {/* <img src={`https://localhost:4000/${info[questionIndx].questionImg}`} style={{ width: '100%' }} alt="" /> */}
-                    
-                    <img src={`https://localhost:4000/${info.questionImg}`} alt="" /> 
+                        {
+                            startBtn === '' && info[questionIndx].questionImg.length > 1 ? 
+                                <img src={`http://localhost:4000/${info[questionIndx].questionImg}`} className='img-fluid w-50' alt="" />
+                                :
+                                null
+                        }
+
 
                     </div>
-                    
+
                     <Timer />
 
                     {/* Modal */}
