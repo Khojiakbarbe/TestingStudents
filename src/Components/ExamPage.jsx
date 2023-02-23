@@ -48,10 +48,10 @@ export default function ExamPage() {
                     questions.push(currIndx);
                 }
                 setInfo(questions);
+                
             })
             .catch(err => console.log(err));
     }, []);
-
 
 
     // Modal and answers
@@ -116,15 +116,12 @@ export default function ExamPage() {
                         }
                     {/* <img src={info[questionIndx].questionImg} style={{ width: '100%' }} alt="" /> */}
                    
-                    </div>
                     {/* <img src={`https://localhost:4000/${info[questionIndx].questionImg}`} style={{ width: '100%' }} alt="" /> */}
-                    {/* {
-                        info[questionIndx].questionImg.length !== 'none' ?
-                        :
-                        null
-                    } */}
+                    
+                    <img src={`https://localhost:4000/${info.questionImg}`} alt="" /> 
 
-                    {/* <img src={`https://localhost:4000/${uploads.questionImg}`} alt="" />  */}
+                    </div>
+                    
                     <Timer />
 
                     {/* Modal */}
