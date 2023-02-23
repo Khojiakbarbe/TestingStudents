@@ -108,7 +108,7 @@ export default function ExamPage() {
             <div className="container p-5">
                 <div className="examPage">
                     <div className="examQuestion row">
-                        <div className="col-md-6">
+                        <div className="col-md-6 p-4">
                             {
                                 startBtn === '' ?
                                     info[questionIndx] && <p key={info[questionIndx].id}>{info[questionIndx].question}</p>
@@ -119,8 +119,8 @@ export default function ExamPage() {
 
                         {
                             startBtn === '' && info[questionIndx].questionImg.length > 1 ?
-                                <div className="col-md-6">
-                                    <img src={`http://localhost:4000/${info[questionIndx].questionImg}`} className='img-fluid w-50' alt="" />
+                                <div className="col-md-6 p-3">
+                                    <img src={`http://localhost:4000/${info[questionIndx].questionImg}`} className='img-fluid w-100' alt="" />
                                 </div>
                                 :
                                 null
