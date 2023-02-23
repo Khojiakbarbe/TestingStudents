@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import kirishImg from '../images/bg/kirishImg.png'
@@ -8,18 +8,29 @@ export default function Registrate() {
 
     const navigate = useNavigate();
 
-
-    const [myPassword, setMyPassword] = useState('infinity')
+    const [myPassword, setMyPassword] = useState([])
+    const [checkLogin, setCheckLogin] = useState('')
     const [checkPassword, setCheckPassword] = useState('')
     const [checkClass, setCheckClass] = useState('')
     const [error, setError] = useState('')
 
+    useEffect(() => {
+        axios.get('http://localhost:4000/users')
+            .then(res => {
+                setMyPassword(res.data)
+            })
+            .catch(err => console.log(err))
+    }, [])
+
 
     function handleCHeck() {
-        if (checkPassword == myPassword) {
-            setCheckClass('hiddenCheckRegistrate')
-        } else {
-            setError("---- parol noto'g'ri ----")
+        for (let i = 0; i < myPassword.length; i++) {
+            if (checkPassword.toLowerCase() == myPassword[i].password && checkLogin.toLocaleLowerCase() == myPassword[i].login) {
+                setCheckClass('hiddenCheckRegistrate')
+            } else {
+                setError("---- login yoki parol xato ----")
+                i++;
+            }
         }
     }
 
@@ -53,7 +64,9 @@ export default function Registrate() {
                     <div>
                         <h2 style={{ textAlign: 'center' }}>Admin ma'lumotini kiriting <span style={{ color: 'red' }}>{error}</span></h2>
                         <p>Login</p>
-                        <input type="text" className='form-control mb-4' placeholder="Login" onChange={(e) => setCheckPassword(e.target.value)} />
+                        <input type="text" className='form-control mb-4' placeholder="Login" onChange={(e) => setCheckLogin(e.target.value)} />
+                        <p>Parol</p>
+                        <input type="text" className='form-control mb-4' placeholder="Parol" onChange={(e) => setCheckPassword(e.target.value)} />
                         <button className="btn w-100 p-2 color-white mb-2" style={{ background: '#FBC400' }} onClick={handleCHeck}><strong>Kirish</strong></button>
                         <button className="btn btn-primary w-100 p-2" onClick={() => navigate('/')}>Orqaga qaytish</button>
                     </div>
@@ -86,7 +99,6 @@ export default function Registrate() {
 
                         <div className=" container W-50 p-5">
                             <div className="w-50" style={{ margin: '0 auto', textAlign: 'left' }}>
-                                <span>Yangi loginni kiriting: </span>
 
 
                                 <span>Fan</span>

@@ -328,6 +328,34 @@
     padding: 1%;
 }
 
+.chooseImg{
+    margin-top: 5%;
+    text-align: center;
+}
+.chooseImg img{
+    width: 40%;
+    position: relative;
+    left: 20%;
+    border: 1px solid;
+    border-radius: 20%;
+    padding: 3%;
+    /* cursor: pointer; */
+}
+.chooseImg img:hover{
+    cursor: pointer;
+}
+.chooseImg input{
+    opacity: 0;
+    width: 40%;
+    position: relative;
+    left: -20%;
+    top: -10%;
+    height: 30%;
+    border: 1px solid;
+    cursor: pointer;
+
+}
+
 .newQuestionAnswer {
     width: 100%;
     border-radius: 10px;
