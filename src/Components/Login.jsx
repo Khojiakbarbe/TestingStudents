@@ -96,12 +96,8 @@ export default function Login() {
                             <input type="text" className="form-control  mb-3" placeholder={parolRequest} value={password} onChange={(e) => setPassword(e.target.value)} />
                             <button className="btn w-100 " style={{ background: "#FBC400" }} onClick={() => check()}><strong>Tizimga kirish</strong></button>
                             <p className="mt-3 text-center" >
-                                <span className="loginLinks" onClick={() => navigate('/registrate')}>
-                                    Registrate
-                                </span>
-                                |
-                                <span className="loginLinks" onClick={() => navigate('/addQuestions')}>
-                                    Test kiritish
+                                <span className="loginLinks" onClick={() => navigate('/admin')}>
+                                    Admin
                                 </span>
                                 |
                                 <span className="loginLinks" onClick={() => navigate('/home')}>

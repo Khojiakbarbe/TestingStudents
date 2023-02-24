@@ -29,13 +29,11 @@ export default function AddNewQuestions() {
 
 
     function handleCHeck() {
-        for (let i = 0; i < myPassword.length; i++) {
-            if (checkPassword.toLowerCase() == myPassword[i].password && checkLogin.toLocaleLowerCase() == myPassword[i].login) {
-                setCheckClass('hiddenCheckRegistrate')
-            } else {
-                setError("-- login yoki parol xato --")
-                i++;
-            }
+        const filter = myPassword.filter(info => info.password.toLowerCase() == checkPassword.toLowerCase() && info.login.toLowerCase() == checkLogin.toLowerCase())
+        if (!filter.length < 1) {
+            setCheckClass('hiddenCheckRegistrate')
+        }else{
+            setError('login yoki parol xato')
         }
     }
 
@@ -78,13 +76,14 @@ export default function AddNewQuestions() {
             <div className={checkClass}>
                 <div className="adminMalumoti">
                     <div>
-                        <h2 style={{ textAlign: 'center' }}>Admin ma'lumotini kiriting <span style={{ color: 'red' }}>{error}</span></h2>
+                        <h2 style={{ textAlign: 'center' }}>Admin ma'lumotini kiriting </h2>
+                        <p style={{color: 'red', textAlign: 'center'}}>{error}</p>
                         <p>Login</p>
                         <input type="text" className='form-control mb-4' placeholder="Login" onChange={(e) => setCheckLogin(e.target.value)} />
                         <p>Parol</p>
                         <input type="text" className='form-control mb-4' placeholder="Parol" onChange={(e) => setCheckPassword(e.target.value)} />
                         <button className="btn w-100 p-2 color-white mb-2" style={{ background: '#FBC400' }} onClick={handleCHeck}><strong>Kirish</strong></button>
-                        <button className="btn btn-primary w-100 p-2" onClick={() => navigate('/')}>Orqaga qaytish</button>
+                        <button className="btn btn-primary w-100 p-2" onClick={() => navigate('/admin')}>Orqaga qaytish</button>
                     </div>
                 </div>
             </div>

@@ -24,13 +24,11 @@ export default function Registrate() {
 
 
     function handleCHeck() {
-        for (let i = 0; i < myPassword.length; i++) {
-            if (checkPassword.toLowerCase() == myPassword[i].password && checkLogin.toLocaleLowerCase() == myPassword[i].login) {
-                setCheckClass('hiddenCheckRegistrate')
-            } else {
-                setError("---- login yoki parol xato ----")
-                i++;
-            }
+        const filter = myPassword.filter(info => info.password.toLowerCase() == checkPassword.toLowerCase() && info.login.toLowerCase() == checkLogin.toLowerCase())
+        if (!filter.length < 1) {
+            setCheckClass('hiddenCheckRegistrate')
+        } else {
+            setError('login yoki parol xato')
         }
     }
 
@@ -68,7 +66,7 @@ export default function Registrate() {
                         <p>Parol</p>
                         <input type="text" className='form-control mb-4' placeholder="Parol" onChange={(e) => setCheckPassword(e.target.value)} />
                         <button className="btn w-100 p-2 color-white mb-2" style={{ background: '#FBC400' }} onClick={handleCHeck}><strong>Kirish</strong></button>
-                        <button className="btn btn-primary w-100 p-2" onClick={() => navigate('/')}>Orqaga qaytish</button>
+                        <button className="btn btn-primary w-100 p-2" onClick={() => navigate('/admin')}>Orqaga qaytish</button>
                     </div>
                 </div>
             </div>
@@ -121,7 +119,7 @@ export default function Registrate() {
 
 
                                 <button className="btn w-100  btn-danger" onClick={() => check()}>Saqlash</button>
-                                <p className="mt-3 " >
+                                {/* <p className="mt-3 " >
                                     <span className="loginLinks m-2" onClick={() => navigate('/')}>
                                         login
                                     </span>
@@ -129,7 +127,7 @@ export default function Registrate() {
                                     <span className="loginLinks m-2" onClick={() => navigate('/addQuestions')}>
                                         Test kiritish
                                     </span>
-                                </p>
+                                </p> */}
                             </div>
                         </div>
                     </div>

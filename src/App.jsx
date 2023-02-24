@@ -1,5 +1,6 @@
 import React from "react";
 import Home from './Components/Home.jsx'
+import AdminPage from "./Components/AdminPage.jsx";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { TimeSecondsProvider, TimeProvider, TimeMinutProvider, AnswerProvider, LoginProvider } from "./Components/ContextProvider/DataProvider.jsx";
 import ExamPage from "./Components/ExamPage.jsx";
@@ -30,6 +31,7 @@ function App() {
                     <Route path="/examPage" element={<ExamPage />} />
                     <Route path="/results" element={<Results />} />
                   </Route>
+                  <Route path="/admin" element={<AdminPage />} />
                   <Route path="/registrate" element={<Registrate />} />
                   <Route path="/addQuestions" element={<AddNewQuestions />} />
                   <Route path="/newQuestions" element={<NewQuestions />} />
