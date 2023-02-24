@@ -134,7 +134,6 @@ export default function Login() {
                             </p>
                         </div>
                     </div>
-                <p><a href="/deleteQuestions">delete</a></p>
                 </div>
             </div>
             <div className={currectLogin}>

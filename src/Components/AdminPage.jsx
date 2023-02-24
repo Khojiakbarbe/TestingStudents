@@ -14,6 +14,17 @@ export default function AdminPage() {
 
 
     // for delete question page
+
+
+    const [deletePage, setDeletePage] = useState('')
+
+    function forDeletePage(){
+        setDeletePage('avoid')
+    }
+    function backFromDelete(){
+        setDeletePage('')
+    }
+
     const [questions, setQuestions] = useState([])
 
     useEffect(() => {
@@ -98,7 +109,7 @@ export default function AdminPage() {
                             </div>
                         </div>
                         <div className="col-md-6 mb-3" >
-                            <div className='adminPageCols' onClick={() => navigate('/deleteQuestions')}>
+                            <div className='adminPageCols' onClick={forDeletePage}>
                                 <h1>
                                     Mavjud testlarni o'chirish
                                 </h1>
@@ -114,38 +125,44 @@ export default function AdminPage() {
                     </div>
                 </div>
             </div>
-            <div className=''>
-                <div className="adminMalumoti">
-                    <div>
-                        <h2 style={{ textAlign: 'center' }}>Admin ma'lumotini kiriting : delete</h2>
-                        <p style={{ color: 'red' }}>{error}</p>
-                        <p>Fanni tanlang</p>
-                        <select className="form-select form-select-sm p-2" aria-label=".form-select-sm example" onChange={(e) => setType(e.target.value)} >
-                            <option value="">Fanni tanlang</option>
-                            {
-                                forType.map(post => {
-                                    return (
-                                        <option value={post}>{post}</option>
-                                    )
-                                })
-                            }
-                        </select>
-                        <p>Mavzuni tanlang</p>
-                        <select className="form-select form-select-sm p-2" aria-label=".form-select-sm example" onChange={(e) => setTheme(e.target.value)} >
-                            <option value="">Mavzuni tanlang</option>
-                            {
-                                forTheme.map(post => {
-                                    return (
-                                        <option value={post}>{post}</option>
-                                    )
-                                })
-                            }
-                        </select>
-                        <button className="btn w-100 p-2 color-white mt-3 mb-2" style={{ background: '#FBC400' }} onClick={() => navigate('/deleteQuestions', { state: { id: 1, type: type, theme: theme } })}><strong>Saqlash</strong></button>
-                        <button className="btn btn-primary w-100 p-2" onClick={orqaga}>Orqaga qaytish</button>
+            {
+                deletePage.length > 1 ?
+                    <div >
+                        <div className="adminMalumoti">
+                            <div>
+                                <h2 style={{ textAlign: 'center' }}>Admin ma'lumotini kiriting : delete</h2>
+                                <p style={{ color: 'red' }}>{error}</p>
+                                <p>Fanni tanlang</p>
+                                <select className="form-select form-select-sm p-2" aria-label=".form-select-sm example" onChange={(e) => setType(e.target.value)} >
+                                    <option value="">Fanni tanlang</option>
+                                    {
+                                        forType.map(post => {
+                                            return (
+                                                <option value={post}>{post}</option>
+                                            )
+                                        })
+                                    }
+                                </select>
+                                <p>Mavzuni tanlang</p>
+                                <select className="form-select form-select-sm p-2" aria-label=".form-select-sm example" onChange={(e) => setTheme(e.target.value)} >
+                                    <option value="">Mavzuni tanlang</option>
+                                    {
+                                        forTheme.map(post => {
+                                            return (
+                                                <option value={post}>{post}</option>
+                                            )
+                                        })
+                                    }
+                                </select>
+                                <button className="btn w-100 p-2 color-white mt-3 mb-2" style={{ background: '#FBC400' }} onClick={() => navigate('/deleteQuestions', { state: { id: 1, type: type, theme: theme } })}><strong>Saqlash</strong></button>
+                                <button className="btn btn-primary w-100 p-2" onClick={backFromDelete}>Orqaga qaytish</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                    :
+                    null
+            }
+
             <div className={checkClass}>
                 <div className="adminMalumoti">
                     <div>

@@ -34,8 +34,8 @@ function App() {
                     <Route path="/registrate" element={<Registrate />} />
                     <Route path="/addQuestions" element={<AddNewQuestions />} />
                     <Route path="/newQuestions" element={<NewQuestions />} />
+                    <Route path="/deleteQuestions" element={<DeletePage />} />
                   </Route>
-                  <Route path="/deleteQuestions" element={<DeletePage />} />
                   <Route path="/*" elemen={<Error />} />
                 </Routes>
               </AnswerProvider>

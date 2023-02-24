@@ -47,6 +47,12 @@ export default function DeletePage() {
                             <h5>Mavzu : {post.theme}</h5>
                             <h6>Savol : {post.question}</h6>
                             <h6>Javob : {post.answer}</h6>
+                            {
+                                post.questionImg.length > 1 ?
+                                    <img src={`http://localhost:4000/${post.questionImg}`} className='img-fluid mb-2' style={{height: "200px"}} alt="" />
+                                    :
+                                    null
+                            }
                             <button className="btn btn-danger" onClick={() => deleteThis(post._id)}>Delete</button>
                         </div>
                     )
