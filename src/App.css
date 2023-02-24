@@ -176,7 +176,12 @@
     background: rgba(251, 181, 0, 0.3);
     border-radius: 10px;
 }
-
+.adminPagePassword{
+    display: block;
+}
+.adminPageOpen{
+    display: none;
+}
 @media only screen and (max-width: 992px) {
     .logInBg {
         position: relative;
@@ -196,12 +201,16 @@
 
     /* admin */
 
+
+
     .adminMalumoti div {
         width: 60%;
         position: relative;
         top: 30%;
         margin: 0 auto;
     }
+
+
 
     /* examPage */
 
@@ -327,11 +336,12 @@
     padding: 1%;
 }
 
-.chooseImg{
+.chooseImg {
     margin-top: 5%;
     text-align: center;
 }
-.chooseImg img{
+
+.chooseImg img {
     width: 40%;
     position: relative;
     left: 20%;
@@ -340,10 +350,12 @@
     padding: 3%;
     /* cursor: pointer; */
 }
-.chooseImg img:hover{
+
+.chooseImg img:hover {
     cursor: pointer;
 }
-.chooseImg input{
+
+.chooseImg input {
     opacity: 0;
     width: 40%;
     position: relative;

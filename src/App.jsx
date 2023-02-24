@@ -30,13 +30,13 @@ function App() {
                     <Route path="/home" element={<Home />} />
                     <Route path="/examPage" element={<ExamPage />} />
                     <Route path="/results" element={<Results />} />
+                    <Route path="/admin" element={<AdminPage />} />
+                    <Route path="/registrate" element={<Registrate />} />
+                    <Route path="/addQuestions" element={<AddNewQuestions />} />
+                    <Route path="/newQuestions" element={<NewQuestions />} />
+                    <Route path="/deleteQuestions" element={<DeletePage />} />
                   </Route>
-                  <Route path="/admin" element={<AdminPage />} />
-                  <Route path="/registrate" element={<Registrate />} />
-                  <Route path="/addQuestions" element={<AddNewQuestions />} />
-                  <Route path="/newQuestions" element={<NewQuestions />} />
-                  <Route path="/deleteQuestions" element={<DeletePage />} />
-                  <Route path="*" elemen={<Error />} />
+                  <Route path="/*" elemen={<Error />} />
                 </Routes>
               </AnswerProvider>
             </TimeSecondsProvider>

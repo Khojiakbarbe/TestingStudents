@@ -12,13 +12,35 @@ export default function Login() {
 
     const [login, setLogin] = useState([]);
 
+    const [data, setData] = useState([])
+    const [adminPassword, setAdminPassword] = useState('')
+    const [adminLogin, setAdminLogin] = useState('')
+
     useEffect(() => {
         axios.get('http://localhost:4000/users')
             .then(res => {
                 setLogin(res.data)
             })
             .catch(err => console.log(err))
+
     }, [])
+
+    const [currectLogin, setCurrectLogin] = useState('adminPageOpen')
+
+    function openAdmin() {
+        setCurrectLogin('')
+    }
+
+    function openAdminPage() {
+        const filter = login.filter(info => info.password.toLowerCase() == adminPassword.toLowerCase() && info.login.toLowerCase() == adminLogin.toLowerCase())
+        if (!filter.length < 1) {
+            setLoginCon(true)
+            navigate('/admin')
+            setCurrectLogin('adminPageOpen')
+        } else {
+        }
+    }
+
 
     const [tel, setTel] = useState('')
     const [password, setPassword] = useState('')
@@ -62,6 +84,12 @@ export default function Login() {
     }
 
 
+    function ozingizniSinang() {
+        setLoginCon(true)
+        navigate('/home')
+    }
+
+
     return (
         <div className="logIn">
             <div className="row">
@@ -96,15 +124,29 @@ export default function Login() {
                             <input type="text" className="form-control  mb-3" placeholder={parolRequest} value={password} onChange={(e) => setPassword(e.target.value)} />
                             <button className="btn w-100 " style={{ background: "#FBC400" }} onClick={() => check()}><strong>Tizimga kirish</strong></button>
                             <p className="mt-3 text-center" >
-                                <span className="loginLinks" onClick={() => navigate('/admin')}>
+                                <span className="loginLinks" onClick={openAdmin}>
                                     Admin
                                 </span>
                                 |
-                                <span className="loginLinks" onClick={() => navigate('/home')}>
+                                <span className="loginLinks" onClick={ozingizniSinang}>
                                     O'zingizni sinang
                                 </span>
                             </p>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div className={currectLogin}>
+                <div className="adminMalumoti">
+                    <div>
+                        <h2 style={{ textAlign: 'center' }}>Admin ma'lumotini kiriting </h2>
+                        {/* <p style={{ color: 'red', textAlign: 'center' }}>{error}</p> */}
+                        <p>Login</p>
+                        <input type="text" className='form-control mb-4' placeholder="Login" onChange={(e) => setAdminLogin(e.target.value)} />
+                        <p>Parol</p>
+                        <input type="text" className='form-control mb-4' placeholder="Parol" onChange={(e) => setAdminPassword(e.target.value)} />
+                        <button className="btn w-100 p-2 color-white mb-2" style={{ background: '#FBC400' }} onClick={openAdminPage}><strong>Kirish</strong></button>
+                        <button className="btn btn-primary w-100 p-2" onClick={() => setCurrectLogin('adminPageOpen')}>Orqaga qaytish</button>
                     </div>
                 </div>
             </div>

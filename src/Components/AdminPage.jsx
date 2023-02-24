@@ -26,6 +26,7 @@ export default function AdminPage() {
                 .then(res => {
                     console.log('data is saved' + res.data)
                     setError('saqlandi')
+                    setCheckClass('hiddenCheckRegistrate')
                 })
                 .catch(err => console.log(err))
         }
@@ -47,16 +48,16 @@ export default function AdminPage() {
                     <div className="btn btn-danger mb-5" onClick={() => navigate('/')}>Orqaga</div>
                     <div className="row">
                         <div className="col-md-3">
-                            <button className="btn btn-danger w-100 mb-3" onClick={() => navigate('/registrate')}>Registratsiya</button>
+                            <button className="btn btn-danger w-100 mb-3" onClick={() => navigate('/registrate')}>O'quvchilarni ro'yhatdan o'tkazish</button>
                         </div>
                         <div className="col-md-3">
-                            <button className="btn btn-danger w-100 mb-3" onClick={() => navigate('/addQuestions')}>Test kiritish</button>
+                            <button className="btn btn-danger w-100 mb-3" onClick={() => navigate('/addQuestions')}>Yangi test kiritish</button>
                         </div>
                         <div className="col-md-3">
                             <button className="btn btn-danger w-100 mb-3" onClick={() => navigate('/deleteQuestions')}>Mavjud testlarni o'chirish</button>
                         </div>
                         <div className="col-md-3">
-                            <button className="btn btn-danger w-100 mb-3" onClick={addAdmin} >Admin qoshish</button>
+                            <button className="btn btn-danger w-100 mb-3" onClick={addAdmin} >Yangi admin qoshish</button>
                         </div>
                     </div>
                 </div>
@@ -66,9 +67,9 @@ export default function AdminPage() {
                     <div>
                         <h2 style={{ textAlign: 'center' }}>Admin ma'lumotini kiriting </h2>
                         <p style={{color : 'red'}}>{error}</p>
-                        <p>Login</p>
+                        <p>Yangi login</p>
                         <input type="text" className='form-control mb-4' placeholder="Login" onChange={(e) => setLogin(e.target.value)} value={login} />
-                        <p>Parol</p>
+                        <p>Yangi parol</p>
                         <input type="text" className='form-control mb-4' placeholder="Parol" onChange={(e) => setPassword(e.target.value)} value={password}/>
                         <button className="btn w-100 p-2 color-white mb-2" style={{ background: '#FBC400' }} onClick={addNewLogin}><strong>Saqlash</strong></button>
                         <button className="btn btn-primary w-100 p-2" onClick={orqaga}>Orqaga qaytish</button>
