@@ -188,7 +188,8 @@
 
 .adminPageCols {
     border-radius: 10px;
-    padding: 5%;
+    padding-top: 10%;
+    text-align: center;
     height: 200px;
     cursor: pointer;
     box-shadow: 0 0 10px gray;
@@ -199,6 +200,7 @@
 .adminPageCols:hover {
     box-shadow: 0 10px 15px gray;
     transition: 0.5s;
+    color: white;
 }
 
 @media only screen and (max-width: 992px) {

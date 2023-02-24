@@ -43,13 +43,11 @@ export default function DeletePage() {
                 {questions.map((post, index) => {
                     return (
                         <div className="col-3 mb-5 border p-3" key={index}>
-                            <h4>Fan : {post.type}</h4>
-                            <h5>Mavzu : {post.theme}</h5>
-                            <h6>Savol : {post.question}</h6>
-                            <h6>Javob : {post.answer}</h6>
+                            <h4>Savol : {post.question.slice(0,14)}..</h4>
+                            <h4>Javob : {post.answer}</h4>
                             {
                                 post.questionImg.length > 1 ?
-                                    <img src={`http://localhost:4000/${post.questionImg}`} className='img-fluid mb-2' style={{height: "200px"}} alt="" />
+                                    <img src={`http://localhost:4000/${post.questionImg}`} className='img-fluid mb-2' style={{ height: "200px" }} alt="" />
                                     :
                                     null
                             }
