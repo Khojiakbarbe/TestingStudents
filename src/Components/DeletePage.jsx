@@ -1,25 +1,30 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 
 export default function DeletePage() {
 
     const navigate = useNavigate();
 
+    const { state } = useLocation();
+
+    const { type, theme } = state;
+
+
     const [questions, setQuestions] = useState([])
 
+
     useEffect(() => {
-        axios.get('http://localhost:4000/questions')
+        axios.get('http://localhost:4000/questions/' + type + "/" + theme)
             .then(res => {
-                console.log(res.data);
                 setQuestions(res.data)
             })
             .catch(err => console.log(err))
     }, [])
 
+
     function deleteThis(id) {
-        console.log(id);
         axios.delete('http://localhost:4000/questions/', { data: { id } })
             .then(res => {
                 console.log('Data is deleted', res);
