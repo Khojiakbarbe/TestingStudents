@@ -35,7 +35,6 @@ export default function ExamPage() {
     useEffect(() => {
         axios.get('http://localhost:4000/questions/' + type + "/" + theme)
             .then(res => {
-                console.log(res.data);
                 let usedIndx = [];
                 let questions = [];
                 for (let i = 0; i < count; i++) {

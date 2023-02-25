@@ -57,12 +57,14 @@ export default function Login() {
                 password
             })
             .then(res => {
-                console.log('info posted  ' + res.data);
-                navigate('/examPage2')
+                console.log(res.data);
+                if(res.data.status === 200) {
+                    navigate('/examPage2' , {state : {id: 1, data : res.data}})
+                }
             })
-
         }
     }
+
 
 
     function ozingizniSinang() {
