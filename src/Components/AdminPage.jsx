@@ -19,7 +19,7 @@ export default function AdminPage() {
     const [deletePage, setDeletePage] = useState('')
 
     function forDeletePage(){
-        setDeletePage('avoid')
+        setDeletePage('siuu')
     }
     function backFromDelete(){
         setDeletePage('')
@@ -57,7 +57,7 @@ export default function AdminPage() {
         }
     }
 
-
+    console.log(type);
 
     // for add admin
     function addAdmin() {
@@ -130,10 +130,10 @@ export default function AdminPage() {
                     <div >
                         <div className="adminMalumoti">
                             <div>
-                                <h2 style={{ textAlign: 'center' }}>Admin ma'lumotini kiriting : delete</h2>
+                                <h2 style={{ textAlign: 'center' }}>Fan va mavzuni tanlang</h2>
                                 <p style={{ color: 'red' }}>{error}</p>
                                 <p>Fanni tanlang</p>
-                                <select className="form-select form-select-sm p-2" aria-label=".form-select-sm example" onChange={(e) => setType(e.target.value)} >
+                                <select className="form-select form-select-sm p-2 mb-3" aria-label=".form-select-sm example" onChange={(e) => setType(e.target.value)} >
                                     <option value="">Fanni tanlang</option>
                                     {
                                         forType.map(post => {
@@ -154,7 +154,7 @@ export default function AdminPage() {
                                         })
                                     }
                                 </select>
-                                <button className="btn w-100 p-2 color-white mt-3 mb-2" style={{ background: '#FBC400' }} onClick={() => navigate('/deleteQuestions', { state: { id: 1, type: type, theme: theme } })}><strong>Saqlash</strong></button>
+                                <button className="btn w-100 p-2 color-white mt-3 mb-2" style={{ background: '#FBC400' }} onClick={() => navigate('/deleteQuestions', { state: { id: 1, type: type, theme: theme } })}><strong>Testlarni ko'rish</strong></button>
                                 <button className="btn btn-primary w-100 p-2" onClick={backFromDelete}>Orqaga qaytish</button>
                             </div>
                         </div>
