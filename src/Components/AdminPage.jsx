@@ -18,10 +18,10 @@ export default function AdminPage() {
 
     const [deletePage, setDeletePage] = useState('')
 
-    function forDeletePage(){
+    function forDeletePage() {
         setDeletePage('siuu')
     }
-    function backFromDelete(){
+    function backFromDelete() {
         setDeletePage('')
     }
 
@@ -33,9 +33,6 @@ export default function AdminPage() {
                 setQuestions(res.data)
             })
             .catch(err => console.log(err))
-
-
-
     }, [])
 
     const [type, setType] = useState('')
@@ -56,8 +53,6 @@ export default function AdminPage() {
             forTheme.push(filterTheme[i].theme)
         }
     }
-
-    console.log(type);
 
     // for add admin
     function addAdmin() {
