@@ -31,10 +31,12 @@ export default function ExamPage() {
     const [info, setInfo] = useState([]);
     const [questionIndx, setQuestionIndx] = useState(0);
 
+    const [siu, setSiu] = useState([])
 
     useEffect(() => {
         axios.get('http://localhost:4000/questions/' + type + "/" + theme)
             .then(res => {
+                setSiu(res.data)
                 let usedIndx = [];
                 let questions = [];
                 for (let i = 0; i < count; i++) {
@@ -51,7 +53,7 @@ export default function ExamPage() {
             })
             .catch(err => console.log(err));
     }, []);
-
+console.log(siu);
 
     // Modal and answers
     const [forModal, setForModal] = useState('modal')
