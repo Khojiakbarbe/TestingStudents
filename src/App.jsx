@@ -14,6 +14,7 @@ import DeletePage from "./Components/DeletePage.jsx";
 import NewQuestions from "./Components/NewQuestions.jsx";
 
 import './App.css'
+import ExamPage2 from "./Components/ExamPage2.jsx";
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
                     <Route path="/newQuestions" element={<NewQuestions />} />
                     <Route path="/deleteQuestions" element={<DeletePage />} />
                   </Route>
+                  <Route path="/examPage2" element={<ExamPage2 />} />
                   <Route path="/*" elemen={<Error />} />
                 </Routes>
               </AnswerProvider>

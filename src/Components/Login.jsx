@@ -12,7 +12,6 @@ export default function Login() {
 
     const [login, setLogin] = useState([]);
 
-    const [data, setData] = useState([])
     const [adminPassword, setAdminPassword] = useState('')
     const [adminLogin, setAdminLogin] = useState('')
 
@@ -22,7 +21,6 @@ export default function Login() {
                 setLogin(res.data)
             })
             .catch(err => console.log(err))
-
     }, [])
 
     const [currectLogin, setCurrectLogin] = useState('adminPageOpen')
@@ -42,10 +40,9 @@ export default function Login() {
     }
 
 
-    const [tel, setTel] = useState('')
+    const [user, setUser] = useState('')
     const [password, setPassword] = useState('')
 
-    const loginLength = login.length;
 
     const [telRequest, setTelRequest] = useState('login : ')
     const [parolRequest, setParolRequest] = useState('*****')
@@ -54,33 +51,17 @@ export default function Login() {
     const [notFound, setNotFound] = useState('')
 
     function check() {
-        if (tel.length > 1 && password.length > 1) {
-            for (let i = 0; i < loginLength; i += 2) {
-                if (login[i].login == tel && login[i].password == password) {
-                    setLoginCon(true)
-                    navigate('/home')
-                } else {
-                    for (let i = 1; i < loginLength; i += 2) {
-                        if (login[i].login == tel && login[i].password == password) {
-                            setLoginCon(true)
-                            navigate('/home')
-                        } else {
-                            setLoginCon('false')
-                            i--;
-                        }
-                    }
-                    i++;
-                    setNotFound("Login yoki parol notog'ri")
-                    setTelRequest("login : ")
-                    setParolRequest("*****")
-                }
-            }
-        } else {
-            setTelRequest("To'ldirilmagan ⚠")
-            setParolRequest("To'ldirilmagan ⚠")
+        if (user.length > 1 && password.length > 1) {
+            axios.post('http://localhost:4000/students' ,{
+                user,
+                password
+            })
+            .then(res => {
+                console.log('info posted  ' + res.data);
+                navigate('/examPage2')
+            })
+
         }
-        setTel('')
-        setPassword('')
     }
 
 
@@ -119,7 +100,7 @@ export default function Login() {
                         <h4 style={{ color: 'red' }}>{notFound}</h4>
                         <div className="w-50" style={{ margin: '0 auto', textAlign: 'left' }}>
                             <span>Loginni kiriting: </span>
-                            <input type="text" className="form-control mb-3" placeholder={telRequest} value={tel} onChange={(e) => setTel(e.target.value)} required />
+                            <input type="text" className="form-control mb-3" placeholder={telRequest} value={user} onChange={(e) => setUser(e.target.value)} required />
                             <span>Parol : </span>
                             <input type="text" className="form-control  mb-3" placeholder={parolRequest} value={password} onChange={(e) => setPassword(e.target.value)} />
                             <button className="btn w-100 " style={{ background: "#FBC400" }} onClick={() => check()}><strong>Tizimga kirish</strong></button>
