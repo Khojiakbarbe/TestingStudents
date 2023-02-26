@@ -53,7 +53,6 @@ export default function ExamPage() {
             })
             .catch(err => console.log(err));
     }, []);
-console.log(siu);
 
     // Modal and answers
     const [forModal, setForModal] = useState('modal')
