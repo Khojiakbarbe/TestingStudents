@@ -13,7 +13,19 @@ export default function ExamPage2() {
     useEffect(() => {
         axios.get('http://localhost:4000/questions/' + data.session.subject + "/" + data.session.theme)
             .then(res => {
-                setInfo(res.data);
+                let usedIndx = [];
+                let questions = [];
+                for (let i = 0; i < data.session.numberOfQuestions; i++) {
+                    let randomized = Math.floor(Math.random() * res.data.length);
+                    while (usedIndx.includes(randomized)) {
+                        randomized = Math.floor(Math.random() * res.data.length);
+                    }
+                    let currIndx = res.data[randomized];
+                    usedIndx.push(randomized);
+                    questions.push(currIndx);
+                }
+                console.log(res.data);
+                setInfo(questions);
             })
     }, [])
 
