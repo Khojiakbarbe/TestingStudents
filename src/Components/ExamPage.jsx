@@ -3,7 +3,7 @@ import { answerContext, minutContext, secondsContext } from "./ContextProvider/D
 import Timer from './Timer'
 import { useLocation, useNavigate } from 'react-router-dom'
 import timeOver from '../images/modal/timeOver.png'
-import close from '../images/modal/close.png'
+import closeImg from '../images/modal/close.png'
 
 import axios from "axios";
 import Navbar from "./Navbar";
@@ -133,7 +133,7 @@ export default function ExamPage() {
                         showModal.length == 0 ?
                             <div className="popUp-modal">
                                 <div className="myModal">
-                                    <button onClick={() => closeModal()}><img src={close} alt="" /></button>
+                                    <button onClick={() => closeModal()}><img src={closeImg} alt="" /></button>
                                     <br />
                                     <img src={timeOver} />
                                     <h5>Testlar soni: {count} </h5>

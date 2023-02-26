@@ -36,8 +36,8 @@ function App() {
                     <Route path="/addQuestions" element={<AddNewQuestions />} />
                     <Route path="/newQuestions" element={<NewQuestions />} />
                     <Route path="/deleteQuestions" element={<DeletePage />} />
+                    <Route path="/examPage2" element={<ExamPage2 />} />
                   </Route>
-                  <Route path="/examPage2" element={<ExamPage2 />} />
                   <Route path="/*" elemen={<Error />} />
                 </Routes>
               </AnswerProvider>

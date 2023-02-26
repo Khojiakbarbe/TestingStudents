@@ -1,15 +1,31 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { timeContext, minutContext, secondsContext, answerContext } from "./ContextProvider/DataProvider";
 import Timer from './Timer'
+import timeOver from '../images/modal/timeOver.png'
+import closeImg from '../images/modal/close.png'
+
+
 
 export default function ExamPage2() {
 
+    const navigate = useNavigate();
 
     const { state } = useLocation();
     const { data } = state;
 
+    const [timeCon, setTimeCon] = useContext(timeContext);
+    const [minut, setMinut] = useContext(minutContext)
+    const [seconds, setSeconds] = useContext(secondsContext)
+    setTimeCon(0.5)
+
+
+
+
+
     const [info, setInfo] = useState([]);
+
     useEffect(() => {
         axios.get('http://localhost:4000/questions/' + data.session.subject + "/" + data.session.theme)
             .then(res => {
@@ -24,7 +40,6 @@ export default function ExamPage2() {
                     usedIndx.push(randomized);
                     questions.push(currIndx);
                 }
-                console.log(res.data);
                 setInfo(questions);
             })
     }, [])
@@ -32,12 +47,19 @@ export default function ExamPage2() {
 
     const [count, setCount] = useState(0);
 
-    const [startBtn, setStartBtn] = useState('')
+    const [startBtn, setStartBtn] = useContext(answerContext)
+
+
+
     const [inputValue, setInputValue] = useState('')
 
+    const [forModal, setForModal] = useState('modal')
     const [currect, setCurrect] = useState(0)
     const [mistake, setMistake] = useState(0)
+
+
     function topshirishBtn() {
+        setForModal('')
         if (count < data.session.numberOfQuestions) {
             setCount(count + 1)
             if (inputValue.toLowerCase() == info[count].answer) {
@@ -48,12 +70,29 @@ export default function ExamPage2() {
         }
         setInputValue('')
     }
-    if ( count == data.session.numberOfQuestions) {
-        alert('test ended')
+
+    // if question over student will go to result page
+    if (count > data.session.numberOfQuestions - 1) {
+        navigate('/results', { state: { id: 1, count: data.session.numberOfQuestions, currect: currect, mistake: mistake } })
     }
 
-    console.log(currect + "-- currect");
-    console.log(mistake + '--mistake');
+
+    const [showModal, setShowModal] = useState('modal');
+    useEffect(() => {
+        if (forModal.length == 0 && minut < 1 && seconds < 1) {
+            setShowModal('')
+        }
+    })
+
+    function closeModal() {
+        setForModal('close')
+        setShowModal('close')
+        setCurrect(0)
+        setMistake(0)
+        navigate('/')
+        window.location.reload();
+    }
+
 
     return (
         <div className="container p-5">
@@ -61,7 +100,7 @@ export default function ExamPage2() {
                 <div className="examQuestion row mb-5">
                     <div className="col-md-6 p-4">
                         {
-                            info.length > 0 ?
+                            startBtn === '' && info.length > 0 ?
                                 <p>{info[count].question}</p>
                                 :
                                 null
@@ -69,14 +108,31 @@ export default function ExamPage2() {
                     </div>
 
                     {
-                        info.length > 0 && info[count].questionImg.length > 1 ?
+                        startBtn === '' && info.length > 0 && info[count].questionImg.length > 1 ?
                             <div className="col-md-6 p-3">
                                 <img src={`http://localhost:4000/${info[count].questionImg}`} className='img-fluid w-100' alt="" />
                             </div>
                             :
                             null
                     }
+
                 </div>
+
+                {
+                    showModal.length == 0 ?
+                        <div className="popUp-modal">
+                            <div className="myModal">
+                                <button onClick={() => closeModal()}><img src={closeImg} alt="" /></button>
+                                <br />
+                                <img src={timeOver} />
+                                <h5>Testlar soni: {count} </h5>
+                                <h5 style={{ color: '#18AC00' }}>Tog'ri javoblar : {currect}</h5>
+                                <h5 style={{ color: '#FF0000' }}>Noto'g'ri javoblar : {mistake}</h5>
+                            </div>
+                        </div>
+                        :
+                        null
+                }
 
                 <div className="row">
                     <div className="col-6 answer">

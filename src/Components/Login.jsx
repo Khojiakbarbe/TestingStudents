@@ -59,7 +59,9 @@ export default function Login() {
             .then(res => {
                 console.log(res.data);
                 if(res.data.status === 200) {
+                    setLoginCon(true)
                     navigate('/examPage2' , {state : {id: 1, data : res.data}})
+
                 }
             })
         }
