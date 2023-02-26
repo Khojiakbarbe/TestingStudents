@@ -21,13 +21,6 @@ export default function Details() {
             .catch(err => console.log(err))
     }, [])
 
-    for (let i = 0; i < detail.length; i++) {
-        if (detail[i]._id == id) {
-            console.log('find');
-        } else {
-            i++;
-        }
-    }
     const filter = detail.filter(post => post._id == id)
     return (
         <div className="container p-5">
