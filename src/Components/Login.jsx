@@ -10,6 +10,8 @@ export default function Login() {
 
     const navigate = useNavigate();
 
+
+    // For admin page
     const [login, setLogin] = useState([]);
 
     const [adminPassword, setAdminPassword] = useState('')
@@ -57,11 +59,12 @@ export default function Login() {
                 password
             })
             .then(res => {
-                console.log(res.data);
                 if(res.data.status === 200) {
                     setLoginCon(true)
                     navigate('/examPage2' , {state : {id: 1, data : res.data}})
 
+                }else{
+                    setNotFound('Topilmadi')
                 }
             })
         }
@@ -104,9 +107,9 @@ export default function Login() {
                         <h4 style={{ color: 'red' }}>{notFound}</h4>
                         <div className="w-50" style={{ margin: '0 auto', textAlign: 'left' }}>
                             <span>Loginni kiriting: </span>
-                            <input type="text" className="form-control mb-3" placeholder={telRequest} value={user} onChange={(e) => setUser(e.target.value)} required />
+                            <input type="text" className="form-control mb-3" placeholder='user' value={user} onChange={(e) => setUser(e.target.value)} required />
                             <span>Parol : </span>
-                            <input type="text" className="form-control  mb-3" placeholder={parolRequest} value={password} onChange={(e) => setPassword(e.target.value)} />
+                            <input type="text" className="form-control  mb-3" placeholder='parol' value={password} onChange={(e) => setPassword(e.target.value)} />
                             <button className="btn w-100 " style={{ background: "#FBC400" }} onClick={() => check()}><strong>Tizimga kirish</strong></button>
                             <p className="mt-3 text-center" >
                                 <span className="loginLinks" onClick={openAdmin}>

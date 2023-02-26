@@ -16,9 +16,11 @@ export default function ExamPage2() {
     const { data } = state;
 
     const [timeCon, setTimeCon] = useContext(timeContext);
+    setTimeCon(data.session.givenTime)
+
+
     const [minut, setMinut] = useContext(minutContext)
     const [seconds, setSeconds] = useContext(secondsContext)
-    setTimeCon(0.5)
 
 
 

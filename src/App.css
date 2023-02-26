@@ -306,7 +306,6 @@
 }
 
 .adminMalumoti div {
-    /* width: 20%; */
     border: 1px solid;
     background: #FFFFFF;
     border-radius: 60px;
@@ -343,7 +342,7 @@
     .adminMalumoti div {
         width: 20%;
         position: relative;
-        top: 30%;
+        top: 20%;
         left: 40%;
     }
 

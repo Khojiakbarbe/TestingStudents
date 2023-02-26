@@ -51,6 +51,7 @@ export default function DeletePage() {
                                     :
                                     null
                             }
+                            <button className="btn btn-success" onClick={() => navigate(`/deleteQuestions/${post._id}` , {state : {id: post._id , type: type , theme: theme}})}>See full question</button> <br />
                             <button className="btn btn-danger" onClick={() => deleteThis(post._id)}>Delete</button>
                         </div>
                     )
