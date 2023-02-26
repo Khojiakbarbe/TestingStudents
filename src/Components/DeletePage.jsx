@@ -43,7 +43,7 @@ export default function DeletePage() {
                 {questions.map((post, index) => {
                     return (
                         <div className="col-3 mb-5 border p-3" key={index}>
-                            <h4>Savol : {post.question.slice(0,14)}..</h4>
+                            <h4>Savol : {post.question.slice(0,8)}..</h4>
                             <h4>Javob : {post.answer}</h4>
                             {
                                 post.questionImg.length > 1 ?
