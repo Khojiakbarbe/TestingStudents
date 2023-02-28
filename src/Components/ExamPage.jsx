@@ -122,7 +122,7 @@ export default function ExamPage() {
             <div className="container p-5">
                 <div className="examPage">
                     <div className="examQuestion row">
-                        <div className="col-md-6 p-4 border" >
+                        <div className="col-md-6 p-4 " >
                             {
                                 startBtn === '' && info.length > 0 ?
                                     info[questionIndx] && <p  key={info[questionIndx].id}>{info[questionIndx].question}</p>
