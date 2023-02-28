@@ -418,3 +418,7 @@
     cursor: pointer;
     padding: 2%;
 }
+.deletePageIcons span:hover{
+    transition: 0.5s;
+    color: #FBB500;
+}

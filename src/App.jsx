@@ -14,6 +14,8 @@ import DeletePage from "./Components/DeletePage.jsx";
 import NewQuestions from "./Components/NewQuestions.jsx";
 import ExamPage2 from "./Components/ExamPage2.jsx";
 import Details from "./Components/Details.jsx";
+import DeleteAdmins from "./Components/DeleteAdmins.jsx";
+import EditAdminPassword from "./Components/EditAdminPassword.jsx";
 
 import './App.css'
 
@@ -40,6 +42,8 @@ function App() {
                     <Route path="/deleteQuestions/:id" element={<Details />} />
                     <Route path="/examPage2" element={<ExamPage2 />} />
                   </Route>
+                  <Route path="/editAdminPassword" element={<EditAdminPassword />}/> 
+                  <Route path="/deleteAdmins" element={<DeleteAdmins />}/> 
                   <Route path="/*" elemen={<Error />} />
                 </Routes>
               </AnswerProvider>

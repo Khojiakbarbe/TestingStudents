@@ -42,15 +42,11 @@ export default function DeletePage() {
             <div className="row">
                 {questions.map((post, index) => {
                     return (
-                        <div className="col-3 mb-5 border p-3" key={index}>
+                        <div className="col-3 mb-2  p-2" key={index}>
+                            <div className="border bg-dark p-2" style={{color: 'white'}}>
                             <h4>Savol : {post.question.slice(0, 8)}..</h4>
                             <h4>Javob : {post.answer}</h4>
-                            {
-                                post.questionImg.length > 1 ?
-                                    <img src={`http://localhost:4000/${post.questionImg}`} className='img-fluid mb-2' style={{ height: "200px" }} alt="" />
-                                    :
-                                    null
-                            }
+
                             <div className="deletePageIcons">
                                 <span onClick={() => navigate(`/deleteQuestions/${post._id}`, { state: { id: 1, type: type, theme: theme } })}>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
@@ -64,7 +60,7 @@ export default function DeletePage() {
                                     </svg>
                                 </span>
                             </div>
-                            {/* <button className="btn btn-danger" onClick={() => deleteThis(post._id)}>Delete</button> */}
+                            </div>
                         </div>
                     )
                 })}
