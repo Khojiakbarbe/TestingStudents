@@ -34,8 +34,8 @@ export default function Registrate() {
     const [manager, setManager] = useState('')
     const [subject, setSubject] = useState('')
     const [theme, setTheme] = useState('')
-    const [numberOfQuestions, setNumberOfQuestions] = useState('')
-    const [givenTime, setGivenTime] = useState('')
+    const [numberOfQuestions, setNumberOfQuestions] = useState(1)
+    const [givenTime, setGivenTime] = useState(1)
     // if(givenTime > 90){
     //     setGivenTime(60)
     // }else{
@@ -54,7 +54,10 @@ export default function Registrate() {
     const [password, setPassword] = useState('')
 
     const [students, setStudents] = useState([]);
-    const [studentCount , setStudentCount] = useState(1)
+    const [studentCount, setStudentCount] = useState(1);
+
+    const [empty, setEmpty] = useState('')
+
     function pushStudents() {
         students.push({
             "user": user,
@@ -65,6 +68,15 @@ export default function Registrate() {
         setStudentCount(studentCount + 1)
     }
     function check() {
+        if (user.length > 1 && password.length > 1) {
+            students.push({
+                "user": user,
+                "password": password
+            })
+            setUser('');
+            setPassword('')
+        }
+        
         if (manager.length > 1 && subject.length > 1 && theme.length > 1 && numberOfQuestions > 0 && givenTime > 0 && students.length > 0) {
             axios.post('http://localhost:4000/sessions', {
                 manager,
@@ -79,6 +91,10 @@ export default function Registrate() {
                 })
                 .catch(err => console.log(err))
             navigate('/')
+        } else {
+            setEmpty("Barcha so'rov to'ldirilmagan")
+            console.log('empty');
+            //not working
         }
     }
 
@@ -127,7 +143,7 @@ export default function Registrate() {
 
                     <div className=" container W-50 p-5">
                         <div className="w-50" style={{ margin: '0 auto', textAlign: 'left' }}>
-
+                            <h2 style={{ color: 'red' }}>{empty}</h2>
                             <span>Manager</span>
                             <select className="form-select form-select-sm p-2" aria-label=".form-select-sm example" onChange={(e) => setManager(e.target.value)} >
                                 <option value="">Menejerni tanlang</option>
