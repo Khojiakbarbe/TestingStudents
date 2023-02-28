@@ -43,6 +43,28 @@ export default function NewQuestions() {
         }
     }
 
+    function tugatish() {
+        if (question.length > 5 && answer.length > 1) {
+            const formDate = new FormData();
+
+            formDate.append('type', type)
+            formDate.append('theme', theme)
+            formDate.append('question', question)
+            formDate.append('answer', answer)
+            formDate.append('questionImg', questionImg)
+
+
+            axios.post('http://localhost:4000/questions', formDate)
+                .then(res => {
+                    setQuestion('')
+                    setAnswer('')
+                    setCount(count + 1)
+                    console.log(res.data, 'data is saved');
+                })
+                .catch(err => console.log(err))
+        }
+        navigate('/')
+    }
 
     return (
         <>
@@ -75,7 +97,7 @@ export default function NewQuestions() {
                 </div>
                 <button className="btn newQuestionSave" onClick={() => sendQuestion()}><h5>Saqlash</h5></button>
                 <div style={{ textAlign: 'end' }}>
-                    <button className="btn btn-warning mt-2" onClick={() => navigate('/')}>Tugatish
+                    <button className="btn btn-warning mt-2" onClick={() => tugatish()}>Tugatish
                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none">
                             <path d="M8.90991 19.9201L15.4299 13.4001C16.1999 12.6301 16.1999 11.3701 15.4299 10.6001L8.90991 4.08008" stroke="#292D32" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>

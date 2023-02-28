@@ -47,7 +47,7 @@ export default function AdminPage() {
     }
 
     let forTheme = [];
-    const filterTheme = questions.filter(post => post.type.toLowerCase().includes(type));
+    const filterTheme = questions.filter(post => post.type.toLowerCase().includes(type.toLowerCase()));
     for (let i = 0; i < filterTheme.length; i++) {
         if (!forTheme.includes(filterTheme[i].theme)) {
             forTheme.push(filterTheme[i].theme)
@@ -161,10 +161,10 @@ export default function AdminPage() {
             <div className={checkClass}>
                 <div className="adminMalumoti">
                     <div>
-                        <h2 style={{ textAlign: 'center' }}>Admin ma'lumotini kiriting </h2>
+                        <h2 style={{ textAlign: 'center' }}>Yangi admin ma'lumotini kiriting </h2>
                         <p style={{ color: 'red' }}>{error}</p>
-                        <p>Yangi login</p>
-                        <input type="text" className='form-control mb-4' placeholder="Login" onChange={(e) => setLogin(e.target.value)} value={login} />
+                        <p>Yangi O'qituvchi ismi</p>
+                        <input type="text" className='form-control mb-4' placeholder="O'qituvchi ismi" onChange={(e) => setLogin(e.target.value)} value={login} />
                         <p>Yangi parol</p>
                         <input type="text" className='form-control mb-4' placeholder="Parol" onChange={(e) => setPassword(e.target.value)} value={password} />
                         <button className="btn w-100 p-2 color-white mb-2" style={{ background: '#FBC400' }} onClick={addNewLogin}><strong>Saqlash</strong></button>
