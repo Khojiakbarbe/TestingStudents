@@ -27,22 +27,38 @@ export default function ExamPage2() {
 
 
     const [info, setInfo] = useState([]);
+    
 
     useEffect(() => {
         axios.get('http://localhost:4000/questions/' + data.session.subject + "/" + data.session.theme)
             .then(res => {
-                let usedIndx = [];
-                let questions = [];
-                for (let i = 0; i < data.session.numberOfQuestions; i++) {
-                    let randomized = Math.floor(Math.random() * res.data.length);
-                    while (usedIndx.includes(randomized)) {
-                        randomized = Math.floor(Math.random() * res.data.length);
+                if (data.session.numberOfQuestions <= res.data.length) {
+                    let usedIndx = [];
+                    let questions = [];
+                    for (let i = 0; i < data.session.numberOfQuestions; i++) {
+                        let randomized = Math.floor(Math.random() * res.data.length);
+                        while (usedIndx.includes(randomized)) {
+                            randomized = Math.floor(Math.random() * res.data.length);
+                        }
+                        let currIndx = res.data[randomized];
+                        usedIndx.push(randomized);
+                        questions.push(currIndx);
                     }
-                    let currIndx = res.data[randomized];
-                    usedIndx.push(randomized);
-                    questions.push(currIndx);
+                    setInfo(questions);
+                } else {
+                    let usedIndx = [];
+                    let questions = [];
+                    for (let i = 0; i < res.data.length; i++) {
+                        let randomized = Math.floor(Math.random() * res.data.length);
+                        while (usedIndx.includes(randomized)) {
+                            randomized = Math.floor(Math.random() * res.data.length);
+                        }
+                        let currIndx = res.data[randomized];
+                        usedIndx.push(randomized);
+                        questions.push(currIndx);
+                    }
+                    setInfo(questions);
                 }
-                setInfo(questions);
             })
     }, [])
 
@@ -75,7 +91,7 @@ export default function ExamPage2() {
 
     // if question over student will go to result page
     if (count > data.session.numberOfQuestions - 1) {
-        navigate('/results', { state: { id: 1, count: data.session.numberOfQuestions, currect: currect, mistake: mistake } })
+        navigate('/results', { state: { id: 1, teacher: data.session.manager, count: data.session.numberOfQuestions, currect: currect, mistake: mistake } })
     }
 
 

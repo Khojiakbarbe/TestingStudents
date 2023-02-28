@@ -64,7 +64,9 @@ export default function Login() {
                     navigate('/examPage2' , {state : {id: 1, data : res.data}})
 
                 }else{
-                    setNotFound('Topilmadi')
+                    setNotFound("O'quvchi topilmadi")
+                    setUser('')
+                    setPassword('')
                 }
             })
         }
@@ -107,9 +109,9 @@ export default function Login() {
                         <h4 style={{ color: 'red' }}>{notFound}</h4>
                         <div className="w-50" style={{ margin: '0 auto', textAlign: 'left' }}>
                             <span>Loginni kiriting: </span>
-                            <input type="text" className="form-control mb-3" placeholder='user' value={user} onChange={(e) => setUser(e.target.value)} required />
+                            <input type="text" className="form-control mb-3" placeholder='login' value={user} onChange={(e) => setUser(e.target.value)} required />
                             <span>Parol : </span>
-                            <input type="text" className="form-control  mb-3" placeholder='parol' value={password} onChange={(e) => setPassword(e.target.value)} />
+                            <input type="password" className="form-control  mb-3" placeholder='parol' value={password} onChange={(e) => setPassword(e.target.value)} />
                             <button className="btn w-100 " style={{ background: "#FBC400" }} onClick={() => check()}><strong>Tizimga kirish</strong></button>
                             <p className="mt-3 text-center" >
                                 <span className="loginLinks" onClick={openAdmin}>
@@ -128,11 +130,10 @@ export default function Login() {
                 <div className="adminMalumoti">
                     <div>
                         <h2 style={{ textAlign: 'center' }}>Admin ma'lumotini kiriting </h2>
-                        {/* <p style={{ color: 'red', textAlign: 'center' }}>{error}</p> */}
                         <p>Login</p>
                         <input type="text" className='form-control mb-4' placeholder="Login" onChange={(e) => setAdminLogin(e.target.value)} />
                         <p>Parol</p>
-                        <input type="text" className='form-control mb-4' placeholder="Parol" onChange={(e) => setAdminPassword(e.target.value)} />
+                        <input type="password" className='form-control mb-4' placeholder="Parol" onChange={(e) => setAdminPassword(e.target.value)} />
                         <button className="btn w-100 p-2 color-white mb-2" style={{ background: '#FBC400' }} onClick={openAdminPage}><strong>Kirish</strong></button>
                         <button className="btn btn-primary w-100 p-2" onClick={() => setCurrectLogin('adminPageOpen')}>Orqaga qaytish</button>
                     </div>

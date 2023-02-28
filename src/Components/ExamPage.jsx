@@ -35,18 +35,33 @@ export default function ExamPage() {
     useEffect(() => {
         axios.get('http://localhost:4000/questions/' + type + "/" + theme)
             .then(res => {
-                let usedIndx = [];
-                let questions = [];
-                for (let i = 0; i < count; i++) {
-                    let randomized = Math.floor(Math.random() * res.data.length);
-                    while (usedIndx.includes(randomized)) {
-                        randomized = Math.floor(Math.random() * res.data.length);
+                if (count <= res.data.length) {
+                    let usedIndx = [];
+                    let questions = [];
+                    for (let i = 0; i < count; i++) {
+                        let randomized = Math.floor(Math.random() * res.data.length);
+                        while (usedIndx.includes(randomized)) {
+                            randomized = Math.floor(Math.random() * res.data.length);
+                        }
+                        let currIndx = res.data[randomized];
+                        usedIndx.push(randomized);
+                        questions.push(currIndx);
                     }
-                    let currIndx = res.data[randomized];
-                    usedIndx.push(randomized);
-                    questions.push(currIndx);
+                    setInfo(questions);
+                } else {
+                    let usedIndx = [];
+                    let questions = [];
+                    for (let i = 0; i < res.data.length; i++) {
+                        let randomized = Math.floor(Math.random() * res.data.length);
+                        while (usedIndx.includes(randomized)) {
+                            randomized = Math.floor(Math.random() * res.data.length);
+                        }
+                        let currIndx = res.data[randomized];
+                        usedIndx.push(randomized);
+                        questions.push(currIndx);
+                    }
+                    setInfo(questions);
                 }
-                setInfo(questions);
             })
             .catch(err => console.log(err));
     }, []);
@@ -74,7 +89,7 @@ export default function ExamPage() {
 
     // if test over , navigate to other page
     if (questionIndx > count - 1) {
-        navigate('/results', { state: { id: 1, count: countToResultPage, currect: currect, mistake: mistake } })
+        navigate('/results', { state: { id: 1, teacher : '', count: countToResultPage, currect: currect, mistake: mistake } })
     }
 
     const [showModal, setShowModal] = useState('modal')
@@ -107,7 +122,7 @@ export default function ExamPage() {
                     <div className="examQuestion row">
                         <div className="col-md-6 p-4">
                             {
-                                startBtn === '' ?
+                                startBtn === '' && info.length > 0 ?
                                     info[questionIndx] && <p key={info[questionIndx].id}>{info[questionIndx].question}</p>
                                     :
                                     <p>Test is here</p>
@@ -115,7 +130,7 @@ export default function ExamPage() {
                         </div>
 
                         {
-                            startBtn === '' && info[questionIndx].questionImg.length > 1 ?
+                            startBtn === '' && info.length > 0 && info[questionIndx].questionImg.length > 1 ?
                                 <div className="col-md-6 p-3">
                                     <img src={`http://localhost:4000/${info[questionIndx].questionImg}`} className='img-fluid w-100' alt="" />
                                 </div>

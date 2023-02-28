@@ -50,7 +50,17 @@ export default function Home() {
 
     const [count, setCount] = useState('5')
 
-    const [time, setTime] = useContext(timeContext)
+    const [time , setTime] = useState('');
+    const [timeCon, setTimeCon] = useContext(timeContext)
+
+    if(time < 61){
+        setTimeCon(time)
+    }else{
+        setTimeCon(60)
+    }
+
+    console.log(timeCon);
+
 
 
     return (

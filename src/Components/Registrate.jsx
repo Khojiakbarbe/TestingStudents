@@ -36,6 +36,11 @@ export default function Registrate() {
     const [theme, setTheme] = useState('')
     const [numberOfQuestions, setNumberOfQuestions] = useState('')
     const [givenTime, setGivenTime] = useState('')
+    // if(givenTime > 90){
+    //     setGivenTime(60)
+    // }else{
+
+    // }
 
 
     const [checkClass, setCheckClass] = useState('hiddenCheckRegistrate')
@@ -181,7 +186,7 @@ export default function Registrate() {
                             <input type="text" className='form-control mb-4' placeholder="User" value={user} onChange={(e) => setUser(e.target.value)} />
                             <p>Parol</p>
                             <input type="text" className='form-control mb-4' placeholder="Parol" value={password} onChange={(e) => setPassword(e.target.value)} />
-                            <button className="btn w-100 p-2 color-white mb-2" style={{ background: '#FBC400' }} onClick={pushStudents}><strong>Keyingi oquvchini kiritsh</strong></button>
+                            <button className="btn w-100 p-2 color-white mb-2" style={{ background: '#FBC400' }} onClick={pushStudents}><strong>Saqlash va keyingi oquvchini kiritsh</strong></button>
                             <button className="btn btn-danger w-100 p-2" onClick={() => check()}>Ma'lumotni saqlash</button>
                         </div>
                     </div>
