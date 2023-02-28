@@ -23,44 +23,48 @@ export default function ExamPage2() {
     const [seconds, setSeconds] = useContext(secondsContext)
 
 
+    
 
 
 
     const [info, setInfo] = useState([]);
-    
 
-    useEffect(() => {
-        axios.get('http://localhost:4000/questions/' + data.session.subject + "/" + data.session.theme)
-            .then(res => {
-                if (data.session.numberOfQuestions <= res.data.length) {
-                    let usedIndx = [];
-                    let questions = [];
-                    for (let i = 0; i < data.session.numberOfQuestions; i++) {
-                        let randomized = Math.floor(Math.random() * res.data.length);
-                        while (usedIndx.includes(randomized)) {
-                            randomized = Math.floor(Math.random() * res.data.length);
+    const [testCount , setTestCount] = useState(0)
+
+        useEffect(() => {
+            axios.get('http://localhost:4000/questions/' + data.session.subject + "/" + data.session.theme)
+                .then(res => {
+                    if (data.session.numberOfQuestions <= res.data.length) {
+                        setTestCount(data.session.numberOfQuestions)
+                        let usedIndx = [];
+                        let questions = [];
+                        for (let i = 0; i < data.session.numberOfQuestions; i++) {
+                            let randomized = Math.floor(Math.random() * res.data.length);
+                            while (usedIndx.includes(randomized)) {
+                                randomized = Math.floor(Math.random() * res.data.length);
+                            }
+                            let currIndx = res.data[randomized];
+                            usedIndx.push(randomized);
+                            questions.push(currIndx);
                         }
-                        let currIndx = res.data[randomized];
-                        usedIndx.push(randomized);
-                        questions.push(currIndx);
-                    }
-                    setInfo(questions);
-                } else {
-                    let usedIndx = [];
-                    let questions = [];
-                    for (let i = 0; i < res.data.length; i++) {
-                        let randomized = Math.floor(Math.random() * res.data.length);
-                        while (usedIndx.includes(randomized)) {
-                            randomized = Math.floor(Math.random() * res.data.length);
+                        setInfo(questions);
+                    } else {
+                        setTestCount(res.data.length)
+                        let usedIndx = [];
+                        let questions = [];
+                        for (let i = 0; i < res.data.length; i++) {
+                            let randomized = Math.floor(Math.random() * res.data.length);
+                            while (usedIndx.includes(randomized)) {
+                                randomized = Math.floor(Math.random() * res.data.length);
+                            }
+                            let currIndx = res.data[randomized];
+                            usedIndx.push(randomized);
+                            questions.push(currIndx);
                         }
-                        let currIndx = res.data[randomized];
-                        usedIndx.push(randomized);
-                        questions.push(currIndx);
+                        setInfo(questions);
                     }
-                    setInfo(questions);
-                }
-            })
-    }, [])
+                })
+        }, [])
 
 
     const [count, setCount] = useState(0);
@@ -90,8 +94,8 @@ export default function ExamPage2() {
     }
 
     // if question over student will go to result page
-    if (count > data.session.numberOfQuestions - 1) {
-        navigate('/results', { state: { id: 1, teacher: data.session.manager, count: data.session.numberOfQuestions, currect: currect, mistake: mistake } })
+    if (testCount > 0 && count > testCount - 1) {
+        navigate('/results', { state: { id: 1, teacher: data.session.manager, count: testCount, currect: currect, mistake: mistake } })
     }
 
 
