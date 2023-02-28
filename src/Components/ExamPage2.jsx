@@ -13,7 +13,7 @@ export default function ExamPage2() {
     const navigate = useNavigate();
 
     const { state } = useLocation();
-    const { data } = state;
+    const { data, user, password } = state;
 
     const [timeCon, setTimeCon] = useContext(timeContext);
     setTimeCon(data.session.givenTime)
@@ -23,49 +23,60 @@ export default function ExamPage2() {
     const [seconds, setSeconds] = useContext(secondsContext)
 
 
-    
+
 
 
 
     const [info, setInfo] = useState([]);
 
-    const [testCount , setTestCount] = useState(0)
+    const [testCount, setTestCount] = useState(0)
 
-        useEffect(() => {
-            axios.get('http://localhost:4000/questions/' + data.session.subject + "/" + data.session.theme)
-                .then(res => {
-                    if (data.session.numberOfQuestions <= res.data.length) {
-                        setTestCount(data.session.numberOfQuestions)
-                        let usedIndx = [];
-                        let questions = [];
-                        for (let i = 0; i < data.session.numberOfQuestions; i++) {
-                            let randomized = Math.floor(Math.random() * res.data.length);
-                            while (usedIndx.includes(randomized)) {
-                                randomized = Math.floor(Math.random() * res.data.length);
-                            }
-                            let currIndx = res.data[randomized];
-                            usedIndx.push(randomized);
-                            questions.push(currIndx);
+    const [forDelete, setForDelete] = useState([])
+    useEffect(() => {
+        axios.get('http://localhost:4000/questions/' + data.session.subject + "/" + data.session.theme)
+            .then(res => {
+                if (data.session.numberOfQuestions <= res.data.length) {
+                    setTestCount(data.session.numberOfQuestions)
+                    let usedIndx = [];
+                    let questions = [];
+                    for (let i = 0; i < data.session.numberOfQuestions; i++) {
+                        let randomized = Math.floor(Math.random() * res.data.length);
+                        while (usedIndx.includes(randomized)) {
+                            randomized = Math.floor(Math.random() * res.data.length);
                         }
-                        setInfo(questions);
-                    } else {
-                        setTestCount(res.data.length)
-                        let usedIndx = [];
-                        let questions = [];
-                        for (let i = 0; i < res.data.length; i++) {
-                            let randomized = Math.floor(Math.random() * res.data.length);
-                            while (usedIndx.includes(randomized)) {
-                                randomized = Math.floor(Math.random() * res.data.length);
-                            }
-                            let currIndx = res.data[randomized];
-                            usedIndx.push(randomized);
-                            questions.push(currIndx);
-                        }
-                        setInfo(questions);
+                        let currIndx = res.data[randomized];
+                        usedIndx.push(randomized);
+                        questions.push(currIndx);
                     }
-                })
-        }, [])
+                    setInfo(questions);
+                } else {
+                    setTestCount(res.data.length)
+                    let usedIndx = [];
+                    let questions = [];
+                    for (let i = 0; i < res.data.length; i++) {
+                        let randomized = Math.floor(Math.random() * res.data.length);
+                        while (usedIndx.includes(randomized)) {
+                            randomized = Math.floor(Math.random() * res.data.length);
+                        }
+                        let currIndx = res.data[randomized];
+                        usedIndx.push(randomized);
+                        questions.push(currIndx);
+                    }
+                    setInfo(questions);
+                }
+            })
 
+
+
+
+        // for delete user and password
+        axios.get('http://localhost:4000/students')
+            .then(res => {
+                setForDelete(res.data)
+            })
+            .catch(err => console.log(err))
+
+    }, [])
 
     const [count, setCount] = useState(0);
 
@@ -93,8 +104,14 @@ export default function ExamPage2() {
         setInputValue('')
     }
 
-    // if question over student will go to result page
+    // if question over student's login password will delete and go to result page
+    const id = forDelete.filter(post => post.user == user && post.password == password);
     if (testCount > 0 && count > testCount - 1) {
+        axios.delete('http://localhost:4000/students/', { data: { id } })
+            .then(res => {
+                console.log('Data is deleted', res);
+            })
+            .catch(err => console.log(err))
         navigate('/results', { state: { id: 1, teacher: data.session.manager, count: testCount, currect: currect, mistake: mistake } })
     }
 
@@ -107,6 +124,11 @@ export default function ExamPage2() {
     })
 
     function closeModal() {
+        axios.delete('http://localhost:4000/students/', { data: { id } })
+            .then(res => {
+                console.log('Data is deleted', res);
+            })
+            .catch(err => console.log(err))
         setForModal('close')
         setShowModal('close')
         setCurrect(0)

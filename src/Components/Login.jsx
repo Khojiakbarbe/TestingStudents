@@ -61,7 +61,7 @@ export default function Login() {
             .then(res => {
                 if(res.data.status === 200) {
                     setLoginCon(true)
-                    navigate('/examPage2' , {state : {id: 1, data : res.data}})
+                    navigate('/examPage2' , {state : {id: 1, data : res.data , user: user , password: password}})
 
                 }else{
                     setNotFound("O'quvchi topilmadi")
