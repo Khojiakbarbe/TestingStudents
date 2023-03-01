@@ -98,8 +98,8 @@ export default function AdminPage() {
     const [openPutInputs, setOpenPutInputs] = useState('')
     const [putPassword, setPutPassword] = useState('')
     const [checkPutPassword, setCheckPutPassword] = useState('')
-    
-    function closePutFunction(){
+
+    function closePutFunction() {
         setOpenEditPassword('')
         setUserPassword('')
         setOpenPutInputs('')
@@ -107,7 +107,7 @@ export default function AdminPage() {
         setCheckPutPassword('')
         setPutIncorrect('')
     }
-    
+
 
     const [putIncorrect, setPutIncorrect] = useState('')
 
@@ -121,7 +121,8 @@ export default function AdminPage() {
         }
     }
     function changeAdmin() {
-        if (putPassword.length > 3 && checkPutPassword.length > 3 &&  putPassword === checkPutPassword) {
+        if (putPassword.length > 3 && checkPutPassword.length > 3 && putPassword === checkPutPassword) {
+            setOpenEditPassword('')
             axios.put('http://localhost:4000/users/', {
                 id: user._id,
                 new: {
@@ -129,15 +130,12 @@ export default function AdminPage() {
                 }
             })
                 .then(res => {
-                    console.log(res.data);
+                    setOpenPutInputs('')
+                    setPutIncorrect('')
+                    setPutPassword('');
+                    setCheckPutPassword('')
                 })
                 .catch(err => console.log(err))
-
-
-            setOpenPutInputs('')
-            setPutIncorrect('')
-            setPutPassword('');
-            setCheckPutPassword('')
         } else {
             setPutIncorrect("Yangi parollar birhilligini va 3 belgidan ko'pligini tekshiring")
             setPutPassword('');
@@ -264,7 +262,7 @@ export default function AdminPage() {
                                 {
                                     openPutInputs.length > 3 ?
                                         <>
-                                        <h4 style={{color: 'red'}}>{putIncorrect}</h4>
+                                            <h4 style={{ color: 'red' }}>{putIncorrect}</h4>
                                             <p>Yangi Parolni kiriting </p>
                                             <input type="text" className='form-control mb-4' placeholder="Yangi parol" onChange={(e) => setPutPassword(e.target.value)} value={putPassword} />
                                             <p>Yangi parolni qayta kiriting</p>

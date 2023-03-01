@@ -31,12 +31,16 @@ export default function Login() {
         setCurrectLogin('')
     }
 
+    const [adminError, setAdminError] = useState('')
+
     function openAdminPage() {
         const filter = login.filter(info => info.password.toLowerCase() == adminPassword.toLowerCase() && info.login.toLowerCase() == adminLogin.toLowerCase())
         if (!filter.length < 1) {
             setLoginCon(true)
             navigate('/admin')
             setCurrectLogin('adminPageOpen')
+        } else {
+            setAdminError("Login yoki parol noto'g'ri")
         }
     }
     const handleKeyAdmin = (event) => {
@@ -48,7 +52,7 @@ export default function Login() {
                 setCurrectLogin('adminPageOpen')
             }
         } else {
-            console.log(user.length);
+            setAdminError("Login yoki parol noto'g'ri")
         }
     }
 
@@ -59,6 +63,7 @@ export default function Login() {
 
 
     const [notFound, setNotFound] = useState('')
+
 
     function check() {
         if (user.length > 1 && password.length > 1) {

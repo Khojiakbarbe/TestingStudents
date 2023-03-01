@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios, { all } from "axios";
+import axios from "axios";
 
 
 
@@ -10,9 +10,6 @@ export default function DeleteAdmins() {
         axios.get('http://localhost:4000/users')
             .then(res => {
                 setAllAdmins(res.data)
-                // for (let i = 1; i < res.data.length; i++) {
-                //     allAdmins.push(res.data[i])
-                // }
             })
             .catch(err => console.log(err))
     }, [])
@@ -22,37 +19,64 @@ export default function DeleteAdmins() {
         filter.push(allAdmins[i])
     }
 
-    function deleteAdmin(id) {
+    const [request, setRequest] = useState('')
+
+    const [id, setId] = useState('')
+
+    function showRequest(id) {
+        setId(id)
+        setRequest('giveRequest')
+    }
+
+    function deleteAdmin() {
         axios.delete('http://localhost:4000/users', { data: { id } })
             .then(res => {
                 console.log('data successfully deleted');
+                setRequest('')
                 setAllAdmins(allAdmins.filter(p => p._id !== id))
+
             })
     }
 
 
 
     return (
-        <div className="container p-3">
-            <div className="row">
-                {allAdmins.length > 0 ?
-                    filter.map(post => {
-                        return (
-                            <div key={post._id} className="col-3 p-3 mb-2 ">
-                                <div className="bg-dark p-3" style={{color:'white'}}>
-                                    <h4>User : {post.login}</h4>
-                                    <h4>Parol : {post.password}</h4>
-                                    <br />
-                                    <button className="btn btn-danger" onClick={() => deleteAdmin(post._id)}>Delete</button>
-                                </div>
-                            </div>
-                        )
-                    })
+        <>
+            {
+                request.length > 0 ?
+                    <div className="adminMalumoti">
+                        <div>
+                            <h2 style={{ textAlign: 'center' }}>Test haqiqatdan o'chirilsinmi</h2>
+                            <button className="btn w-50 p-2 color-white " style={{ background: '#FBC400' }} onClick={() => deleteAdmin()}><strong>O'chirish</strong></button>
+                            
+                            <button className="btn btn-primary w-50 p-2" onClick={() => setRequest('')}>Qoldirish</button>
+                        </div>
+                    </div>
                     :
-                    <p>kuting</p>
-                }
+                    null
+            }
+            <div className="container p-3">
+                <div className="row">
+                    {allAdmins.length > 0 ?
+                        filter.map(post => {
+                            return (
+                                <div key={post._id} className="col-3 p-3 mb-2 ">
+                                    <div className="bg-dark p-3" style={{ color: 'white' }}>
+                                        <h4>User : {post.login}</h4>
+                                        <h4>Parol : {post.password}</h4>
+                                        <br />
+                                        <button className="btn btn-danger" onClick={() => showRequest(post._id)}>Delete</button>
+                                    </div>
+                                </div>
+                            )
+                        })
+                        :
+                        <p>kuting</p>
+                    }
 
+                </div>
             </div>
-        </div>
+
+        </>
     )
 }

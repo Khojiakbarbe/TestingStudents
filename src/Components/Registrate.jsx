@@ -10,7 +10,7 @@ export default function Registrate() {
 
 
     const [info, setInfo] = useState([])
-    const [users, setUsers] = useState([])
+    const [takenUsers, setTakenUsers] = useState([])
 
     useEffect(() => {
         axios.get('http://localhost:4000/questions')
@@ -21,11 +21,15 @@ export default function Registrate() {
 
         axios.get('http://localhost:4000/users')
             .then(res => {
-                setUsers(res.data)
+                setTakenUsers(res.data)
             })
             .catch(err => console.log(err))
     }, [])
 
+    const users = [];
+    for(let i = 1; i < takenUsers.length; i++){
+        users.push(takenUsers[i])
+    }
 
 
 
@@ -36,17 +40,15 @@ export default function Registrate() {
     const [theme, setTheme] = useState('')
     const [numberOfQuestions, setNumberOfQuestions] = useState(1)
     const [givenTime, setGivenTime] = useState(1)
-    // if(givenTime > 90){
-    //     setGivenTime(60)
-    // }else{
-
-    // }
 
 
     const [checkClass, setCheckClass] = useState('hiddenCheckRegistrate')
     function addStudent() {
         if (manager.length > 1 && subject.length > 1 && theme.length > 1 && numberOfQuestions > 0 && givenTime > 0) {
             setCheckClass('')
+        } else {
+            setEmpty("Barcha so'rov to'ldirilmagan")
+            console.log('empty');
         }
     }
 
@@ -67,6 +69,8 @@ export default function Registrate() {
         setPassword('');
         setStudentCount(studentCount + 1)
     }
+
+
     function check() {
         if (user.length > 1 && password.length > 1) {
             students.push({
@@ -91,13 +95,8 @@ export default function Registrate() {
                 })
                 .catch(err => console.log(err))
             navigate('/')
-        } else {
-            setEmpty("Barcha so'rov to'ldirilmagan")
-            console.log('empty');
-            //not working
         }
     }
-
     // filter
 
     const type = [];
@@ -187,7 +186,6 @@ export default function Registrate() {
                             <span>Vaqt ( minut ) </span>
                             <input type="number" onChange={(e) => setGivenTime(e.target.value)} value={givenTime} className="form-control  mb-3" placeholder="1" />
 
-                            {/* onClick={() => check()} */}
                             <button className="btn w-100  btn-danger" onClick={() => addStudent()} >O'quvchilarni biriktirish</button>
 
                         </div>
