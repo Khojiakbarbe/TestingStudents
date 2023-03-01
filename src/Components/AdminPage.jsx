@@ -27,13 +27,21 @@ export default function AdminPage() {
 
     const [questions, setQuestions] = useState([])
 
+    const [user, setUser] = useState([]);
     useEffect(() => {
         axios.get('http://localhost:4000/questions')
             .then(res => {
                 setQuestions(res.data)
             })
             .catch(err => console.log(err))
+
+        axios.get('http://localhost:4000/users')
+            .then(res => {
+                setUser(res.data[0])
+            })
+            .catch(err => console.log(err))
     }, [])
+
 
     const [type, setType] = useState('')
     const [theme, setTheme] = useState('')
@@ -83,6 +91,50 @@ export default function AdminPage() {
         setCheckClass('hiddenCheckRegistrate')
     }
 
+    // For edit admin password;;;
+    const [openEditPassword, setOpenEditPassword] = useState('')
+
+    const [userPassword, setUserPassword] = useState('')
+    const [openPutInputs, setOpenPutInputs] = useState('')
+    const [putPassword, setPutPassword] = useState('')
+    const [checkPutPassword, setCheckPutPassword] = useState('')
+
+    const [putIncorrect, setPutIncorrect] = useState('')
+    function checkUserPassword() {
+        if (userPassword == user.password) {
+            setOpenPutInputs('showInputs')
+            setPutIncorrect('')
+            setUserPassword('')
+        } else {
+            setPutIncorrect('xato')
+        }
+    }
+    function changeAdmin() {
+        if (putPassword === checkPutPassword) {
+            axios.put('http://localhost:4000/users/', {
+                id: user._id,
+                new: {
+                    password: putPassword
+                }
+            })
+                .then(res => {
+                    console.log(res.data);
+                })
+                .catch(err => console.log(err))
+
+
+            setOpenPutInputs('')
+            setPutIncorrect('')
+            setPutPassword('');
+            setCheckPutPassword('')
+        } else {
+            setOpenEditPassword('')
+            setPutPassword('');
+            setCheckPutPassword('')
+            setPutIncorrect('Yangi parollar birhilligini tekshiring')
+        }
+    }
+
     return (
         <>
             <div className="home">
@@ -129,6 +181,13 @@ export default function AdminPage() {
                                 </h1>
                             </div>
                         </div>
+                        <div className="col-md-6 mb-3" >
+                            <div className='adminPageCols' onClick={() => setOpenEditPassword('siuu')}>
+                                <h1>
+                                    Admin parolini ozgartirish
+                                </h1>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -143,7 +202,7 @@ export default function AdminPage() {
                                 <select className="form-select form-select-sm p-2 mb-3" aria-label=".form-select-sm example" onChange={(e) => setType(e.target.value)} >
                                     <option value="">Fanni tanlang</option>
                                     {
-                                        forType.map((post,ind) => {
+                                        forType.map((post, ind) => {
                                             return (
                                                 <option key={ind} value={post}>{post}</option>
                                             )
@@ -154,7 +213,7 @@ export default function AdminPage() {
                                 <select className="form-select form-select-sm p-2" aria-label=".form-select-sm example" onChange={(e) => setTheme(e.target.value)} >
                                     <option value="">Mavzuni tanlang</option>
                                     {
-                                        forTheme.map((post,ind) => {
+                                        forTheme.map((post, ind) => {
                                             return (
                                                 <option key={ind} value={post}>{post}</option>
                                             )
@@ -183,6 +242,38 @@ export default function AdminPage() {
                         <button className="btn btn-primary w-100 p-2" onClick={orqaga}>Orqaga qaytish</button>
                     </div>
                 </div>
+            </div>
+
+            <div className=''>
+                {
+                    openEditPassword.length > 1 ?
+                        <div className="adminMalumoti">
+                            <div>
+                                <h2 style={{ textAlign: 'center' }}>Admin ma'lumotini kiriting</h2>
+                                <p style={{ color: 'red' }}>{error}</p>
+                                {
+                                    openPutInputs.length > 3 ?
+                                        <>
+                                            <p>Yangi Parolni kiriting</p>
+                                            <input type="text" className='form-control mb-4' placeholder="Yangi parol" onChange={(e) => setPutPassword(e.target.value)} value={putPassword} />
+                                            <p>Yangi parolni qayta kiriting</p>
+                                            <input type="text" className='form-control mb-4' placeholder="Yangi parol" onChange={(e) => setCheckPutPassword(e.target.value)} value={checkPutPassword} />
+                                            <button className="btn w-100 p-2 color-white mb-2" style={{ background: '#FBC400' }} onClick={changeAdmin}><strong>Saqlash</strong></button>
+                                            <button className="btn btn-primary w-100 p-2" onClick={() => setOpenEditPassword('')}>Orqaga qaytish</button>
+                                        </>
+                                        :
+                                        <>
+                                            <h4>Parol : <span style={{ color: 'red' }}>{putIncorrect}</span></h4>
+                                            <input type="text" className='form-control mb-4' placeholder="Parol" onChange={(e) => setUserPassword(e.target.value)} value={userPassword} />
+                                            <button className="btn w-100 p-2 color-white mb-2" style={{ background: '#FBC400' }} onClick={checkUserPassword}><strong>Saqlash</strong></button>
+                                            <button className="btn btn-primary w-100 p-2" onClick={() => setOpenEditPassword('')}>Orqaga qaytish</button>
+                                        </>
+                                }
+                            </div>
+                        </div>
+                        :
+                        null
+                }
             </div>
         </>
     )

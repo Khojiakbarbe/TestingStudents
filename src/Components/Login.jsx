@@ -153,7 +153,6 @@ export default function Login() {
                                     O'zingizni sinang
                                 </span>
                             </p>
-                            <a href="/editAdminPassword">edit password</a>
                         </div>
                     </div>
                 </div>

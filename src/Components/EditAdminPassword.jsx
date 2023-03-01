@@ -23,7 +23,6 @@ export default function EditAdminPassword() {
         axios.put('http://localhost:4000/users/', {
             id: id,
             new: {
-                login, 
                 password
             }
         })

@@ -38,12 +38,12 @@ function App() {
                     <Route path="/registrate" element={<Registrate />} />
                     <Route path="/addQuestions" element={<AddNewQuestions />} />
                     <Route path="/newQuestions" element={<NewQuestions />} />
+                    <Route path="/examPage2" element={<ExamPage2 />} />
                     <Route path="/deleteQuestions" element={<DeletePage />} />
                     <Route path="/deleteQuestions/:id" element={<Details />} />
                     <Route path="/deleteAdmins" element={<DeleteAdmins />} />
-                    <Route path="/examPage2" element={<ExamPage2 />} />
+                    <Route path="/editAdminPassword" element={<EditAdminPassword />} />
                   </Route>
-                  <Route path="/editAdminPassword" element={<EditAdminPassword />} />
                   <Route path="/*" elemen={<Error />} />
                 </Routes>
               </AnswerProvider>
