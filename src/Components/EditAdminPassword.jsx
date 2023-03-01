@@ -18,11 +18,12 @@ export default function EditAdminPassword() {
     const [user, setUser] = useState('')
     const [password, setPassword] = useState('')
 
-    
+
     return (
-        <div className="container pt-5">
+        <div className="container pt-5 w-50">
             <input type="text" placeholder="user" onChange={(e) => setUser(e.target.value)} className="form-control mb-3" />
             <input type="text" placeholder="password" onChange={(e) => setPassword(e.target.value)} className="form-control" />
+            <button className="btn btn-warning mt-3">Save</button>
         </div>
     )
 }

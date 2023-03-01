@@ -39,7 +39,7 @@ export default function DeleteAdmins() {
                 {allAdmins.length > 0 ?
                     filter.map(post => {
                         return (
-                            <div key={post.id} className="col-3 p-5 border m-2 ">
+                            <div key={post._id} className="col-3 p-5 border m-2 ">
                                 <h4>User : {post.login}</h4>
                                 <h4>Parol : {post.password}</h4>
                                 <br />

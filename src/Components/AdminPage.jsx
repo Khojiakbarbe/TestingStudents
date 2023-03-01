@@ -87,7 +87,12 @@ export default function AdminPage() {
         <>
             <div className="home">
                 <div className="container pt-5">
-                    <div className="btn btn-danger mb-5" onClick={() => navigate('/')}>Orqaga</div>
+                    <button className="btn btn-danger mb-5 p-2" onClick={() => navigate('/')}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16">
+                            <path fillRule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                        </svg>
+                        Orqaga
+                    </button>
                     <div className="row">
                         <div className="col-md-6 mb-3" >
                             <div className='adminPageCols' onClick={() => navigate('/registrate')}>
@@ -117,6 +122,13 @@ export default function AdminPage() {
                                 </h1>
                             </div>
                         </div>
+                        <div className="col-md-6 mb-3" >
+                            <div className='adminPageCols' onClick={() => navigate('/deleteAdmins')}>
+                                <h1>
+                                    Adminlarni o'chirish
+                                </h1>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -131,9 +143,9 @@ export default function AdminPage() {
                                 <select className="form-select form-select-sm p-2 mb-3" aria-label=".form-select-sm example" onChange={(e) => setType(e.target.value)} >
                                     <option value="">Fanni tanlang</option>
                                     {
-                                        forType.map(post => {
+                                        forType.map((post,ind) => {
                                             return (
-                                                <option value={post}>{post}</option>
+                                                <option key={ind} value={post}>{post}</option>
                                             )
                                         })
                                     }
@@ -142,9 +154,9 @@ export default function AdminPage() {
                                 <select className="form-select form-select-sm p-2" aria-label=".form-select-sm example" onChange={(e) => setTheme(e.target.value)} >
                                     <option value="">Mavzuni tanlang</option>
                                     {
-                                        forTheme.map(post => {
+                                        forTheme.map((post,ind) => {
                                             return (
-                                                <option value={post}>{post}</option>
+                                                <option key={ind} value={post}>{post}</option>
                                             )
                                         })
                                     }

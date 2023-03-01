@@ -76,7 +76,7 @@ export default function Registrate() {
             setUser('');
             setPassword('')
         }
-        
+
         if (manager.length > 1 && subject.length > 1 && theme.length > 1 && numberOfQuestions > 0 && givenTime > 0 && students.length > 0) {
             axios.post('http://localhost:4000/sessions', {
                 manager,
@@ -148,9 +148,9 @@ export default function Registrate() {
                             <select className="form-select form-select-sm p-2" aria-label=".form-select-sm example" onChange={(e) => setManager(e.target.value)} >
                                 <option value="">Menejerni tanlang</option>
                                 {
-                                    users.map(post => {
+                                    users.map((post, ind) => {
                                         return (
-                                            <option value={post.login}>{post.login}</option>
+                                            <option key={ind} value={post.login}>{post.login}</option>
                                         )
                                     })
                                 }
@@ -161,9 +161,9 @@ export default function Registrate() {
                             <select className="form-select form-select-sm p-2" aria-label=".form-select-sm example" onChange={(e) => setSubject(e.target.value)} >
                                 <option value="">Yo'nalishni tanlang</option>
                                 {
-                                    type.map(post => {
+                                    type.map((post, ind) => {
                                         return (
-                                            <option value={post}>{post}</option>
+                                            <option key={ind} value={post}>{post}</option>
                                         )
                                     })
                                 }
@@ -173,9 +173,9 @@ export default function Registrate() {
                             <select className="form-select form-select-sm p-2" aria-label=".form-select-sm example" onChange={(e) => setTheme(e.target.value)}  >
                                 <option value="">Yo'nalishni tanlang</option>
                                 {
-                                    forTheme.map(post => {
+                                    forTheme.map((post, ind) => {
                                         return (
-                                            <option value={post}>{post}</option>
+                                            <option key={ind} value={post}>{post}</option>
                                         )
                                     })
                                 }
