@@ -105,7 +105,7 @@ export default function Registrate() {
             type.push(info[i].type)
         }
     }
-
+    
     const forTheme = [];
     const filterTheme = info.filter(post => post.type.toLowerCase().includes(subject));
     for (let i = 0; i < filterTheme.length; i++) {
@@ -113,7 +113,7 @@ export default function Registrate() {
             forTheme.push(filterTheme[i].theme)
         }
     }
-
+    
     return (
 
         <div className="logIn">
@@ -157,24 +157,24 @@ export default function Registrate() {
 
 
                             <span>Fan</span>
-                            <select className="form-select form-select-sm p-2" aria-label=".form-select-sm example" onChange={(e) => setSubject(e.target.value)} >
+                            <select className="form-select form-select-sm p-2" aria-label=".form-select-sm example" onChange={(e) => setSubject(e.target.value.toLowerCase())} >
                                 <option value="">Yo'nalishni tanlang</option>
                                 {
                                     type.map((post, ind) => {
                                         return (
-                                            <option key={ind} value={post}>{post}</option>
+                                            <option key={ind} value={post}>{post.charAt(0).toUpperCase() + post.slice(1)}</option>
                                         )
                                     })
                                 }
                             </select>
 
                             <span>Mavzu</span>
-                            <select className="form-select form-select-sm p-2" aria-label=".form-select-sm example" onChange={(e) => setTheme(e.target.value)}  >
+                            <select className="form-select form-select-sm p-2" aria-label=".form-select-sm example" onChange={(e) => setTheme(e.target.value.toLowerCase())}  >
                                 <option value="">Yo'nalishni tanlang</option>
                                 {
                                     forTheme.map((post, ind) => {
                                         return (
-                                            <option key={ind} value={post}>{post}</option>
+                                            <option key={ind} value={post}>{post.charAt(0).toUpperCase() + post.slice(1)}</option>
                                         )
                                     })
                                 }

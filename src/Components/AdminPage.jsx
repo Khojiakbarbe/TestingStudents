@@ -86,6 +86,25 @@ export default function AdminPage() {
         setLogin('')
         setPassword('')
     }
+    function yangiAdminKey(event){
+        if (event.key === 'Enter' && login.length > 4 && password.length > 6) {
+            axios.post('http://localhost:4000/users', {
+                login,
+                password
+            })
+                .then(res => {
+                    console.log('data is saved' + res.data)
+                    setError('saqlandi')
+                    setCheckClass('hiddenCheckRegistrate')
+                })
+                .catch(err => console.log(err))
+        }
+        else {
+            setError('Login yoki parol qiymati yetarli emas')
+        }
+        setLogin('')
+        setPassword('')
+    }
 
     function orqaga() {
         setCheckClass('hiddenCheckRegistrate')
@@ -120,8 +139,42 @@ export default function AdminPage() {
             setPutIncorrect('xato')
         }
     }
+    function keyUserPassword(event) {
+        if (event.key === 'Enter' && userPassword == user.password) {
+            setOpenPutInputs('showInputs')
+            setPutIncorrect('')
+            setUserPassword('')
+        } else {
+            setPutIncorrect('xato')
+        }
+    }
+
+
     function changeAdmin() {
         if (putPassword.length > 3 && checkPutPassword.length > 3 && putPassword === checkPutPassword) {
+            setOpenEditPassword('')
+            axios.put('http://localhost:4000/users/', {
+                id: user._id,
+                new: {
+                    password: putPassword
+                }
+            })
+                .then(res => {
+                    setOpenPutInputs('')
+                    setPutIncorrect('')
+                    setPutPassword('');
+                    setCheckPutPassword('')
+                })
+                .catch(err => console.log(err))
+        } else {
+            setPutIncorrect("Yangi parollar birhilligini va 3 belgidan ko'pligini tekshiring")
+            setPutPassword('');
+            setCheckPutPassword('')
+        }
+    }
+
+    function changeKeyPassword(event) {
+        if (event.key === 'Enter' && putPassword.length > 3 && checkPutPassword.length > 3 && putPassword === checkPutPassword) {
             setOpenEditPassword('')
             axios.put('http://localhost:4000/users/', {
                 id: user._id,
@@ -212,7 +265,7 @@ export default function AdminPage() {
                                     {
                                         forType.map((post, ind) => {
                                             return (
-                                                <option key={ind} value={post}>{post}</option>
+                                                <option key={ind} value={post}>{post.charAt(0).toUpperCase() + post.slice(1)}</option>
                                             )
                                         })
                                     }
@@ -223,7 +276,7 @@ export default function AdminPage() {
                                     {
                                         forTheme.map((post, ind) => {
                                             return (
-                                                <option key={ind} value={post}>{post}</option>
+                                                <option key={ind} value={post}>{post.charAt(0).toUpperCase() + post.slice(1)}</option>
                                             )
                                         })
                                     }
@@ -245,7 +298,7 @@ export default function AdminPage() {
                         <p>Yangi O'qituvchi ismi</p>
                         <input type="text" className='form-control mb-4' placeholder="O'qituvchi ismi" onChange={(e) => setLogin(e.target.value)} value={login} />
                         <p>Yangi parol</p>
-                        <input type="text" className='form-control mb-4' placeholder="Parol" onChange={(e) => setPassword(e.target.value)} value={password} />
+                        <input type="text" className='form-control mb-4' placeholder="Parol" onChange={(e) => setPassword(e.target.value)} onKeyDown={yangiAdminKey} value={password} />
                         <button className="btn w-100 p-2 color-white mb-2" style={{ background: '#FBC400' }} onClick={addNewLogin}><strong>Saqlash</strong></button>
                         <button className="btn btn-primary w-100 p-2" onClick={orqaga}>Orqaga qaytish</button>
                     </div>
@@ -266,15 +319,15 @@ export default function AdminPage() {
                                             <p>Yangi Parolni kiriting </p>
                                             <input type="text" className='form-control mb-4' placeholder="Yangi parol" onChange={(e) => setPutPassword(e.target.value)} value={putPassword} />
                                             <p>Yangi parolni qayta kiriting</p>
-                                            <input type="text" className='form-control mb-4' placeholder="Yangi parol" onChange={(e) => setCheckPutPassword(e.target.value)} value={checkPutPassword} />
+                                            <input type="text" className='form-control mb-4' placeholder="Yangi parol" onChange={(e) => setCheckPutPassword(e.target.value)} onKeyDown={changeKeyPassword} value={checkPutPassword} />
                                             <button className="btn w-100 p-2 color-white mb-2" style={{ background: '#FBC400' }} onClick={changeAdmin}><strong>Saqlash</strong></button>
                                             <button className="btn btn-primary w-100 p-2" onClick={() => closePutFunction()}>Orqaga qaytish</button>
                                         </>
                                         :
                                         <>
                                             <h4>Parol : <span style={{ color: 'red' }}>{putIncorrect}</span></h4>
-                                            <input type="text" className='form-control mb-4' placeholder="Parol" onChange={(e) => setUserPassword(e.target.value)} value={userPassword} />
-                                            <button className="btn w-100 p-2 color-white mb-2" style={{ background: '#FBC400' }} onClick={checkUserPassword}><strong>Saqlash</strong></button>
+                                            <input type="text" className='form-control mb-4' placeholder="Parol" onChange={(e) => setUserPassword(e.target.value)} onKeyDown={keyUserPassword} value={userPassword} />
+                                            <button className="btn w-100 p-2 color-white mb-2" style={{ background: '#FBC400' }} onClick={checkUserPassword} ><strong>Saqlash</strong></button>
                                             <button className="btn btn-primary w-100 p-2" onClick={() => closePutFunction()}>Orqaga qaytish</button>
                                         </>
                                 }

@@ -77,7 +77,7 @@ export default function Home() {
                             <option value="">Fanni tanlang</option>
                                 {type && type.map((post, inx) => {
                                     return (
-                                        <option key={inx} value={post}>{post}</option>
+                                        <option key={inx} value={post}>{post.charAt(0).toUpperCase() + post.slice(1)}</option>
                                     )
                                 })}
                             </select>
@@ -89,7 +89,7 @@ export default function Home() {
                                 <option value="">Mavzuni tanlang</option>
                                 {choosenTheme && choosenTheme.map(post => {
                                     return (
-                                        <option key={post.id} value={post.theme}>{post}</option>
+                                        <option key={post.id} value={post.theme}>{post.charAt(0).toUpperCase() + post.slice(1)}</option>
                                     )
                                 })
                                 }
@@ -105,7 +105,7 @@ export default function Home() {
                             <input type="number" placeholder="Test vaqtini kiriting" onChange={(e) => setTime(e.target.value)} />
                         </div>
                     </div>
-                    <button id="boshlashBtn" onClick={() => navigate('/examPage', { state: { id: 1, type: typeForTheme, theme: theme, count: count } })}>Boshlash</button>
+                    <button id="boshlashBtn" onClick={() => navigate('/examPage', { state: { id: 1, type: typeForTheme.toLowerCase(), theme: theme.toLowerCase(), count: count } })}>Boshlash</button>
                 </div>
             </div>
         </>

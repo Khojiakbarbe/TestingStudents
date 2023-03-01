@@ -166,6 +166,7 @@ export default function Login() {
                 <div className="adminMalumoti">
                     <div>
                         <h2 style={{ textAlign: 'center' }}>Admin ma'lumotini kiriting </h2>
+                        <h4 style={{color:'red'}}>{adminError}</h4>
                         <p>Login</p>
                         <input type="text" className='form-control mb-4' placeholder="Login" onChange={(e) => setAdminLogin(e.target.value)} />
                         <p>Parol</p>

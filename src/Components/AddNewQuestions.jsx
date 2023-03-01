@@ -60,7 +60,7 @@ export default function AddNewQuestions() {
                                 <option value="">Yo'nalishni tanlang</option>
                                 {forType.map((post, ind) => {
                                     return (
-                                        <option key={ind} value={post}>{post}</option>
+                                        <option key={ind} value={post}>{post.charAt(0).toUpperCase() + post.slice(1)}</option>
                                     )
                                 })}
                                 <option value="boshqasi">boshqasi</option>
@@ -82,7 +82,7 @@ export default function AddNewQuestions() {
                                         <option value="">Mavzuni tanlang</option>
                                         {forTheme.map((post, ind) => {
                                             return (
-                                                <option key={ind} value={post}>{post}</option>
+                                                <option key={ind} value={post}>{post.charAt(0).toUpperCase() + post.slice(1)}</option>
                                             )
                                         })}
                                     </select>
