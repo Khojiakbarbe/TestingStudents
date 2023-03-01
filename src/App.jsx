@@ -42,8 +42,8 @@ function App() {
                     <Route path="/deleteQuestions" element={<DeletePage />} />
                     <Route path="/deleteQuestions/:id" element={<Details />} />
                     <Route path="/deleteAdmins" element={<DeleteAdmins />} />
-                    <Route path="/editAdminPassword" element={<EditAdminPassword />} />
                   </Route>
+                    <Route path="/editAdminPassword" element={<EditAdminPassword />} />
                   <Route path="/*" elemen={<Error />} />
                 </Routes>
               </AnswerProvider>

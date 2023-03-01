@@ -98,8 +98,19 @@ export default function AdminPage() {
     const [openPutInputs, setOpenPutInputs] = useState('')
     const [putPassword, setPutPassword] = useState('')
     const [checkPutPassword, setCheckPutPassword] = useState('')
+    
+    function closePutFunction(){
+        setOpenEditPassword('')
+        setUserPassword('')
+        setOpenPutInputs('')
+        setPutPassword('')
+        setCheckPutPassword('')
+        setPutIncorrect('')
+    }
+    
 
     const [putIncorrect, setPutIncorrect] = useState('')
+
     function checkUserPassword() {
         if (userPassword == user.password) {
             setOpenPutInputs('showInputs')
@@ -110,7 +121,7 @@ export default function AdminPage() {
         }
     }
     function changeAdmin() {
-        if (putPassword === checkPutPassword) {
+        if (putPassword.length > 3 && checkPutPassword.length > 3 &&  putPassword === checkPutPassword) {
             axios.put('http://localhost:4000/users/', {
                 id: user._id,
                 new: {
@@ -128,10 +139,9 @@ export default function AdminPage() {
             setPutPassword('');
             setCheckPutPassword('')
         } else {
-            setOpenEditPassword('')
+            setPutIncorrect("Yangi parollar birhilligini va 3 belgidan ko'pligini tekshiring")
             setPutPassword('');
             setCheckPutPassword('')
-            setPutIncorrect('Yangi parollar birhilligini tekshiring')
         }
     }
 
@@ -254,19 +264,20 @@ export default function AdminPage() {
                                 {
                                     openPutInputs.length > 3 ?
                                         <>
-                                            <p>Yangi Parolni kiriting</p>
+                                        <h4 style={{color: 'red'}}>{putIncorrect}</h4>
+                                            <p>Yangi Parolni kiriting </p>
                                             <input type="text" className='form-control mb-4' placeholder="Yangi parol" onChange={(e) => setPutPassword(e.target.value)} value={putPassword} />
                                             <p>Yangi parolni qayta kiriting</p>
                                             <input type="text" className='form-control mb-4' placeholder="Yangi parol" onChange={(e) => setCheckPutPassword(e.target.value)} value={checkPutPassword} />
                                             <button className="btn w-100 p-2 color-white mb-2" style={{ background: '#FBC400' }} onClick={changeAdmin}><strong>Saqlash</strong></button>
-                                            <button className="btn btn-primary w-100 p-2" onClick={() => setOpenEditPassword('')}>Orqaga qaytish</button>
+                                            <button className="btn btn-primary w-100 p-2" onClick={() => closePutFunction()}>Orqaga qaytish</button>
                                         </>
                                         :
                                         <>
                                             <h4>Parol : <span style={{ color: 'red' }}>{putIncorrect}</span></h4>
                                             <input type="text" className='form-control mb-4' placeholder="Parol" onChange={(e) => setUserPassword(e.target.value)} value={userPassword} />
                                             <button className="btn w-100 p-2 color-white mb-2" style={{ background: '#FBC400' }} onClick={checkUserPassword}><strong>Saqlash</strong></button>
-                                            <button className="btn btn-primary w-100 p-2" onClick={() => setOpenEditPassword('')}>Orqaga qaytish</button>
+                                            <button className="btn btn-primary w-100 p-2" onClick={() => closePutFunction()}>Orqaga qaytish</button>
                                         </>
                                 }
                             </div>
