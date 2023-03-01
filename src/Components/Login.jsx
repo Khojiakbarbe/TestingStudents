@@ -37,40 +37,70 @@ export default function Login() {
             setLoginCon(true)
             navigate('/admin')
             setCurrectLogin('adminPageOpen')
-        } else {
         }
     }
-
+    const handleKeyAdmin = (event) => {
+        if (event.key === 'Enter') {
+            const filter = login.filter(info => info.password.toLowerCase() == adminPassword.toLowerCase() && info.login.toLowerCase() == adminLogin.toLowerCase())
+            if (!filter.length < 1) {
+                setLoginCon(true)
+                navigate('/admin')
+                setCurrectLogin('adminPageOpen')
+            }
+        } else {
+            console.log(user.length);
+        }
+    }
 
     const [user, setUser] = useState('')
     const [password, setPassword] = useState('')
 
 
-    const [telRequest, setTelRequest] = useState('login : ')
-    const [parolRequest, setParolRequest] = useState('*****')
 
 
     const [notFound, setNotFound] = useState('')
 
     function check() {
         if (user.length > 1 && password.length > 1) {
-            axios.post('http://localhost:4000/students' ,{
+            axios.post('http://localhost:4000/students', {
                 user,
                 password
             })
-            .then(res => {
-                if(res.data.status === 200) {
-                    setLoginCon(true)
-                    navigate('/examPage2' , {state : {id: 1, data : res.data , user: user , password: password}})
+                .then(res => {
+                    if (res.data.status === 200) {
+                        setLoginCon(true)
+                        navigate('/examPage2', { state: { id: 1, data: res.data, user: user, password: password } })
 
-                }else{
-                    setNotFound("O'quvchi topilmadi")
-                    setUser('')
-                    setPassword('')
-                }
-            })
+                    } else {
+                        setNotFound("O'quvchi topilmadi")
+                        setUser('')
+                        setPassword('')
+                    }
+                })
         }
     }
+    const checkUserPassword = (event) => {
+        if (event.key === 'Enter') {
+            if (user.length > 1 && password.length > 1) {
+                axios.post('http://localhost:4000/students', {
+                    user,
+                    password
+                })
+                    .then(res => {
+                        if (res.data.status === 200) {
+                            setLoginCon(true)
+                            navigate('/examPage2', { state: { id: 1, data: res.data, user: user, password: password } })
+
+                        } else {
+                            setNotFound("O'quvchi topilmadi")
+                            setUser('')
+                            setPassword('')
+                        }
+                    })
+            }
+        }
+    }
+
 
 
 
@@ -78,6 +108,7 @@ export default function Login() {
         setLoginCon(true)
         navigate('/home')
     }
+
 
 
     return (
@@ -111,7 +142,7 @@ export default function Login() {
                             <span>Loginni kiriting: </span>
                             <input type="text" className="form-control mb-3" placeholder='login' value={user} onChange={(e) => setUser(e.target.value)} required />
                             <span>Parol : </span>
-                            <input type="password" className="form-control  mb-3" placeholder='parol' value={password} onChange={(e) => setPassword(e.target.value)} />
+                            <input type="password" className="form-control  mb-3" placeholder='parol' value={password} onChange={(e) => setPassword(e.target.value)} onKeyDown={checkUserPassword} />
                             <button className="btn w-100 " style={{ background: "#FBC400" }} onClick={() => check()}><strong>Tizimga kirish</strong></button>
                             <p className="mt-3 text-center" >
                                 <span className="loginLinks" onClick={openAdmin}>
@@ -134,7 +165,7 @@ export default function Login() {
                         <p>Login</p>
                         <input type="text" className='form-control mb-4' placeholder="Login" onChange={(e) => setAdminLogin(e.target.value)} />
                         <p>Parol</p>
-                        <input type="password" className='form-control mb-4' placeholder="Parol" onChange={(e) => setAdminPassword(e.target.value)} />
+                        <input type="password" className='form-control mb-4' placeholder="Parol" onChange={(e) => setAdminPassword(e.target.value)} onKeyDown={handleKeyAdmin} />
                         <button className="btn w-100 p-2 color-white mb-2" style={{ background: '#FBC400' }} onClick={openAdminPage}><strong>Kirish</strong></button>
                         <button className="btn btn-primary w-100 p-2" onClick={() => setCurrectLogin('adminPageOpen')}>Orqaga qaytish</button>
                     </div>
