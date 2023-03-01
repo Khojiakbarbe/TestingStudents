@@ -18,7 +18,7 @@ export default function DeleteAdmins() {
     }, [])
 
     const filter = []
-    for(let i = 1; i < allAdmins.length; i++){
+    for (let i = 1; i < allAdmins.length; i++) {
         filter.push(allAdmins[i])
     }
 
@@ -35,19 +35,20 @@ export default function DeleteAdmins() {
     return (
         <div className="container p-3">
             <div className="row">
-
                 {allAdmins.length > 0 ?
                     filter.map(post => {
                         return (
-                            <div key={post._id} className="col-3 p-5 border m-2 ">
-                                <h4>User : {post.login}</h4>
-                                <h4>Parol : {post.password}</h4>
-                                <br />
-                                <button onClick={() => deleteAdmin(post._id)}>Delete</button>
+                            <div key={post._id} className="col-3 p-3 mb-2 ">
+                                <div className="bg-dark p-3" style={{color:'white'}}>
+                                    <h4>User : {post.login}</h4>
+                                    <h4>Parol : {post.password}</h4>
+                                    <br />
+                                    <button className="btn btn-danger" onClick={() => deleteAdmin(post._id)}>Delete</button>
+                                </div>
                             </div>
                         )
                     })
-                    : 
+                    :
                     <p>kuting</p>
                 }
 
