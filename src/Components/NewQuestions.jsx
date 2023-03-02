@@ -34,6 +34,7 @@ export default function NewQuestions() {
                 .then(res => {
                     setQuestion('')
                     setAnswer('')
+                    setQuestionImg('')
                     setCount(count + 1)
                     console.log(res.data, 'data is saved');
                 })
@@ -58,6 +59,7 @@ export default function NewQuestions() {
                 .then(res => {
                     setQuestion('')
                     setAnswer('')
+                    setQuestionImg('')
                     setCount(count + 1)
                     console.log(res.data, 'data is saved');
                 })

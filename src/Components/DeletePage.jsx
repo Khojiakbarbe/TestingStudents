@@ -50,7 +50,6 @@ export default function DeletePage() {
                         <div>
                             <h2 style={{ textAlign: 'center' }}>Test haqiqatdan o'chirilsinmi</h2>
                             <button className="btn w-50 p-2 color-white " style={{ background: '#FBC400' }} onClick={() => deleteThis()}><strong>O'chirish</strong></button>
-
                             <button className="btn btn-primary w-50 p-2" onClick={() => setRequest('')}>Qoldirish</button>
                         </div>
                     </div>

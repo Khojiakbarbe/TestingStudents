@@ -132,9 +132,8 @@ export default function ExamPage() {
 
                         {
                             startBtn === '' && info[questionIndx].questionImg != 'none' ?
-                                <div className="col-md-6 p-4 infoImg">
-                                    <img src={`http://localhost:4000/${info[questionIndx].questionImg}`} className='img-fluid w-100 '  alt="" />
-                                    
+                                <div className="col-md-6 p-4 " style={{height : '400px'}}>
+                                    <img src={`http://localhost:4000/${info[questionIndx].questionImg}`} className='img-fluid w-100 h-100 '  alt="" />
                                 </div>
                                 :
                                 null
