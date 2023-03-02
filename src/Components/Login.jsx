@@ -31,6 +31,13 @@ export default function Login() {
         setCurrectLogin('')
     }
 
+    function closeAdminLoginModul() {
+        setAdminError('')
+        setAdminPassword('')
+        setAdminLogin('')
+        setCurrectLogin('adminPageOpen')
+    }
+
     const [adminError, setAdminError] = useState('')
 
     function openAdminPage() {
@@ -50,9 +57,9 @@ export default function Login() {
                 setLoginCon(true)
                 navigate('/admin')
                 setCurrectLogin('adminPageOpen')
+            } else {
+                setAdminError("Login yoki parol noto'g'ri")
             }
-        } else {
-            setAdminError("Login yoki parol noto'g'ri")
         }
     }
 
@@ -166,13 +173,13 @@ export default function Login() {
                 <div className="adminMalumoti">
                     <div>
                         <h2 style={{ textAlign: 'center' }}>Admin ma'lumotini kiriting </h2>
-                        <h4 style={{color:'red'}}>{adminError}</h4>
+                        <h4 style={{ color: 'red' }}>{adminError}</h4>
                         <p>Login</p>
-                        <input type="text" className='form-control mb-4' placeholder="Login" onChange={(e) => setAdminLogin(e.target.value)} />
+                        <input type="text" className='form-control mb-4' placeholder="Login" onChange={(e) => setAdminLogin(e.target.value)} value={adminLogin}/>
                         <p>Parol</p>
-                        <input type="password" className='form-control mb-4' placeholder="Parol" onChange={(e) => setAdminPassword(e.target.value)} onKeyDown={handleKeyAdmin} />
+                        <input type="password" className='form-control mb-4' placeholder="Parol" onChange={(e) => setAdminPassword(e.target.value)} onKeyDown={handleKeyAdmin} value={adminPassword}/>
                         <button className="btn w-100 p-2 color-white mb-2" style={{ background: '#FBC400' }} onClick={openAdminPage}><strong>Kirish</strong></button>
-                        <button className="btn btn-primary w-100 p-2" onClick={() => setCurrectLogin('adminPageOpen')}>Orqaga qaytish</button>
+                        <button className="btn btn-primary w-100 p-2" onClick={closeAdminLoginModul}>Orqaga qaytish</button>
                     </div>
                 </div>
             </div>

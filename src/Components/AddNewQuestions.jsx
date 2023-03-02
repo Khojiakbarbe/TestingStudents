@@ -91,7 +91,7 @@ export default function AddNewQuestions() {
                     </div>
                     {
                         type.length > 3 && theme.length > 3 ?
-                            <button className="btn mt-4 p-2" onClick={() => navigate('/newQuestions', { state: { id: 1, type: type, theme: theme } })}>Test kiritish</button>
+                            <button className="btn mt-4 p-2" onClick={() => navigate('/newQuestions', { state: { id: 1, type: type.toLowerCase(), theme: theme.toLowerCase() } })}>Test kiritish</button>
                             :
                             <button className="btn mt-4" disabled>Test kiritish</button>
 

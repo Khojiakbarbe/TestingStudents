@@ -25,7 +25,6 @@ export default function ExamPage() {
 
     const { state } = useLocation();
     const { type, theme, count } = state;
-    const countToResultPage = count;
     const [inputValue, setInputValue] = useState('')
 
     const [info, setInfo] = useState([]);
