@@ -1,12 +1,9 @@
-import { Outlet } from "react-router-dom";
-import Login from './Login'
+import { Navigate, Outlet } from "react-router-dom";
 import { useContext } from "react";
 import { loginContext } from "./ContextProvider/DataProvider";
-import { useNavigate } from "react-router-dom";
 
 const useAuth = () => {
 
-    const navigate = useNavigate();
 
     const [login] = useContext(loginContext)
 
@@ -16,7 +13,7 @@ const useAuth = () => {
 
 const ProtectRoutes = () => {
     const isAuth = useAuth();
-    return isAuth ? <Outlet /> : <Login /> 
+    return isAuth ? <Outlet /> : <Navigate to='/' />
 }
 
 export default ProtectRoutes;

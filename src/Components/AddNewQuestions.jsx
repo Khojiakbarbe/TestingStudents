@@ -45,6 +45,9 @@ export default function AddNewQuestions() {
     }
 
     const [newDirection, setNewDirection] = useState(false)
+
+    const [newTheme, setNewTheme] = useState(false)
+    console.log(newTheme);
     return (
 
         <div className="home">
@@ -63,7 +66,7 @@ export default function AddNewQuestions() {
                                         <option key={ind} value={post}>{post.charAt(0).toUpperCase() + post.slice(1)}</option>
                                     )
                                 })}
-                                <option value="boshqasi">boshqasi</option>
+                                <option value="boshqasi">Yangi fan</option>
                             </select>
                             {
                                 newDirection ?
@@ -78,14 +81,21 @@ export default function AddNewQuestions() {
                                 newDirection ?
                                     <input type="text" placeholder="yangi mavzuni kiriting" className="form-control mb-3 w-100" onChange={(e) => setTheme(e.target.value)} />
                                     :
-                                    <select className="form-select form-select-sm p-2" aria-label=".form-select-sm example" onChange={(e) => setTheme(e.target.value)} >
+                                    <select className="form-select form-select-sm p-2" aria-label=".form-select-sm example" onChange={(e) => { setTheme(e.target.value); if (e.target.value === 'boshqasi') setNewTheme(true); else setNewTheme(false); }} >
                                         <option value="">Mavzuni tanlang</option>
                                         {forTheme.map((post, ind) => {
                                             return (
                                                 <option key={ind} value={post}>{post.charAt(0).toUpperCase() + post.slice(1)}</option>
                                             )
                                         })}
+                                        <option value="boshqasi" >Boshqa mavzu</option>
                                     </select>
+                            }
+                            {
+                                newTheme ?
+                                    <input type="text" placeholder="yangi mavzuni kiriting" className="form-control mt-3 w-100" onChange={(e) => setTheme(e.target.value)} />
+                                    :
+                                    null
                             }
                         </div>
                     </div>
