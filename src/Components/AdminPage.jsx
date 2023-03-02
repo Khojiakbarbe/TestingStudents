@@ -68,7 +68,7 @@ export default function AdminPage() {
     }
 
     function addNewLogin() {
-        if (login.length > 4 && password.length > 6) {
+        if (login.length > 4 && password.length > 3) {
             axios.post('http://localhost:4000/users', {
                 login,
                 password
@@ -77,17 +77,18 @@ export default function AdminPage() {
                     console.log('data is saved' + res.data)
                     setError('saqlandi')
                     setCheckClass('hiddenCheckRegistrate')
+                    setLogin('')
+                    setPassword('')
                 })
                 .catch(err => console.log(err))
         }
         else {
             setError('Login yoki parol qiymati yetarli emas')
         }
-        setLogin('')
-        setPassword('')
+
     }
-    function yangiAdminKey(event){
-        if (event.key === 'Enter' && login.length > 4 && password.length > 6) {
+    function yangiAdminKey(event) {
+        if (event.key === 'Enter' && login.length > 4 && password.length > 3) {
             axios.post('http://localhost:4000/users', {
                 login,
                 password
@@ -96,14 +97,14 @@ export default function AdminPage() {
                     console.log('data is saved' + res.data)
                     setError('saqlandi')
                     setCheckClass('hiddenCheckRegistrate')
+                    setLogin('')
+                    setPassword('')
                 })
                 .catch(err => console.log(err))
         }
         else {
             setError('Login yoki parol qiymati yetarli emas')
         }
-        setLogin('')
-        setPassword('')
     }
 
     function orqaga() {
@@ -294,6 +295,7 @@ export default function AdminPage() {
                 <div className="adminMalumoti">
                     <div>
                         <h2 style={{ textAlign: 'center' }}>Yangi admin ma'lumotini kiriting </h2>
+                        <p className="text-center" style={{ fontSize: "13px", color: 'brown' }}>Login va parol 4 tadan ko'p bo'lishi kerak</p>
                         <p style={{ color: 'red' }}>{error}</p>
                         <p>Yangi O'qituvchi ismi</p>
                         <input type="text" className='form-control mb-4' placeholder="O'qituvchi ismi" onChange={(e) => setLogin(e.target.value)} value={login} />
