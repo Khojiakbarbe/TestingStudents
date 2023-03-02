@@ -20,7 +20,7 @@ export default function NewQuestions() {
 
 
     function sendQuestion() {
-        if (question.length > 5 && answer.length > 1) {
+        if (question.length > 5 && answer.length > 0) {
             const formDate = new FormData();
 
             formDate.append('type', type)
@@ -44,7 +44,7 @@ export default function NewQuestions() {
     }
 
     function tugatish() {
-        if (question.length > 5 && answer.length > 1) {
+        if (question.length > 5 && answer.length > 0) {
             const formDate = new FormData();
 
             formDate.append('type', type)

@@ -30,7 +30,7 @@ export default function ExamPage() {
     const [info, setInfo] = useState([]);
     const [questionIndx, setQuestionIndx] = useState(0);
 
-    const[countForEnd, setCountForEnd] = useState(0)
+    const [countForEnd, setCountForEnd] = useState(0)
     useEffect(() => {
         axios.get('http://localhost:4000/questions/' + type + "/" + theme)
             .then(res => {
@@ -90,7 +90,7 @@ export default function ExamPage() {
 
     // if test over , navigate to other page
     if (countForEnd > 0 && questionIndx > countForEnd - 1) {
-        navigate('/results', { state: { id: 1, teacher : '', count: countForEnd, currect: currect, mistake: mistake } })
+        navigate('/results', { state: { id: 1, teacher: '', count: countForEnd, currect: currect, mistake: mistake } })
     }
 
     const [showModal, setShowModal] = useState('modal')
@@ -124,16 +124,17 @@ export default function ExamPage() {
                         <div className="col-md-6 p-4 " >
                             {
                                 startBtn === '' && info.length > 0 ?
-                                    info[questionIndx] && <p  key={info[questionIndx].id}>{info[questionIndx].question}</p>
+                                    info[questionIndx] && <p key={info[questionIndx].id}>{info[questionIndx].question}</p>
                                     :
                                     <p>Test is here</p>
                             }
                         </div>
 
                         {
-                            startBtn === '' && info.length > 0 && info[questionIndx].questionImg.length != 'none' ?
-                                <div className="col-md-6 p-3">
-                                    <img src={`http://localhost:4000/${info[questionIndx].questionImg}`} className='img-fluid w-100' alt="" />
+                            startBtn === '' && info[questionIndx].questionImg != 'none' ?
+                                <div className="col-md-6 p-4 infoImg">
+                                    <img src={`http://localhost:4000/${info[questionIndx].questionImg}`} className='img-fluid w-100 '  alt="" />
+                                    
                                 </div>
                                 :
                                 null
