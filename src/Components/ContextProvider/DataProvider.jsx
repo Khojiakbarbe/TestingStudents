@@ -30,7 +30,7 @@ export function TimeProvider(props) {
 }
 
 
-// Minut
+// Minuts
 export const minutContext = createContext();
 export function TimeMinutProvider(props) {
     const [time, setTime] = useState()
