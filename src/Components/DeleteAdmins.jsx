@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import { API_URL } from "../API";
 
 
 export default function DeleteAdmins() {
 
     const [allAdmins, setAllAdmins] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:4000/users')
+        axios.get(API_URL + '/users')
             .then(res => {
                 setAllAdmins(res.data)
             })
@@ -29,7 +29,7 @@ export default function DeleteAdmins() {
     }
 
     function deleteAdmin() {
-        axios.delete('http://localhost:4000/users', { data: { id } })
+        axios.delete(API_URL + '/users', { data: { id } })
             .then(res => {
                 console.log('data successfully deleted');
                 setRequest('')

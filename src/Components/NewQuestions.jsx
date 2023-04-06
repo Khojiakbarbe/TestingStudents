@@ -3,6 +3,7 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import logo from '../images/bg/logoBgWhite.png'
 import upload from '../images/bg/uploadImg.png'
+import { API_URL } from "../API";
 
 export default function NewQuestions() {
     const navigate = useNavigate();
@@ -30,7 +31,7 @@ export default function NewQuestions() {
             formDate.append('questionImg', questionImg)
 
 
-            axios.post('http://localhost:4000/questions', formDate)
+            axios.post(API_URL + '/questions', formDate)
                 .then(res => {
                     setQuestion('')
                     setAnswer('')
@@ -55,7 +56,7 @@ export default function NewQuestions() {
             formDate.append('questionImg', questionImg)
 
 
-            axios.post('http://localhost:4000/questions', formDate)
+            axios.post(API_URL + '/questions', formDate)
                 .then(res => {
                     setQuestion('')
                     setAnswer('')

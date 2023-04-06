@@ -7,6 +7,7 @@ import closeImg from '../images/modal/close.png'
 
 import axios from "axios";
 import Navbar from "./Navbar";
+import { API_URL } from "../API";
 
 
 export default function ExamPage() {
@@ -32,7 +33,7 @@ export default function ExamPage() {
 
     const [countForEnd, setCountForEnd] = useState(0)
     useEffect(() => {
-        axios.get('http://localhost:4000/questions/' + type + "/" + theme)
+        axios.get(API_URL + '/questions/' + type + "/" + theme)
             .then(res => {
                 if (count <= res.data.length) {
                     setCountForEnd(count)
@@ -133,7 +134,7 @@ export default function ExamPage() {
                         {
                             startBtn === '' && info[questionIndx].questionImg != 'none' ?
                                 <div className="col-md-6 p-4 " style={{height : '400px'}}>
-                                    <img src={`http://localhost:4000/${info[questionIndx].questionImg}`} className='img-fluid w-100 h-100 '  alt="" />
+                                    <img src={`${API_URL}/${info[questionIndx].questionImg}`} className='img-fluid w-100 h-100 '  alt="" />
                                 </div>
                                 :
                                 null

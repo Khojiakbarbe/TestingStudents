@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { API_URL } from "../API";
+
 
 export default function AdminPage() {
 
@@ -29,13 +31,13 @@ export default function AdminPage() {
 
     const [user, setUser] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:4000/questions')
+        axios.get(API_URL + '/questions')
             .then(res => {
                 setQuestions(res.data)
             })
             .catch(err => console.log(err))
 
-        axios.get('http://localhost:4000/users')
+        axios.get( API_URL + '/users')
             .then(res => {
                 setUser(res.data[0])
             })
@@ -69,7 +71,7 @@ export default function AdminPage() {
 
     function addNewLogin() {
         if (login.length > 4 && password.length > 3) {
-            axios.post('http://localhost:4000/users', {
+            axios.post(API_URL + '/users', {
                 login,
                 password
             })
@@ -89,7 +91,7 @@ export default function AdminPage() {
     }
     function yangiAdminKey(event) {
         if (event.key === 'Enter' && login.length > 4 && password.length > 3) {
-            axios.post('http://localhost:4000/users', {
+            axios.post(API_URL + '/users', {
                 login,
                 password
             })
@@ -111,7 +113,7 @@ export default function AdminPage() {
         setCheckClass('hiddenCheckRegistrate')
     }
 
-    // For edit admin password;;;
+    // For edit admin password;
     const [openEditPassword, setOpenEditPassword] = useState('')
 
     const [userPassword, setUserPassword] = useState('')
@@ -154,7 +156,7 @@ export default function AdminPage() {
     function changeAdmin() {
         if (putPassword.length > 3 && checkPutPassword.length > 3 && putPassword === checkPutPassword) {
             setOpenEditPassword('')
-            axios.put('http://localhost:4000/users/', {
+            axios.put(API_URL + '/users/', {
                 id: user._id,
                 new: {
                     password: putPassword
@@ -177,7 +179,7 @@ export default function AdminPage() {
     function changeKeyPassword(event) {
         if (event.key === 'Enter' && putPassword.length > 3 && checkPutPassword.length > 3 && putPassword === checkPutPassword) {
             setOpenEditPassword('')
-            axios.put('http://localhost:4000/users/', {
+            axios.put(API_URL + '/users/', {
                 id: user._id,
                 new: {
                     password: putPassword

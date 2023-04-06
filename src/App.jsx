@@ -7,7 +7,6 @@ import ExamPage from "./Components/ExamPage.jsx";
 import Results from "./Components/Results.jsx";
 import Login from "./Components/Login.jsx";
 import ProtectRoutes from "./Components/ProtectRoutes.jsx";
-import Error from "./Components/Error.jsx";
 import AddNewQuestions from "./Components/AddNewQuestions.jsx";
 import Registrate from "./Components/Registrate.jsx";
 import DeletePage from "./Components/DeletePage.jsx";
@@ -15,7 +14,6 @@ import NewQuestions from "./Components/NewQuestions.jsx";
 import ExamPage2 from "./Components/ExamPage2.jsx";
 import Details from "./Components/Details.jsx";
 import DeleteAdmins from "./Components/DeleteAdmins.jsx";
-import EditAdminPassword from "./Components/EditAdminPassword.jsx";
 
 import './App.css'
 
@@ -43,8 +41,7 @@ function App() {
                     <Route path="/deleteQuestions/:id" element={<Details />} />
                     <Route path="/deleteAdmins" element={<DeleteAdmins />} />
                   </Route>
-                    <Route path="/editAdminPassword" element={<EditAdminPassword />} />
-                  <Route path="/*" elemen={<Error />} />
+                  <Route path="/*" element={<Login />} />
                 </Routes>
               </AnswerProvider>
             </TimeSecondsProvider>

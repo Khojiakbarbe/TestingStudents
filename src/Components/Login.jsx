@@ -3,6 +3,7 @@ import axios from "axios";
 import { loginContext } from "./ContextProvider/DataProvider";
 import { useNavigate } from "react-router-dom";
 import kirishImg from '../images/bg/kirishImg.png'
+import { API_URL } from "../API";
 
 export default function Login() {
 
@@ -18,7 +19,7 @@ export default function Login() {
     const [adminLogin, setAdminLogin] = useState('')
 
     useEffect(() => {
-        axios.get('http://localhost:4000/users')
+        axios.get( API_URL + '/users')
             .then(res => {
                 setLogin(res.data)
             })
@@ -74,7 +75,7 @@ export default function Login() {
 
     function check() {
         if (user.length > 1 && password.length > 1) {
-            axios.post('http://localhost:4000/students', {
+            axios.post(API_URL + '/students', {
                 user,
                 password
             })
@@ -94,7 +95,7 @@ export default function Login() {
     const checkUserPassword = (event) => {
         if (event.key === 'Enter') {
             if (user.length > 1 && password.length > 1) {
-                axios.post('http://localhost:4000/students', {
+                axios.post(API_URL + '/students', {
                     user,
                     password
                 })

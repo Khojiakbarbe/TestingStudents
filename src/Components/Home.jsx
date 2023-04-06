@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
+import { API_URL } from "../API";
 
 import { timeContext } from "./ContextProvider/DataProvider";
 import Navbar from "./Navbar";
@@ -12,7 +13,7 @@ export default function Home() {
 
     const [allType, setAllType] = useState([])
 
-    const [type, setType] = useState([]) // ["dasturlash"]
+    const [type, setType] = useState([]) 
 
     const [typeForTheme, setTypeForTheme] = useState('')
     const [choosenTheme, setChoosenTheme] = useState('')
@@ -20,7 +21,7 @@ export default function Home() {
     const [theme, setTheme] = useState([])
 
     useEffect(() => {
-        axios.get('http://localhost:4000/questions')
+        axios.get(API_URL + '/questions')
             .then(res => {
                 setAllType(res.data)
                 let allTypes = [];

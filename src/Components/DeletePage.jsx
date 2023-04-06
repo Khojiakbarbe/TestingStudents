@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
+import { API_URL } from "../API";
 
 
 export default function DeletePage() {
@@ -16,7 +17,7 @@ export default function DeletePage() {
 
 
     useEffect(() => {
-        axios.get('http://localhost:4000/questions/' + type + "/" + theme)
+        axios.get(API_URL + '/questions/' + type + "/" + theme)
             .then(res => {
                 setQuestions(res.data)
             })
@@ -31,7 +32,7 @@ export default function DeletePage() {
     }
 
     function deleteThis() {
-        axios.delete('http://localhost:4000/questions/', { data: { id } })
+        axios.delete(API_URL + '/questions/', { data: { id } })
             .then(res => {
                 console.log('Data is deleted', res);
                 setRequest('')

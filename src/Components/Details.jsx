@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { API_URL } from "../API";
 
 
 
@@ -14,7 +15,7 @@ export default function Details() {
     const [detail, setDetail] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:4000/questions/' + type + "/" + theme)
+        axios.get(API_URL + '/questions/' + type + "/" + theme)
             .then(res => {
                 setDetail(res.data)
             })
@@ -22,7 +23,7 @@ export default function Details() {
     }, [])
 
     function deleteThis(id) {
-        axios.delete('http://localhost:4000/questions/', { data: { id } })
+        axios.delete(API_URL + '/questions/', { data: { id } })
             .then(res => {
                 console.log('Data is deleted', res);
             })
@@ -51,7 +52,7 @@ export default function Details() {
                             {
                                 filter[0].questionImg !== 'none' ?
                                     <div className="w-50">
-                                        <img src={`http://localhost:4000/${filter[0].questionImg}`} className='img-fluid' alt="" />
+                                        <img src={`${API_URL}/${filter[0].questionImg}`} className='img-fluid' alt="" />
                                     </div>
                                     :
                                     null

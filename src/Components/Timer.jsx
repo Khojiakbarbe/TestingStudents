@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react';
 import { useTimer } from 'react-timer-hook';
 import { timeContext, minutContext, secondsContext, answerContext } from './ContextProvider/DataProvider';
 
-import { useNavigate } from 'react-router-dom'
 
 function Timer({ expiryTimestamp }) {
     const {
@@ -12,7 +11,6 @@ function Timer({ expiryTimestamp }) {
         restart,
     } = useTimer({ expiryTimestamp, onExpire: () => console.warn('onExpire called ') });
 
-    const navigate = useNavigate();
 
 
     const [testTime] = useContext(timeContext)

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios'
 import Navbar from "./Navbar";
+import { API_URL } from "../API";
 
 import { useNavigate } from 'react-router-dom'
 
@@ -14,7 +15,7 @@ export default function AddNewQuestions() {
 
     const [allDate, setAllDate] = useState([])
     useEffect(() => {
-        axios.get('http://localhost:4000/questions')
+        axios.get(API_URL + '/questions')
             .then(res => {
                 setAllDate(res.data)
             })

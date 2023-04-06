@@ -5,6 +5,7 @@ import { timeContext, minutContext, secondsContext, answerContext } from "./Cont
 import Timer from './Timer'
 import timeOver from '../images/modal/timeOver.png'
 import closeImg from '../images/modal/close.png'
+import { API_URL } from "../API";
 
 
 
@@ -33,7 +34,7 @@ export default function ExamPage2() {
 
     const [forDelete, setForDelete] = useState([])
     useEffect(() => {
-        axios.get('http://localhost:4000/questions/' + data.session.subject + "/" + data.session.theme)
+        axios.get(API_URL + '/questions/' + data.session.subject + "/" + data.session.theme)
             .then(res => {
                 if (data.session.numberOfQuestions <= res.data.length) {
                     setTestCount(data.session.numberOfQuestions)
@@ -70,7 +71,7 @@ export default function ExamPage2() {
 
 
         // for delete user and password
-        axios.get('http://localhost:4000/students')
+        axios.get(API_URL + '/students')
             .then(res => {
                 setForDelete(res.data)
             })
@@ -107,7 +108,7 @@ export default function ExamPage2() {
     // if question over student's login password will delete and go to result page
     const id = forDelete.filter(post => post.user == user && post.password == password);
     if (testCount > 0 && count > testCount - 1) {
-        axios.delete('http://localhost:4000/students/', { data: { id } })
+        axios.delete(API_URL + '/students/', { data: { id } })
             .then(res => {
                 console.log('Data is deleted', res);
             })
@@ -124,7 +125,7 @@ export default function ExamPage2() {
     })
 
     function closeModal() {
-        axios.delete('http://localhost:4000/students/', { data: { id } })
+        axios.delete(API_URL + '/students/', { data: { id } })
             .then(res => {
                 console.log('Data is deleted', res);
             })
@@ -154,7 +155,7 @@ export default function ExamPage2() {
                     {
                         startBtn === '' && info.length > 0 && info[count].questionImg.length > 1 ?
                             <div className="col-md-6 p-3">
-                                <img src={`http://localhost:4000/${info[count].questionImg}`} className='img-fluid w-100' alt="" />
+                                <img src={`${API_URL}/${info[count].questionImg}`} className='img-fluid w-100' alt="" />
                             </div>
                             :
                             null

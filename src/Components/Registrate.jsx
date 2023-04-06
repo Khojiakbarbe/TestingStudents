@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import kirishImg from '../images/bg/kirishImg.png'
+import { API_URL } from "../API";
 
 export default function Registrate() {
 
@@ -13,13 +14,13 @@ export default function Registrate() {
     const [takenUsers, setTakenUsers] = useState([])
 
     useEffect(() => {
-        axios.get('http://localhost:4000/questions')
+        axios.get(API_URL + '/questions')
             .then(res => {
                 setInfo(res.data)
             })
             .catch(err => console.log(err))
 
-        axios.get('http://localhost:4000/users')
+        axios.get(API_URL + '/users')
             .then(res => {
                 setTakenUsers(res.data)
             })
@@ -82,7 +83,7 @@ export default function Registrate() {
         }
 
         if (manager.length > 1 && subject.length > 1 && theme.length > 1 && numberOfQuestions > 0 && givenTime > 0 && students.length > 0) {
-            axios.post('http://localhost:4000/sessions', {
+            axios.post(API_URL + '/sessions', {
                 manager,
                 subject,
                 theme,
