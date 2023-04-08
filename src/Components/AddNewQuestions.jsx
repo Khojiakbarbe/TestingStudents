@@ -48,7 +48,6 @@ export default function AddNewQuestions() {
     const [newDirection, setNewDirection] = useState(false)
 
     const [newTheme, setNewTheme] = useState(false)
-    console.log(newTheme);
     return (
 
         <div className="home">

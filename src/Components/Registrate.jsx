@@ -49,7 +49,6 @@ export default function Registrate() {
             setCheckClass('')
         } else {
             setEmpty("Barcha so'rov to'ldirilmagan")
-            console.log('empty');
         }
     }
 

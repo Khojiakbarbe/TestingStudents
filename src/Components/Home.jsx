@@ -60,7 +60,6 @@ export default function Home() {
         setTimeCon(60)
     }
 
-    console.log(timeCon);
 
 
 

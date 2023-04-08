@@ -76,7 +76,6 @@ export default function AdminPage() {
                 password
             })
                 .then(res => {
-                    console.log('data is saved' + res.data)
                     setError('saqlandi')
                     setCheckClass('hiddenCheckRegistrate')
                     setLogin('')
@@ -96,7 +95,6 @@ export default function AdminPage() {
                 password
             })
                 .then(res => {
-                    console.log('data is saved' + res.data)
                     setError('saqlandi')
                     setCheckClass('hiddenCheckRegistrate')
                     setLogin('')
