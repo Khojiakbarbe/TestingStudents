@@ -19,13 +19,12 @@ export default function Login() {
     const [adminLogin, setAdminLogin] = useState('')
 
     useEffect(() => {
-        axios.get( API_URL + '/users')
+        axios.get(API_URL + '/users')
             .then(res => {
                 setLogin(res.data)
             })
             .catch(err => console.log(err))
     }, [])
-
     const [currectLogin, setCurrectLogin] = useState('adminPageOpen')
 
     function openAdmin() {
@@ -42,17 +41,13 @@ export default function Login() {
     const [adminError, setAdminError] = useState('')
 
     function openAdminPage() {
-        const filter = login.filter(info => info.password.toLowerCase() == adminPassword.toLowerCase() && info.login.toLowerCase() == adminLogin.toLowerCase())
-        if (!filter.length < 1) {
+        if (login.length == 0 && adminPassword == 'infinity' && adminLogin == 'infinity') {
+
             setLoginCon(true)
             navigate('/admin')
             setCurrectLogin('adminPageOpen')
+
         } else {
-            setAdminError("Login yoki parol noto'g'ri")
-        }
-    }
-    const handleKeyAdmin = (event) => {
-        if (event.key === 'Enter') {
             const filter = login.filter(info => info.password.toLowerCase() == adminPassword.toLowerCase() && info.login.toLowerCase() == adminLogin.toLowerCase())
             if (!filter.length < 1) {
                 setLoginCon(true)
@@ -60,6 +55,31 @@ export default function Login() {
                 setCurrectLogin('adminPageOpen')
             } else {
                 setAdminError("Login yoki parol noto'g'ri")
+            }
+
+        }
+    }
+
+    
+    const handleKeyAdmin = (event) => {
+        if (event.key === 'Enter') {
+
+            if (login.length == 0 && adminPassword == 'infinity' && adminLogin == 'infinity') {
+
+                setLoginCon(true)
+                navigate('/admin')
+                setCurrectLogin('adminPageOpen')
+
+            } else {
+                const filter = login.filter(info => info.password.toLowerCase() == adminPassword.toLowerCase() && info.login.toLowerCase() == adminLogin.toLowerCase())
+                if (!filter.length < 1) {
+                    setLoginCon(true)
+                    navigate('/admin')
+                    setCurrectLogin('adminPageOpen')
+                } else {
+                    setAdminError("Login yoki parol noto'g'ri")
+                }
+
             }
         }
     }
@@ -176,9 +196,9 @@ export default function Login() {
                         <h2 style={{ textAlign: 'center' }}>Admin ma'lumotini kiriting </h2>
                         <h4 style={{ color: 'red' }}>{adminError}</h4>
                         <p>Login</p>
-                        <input type="text" className='form-control mb-4' placeholder="Login" onChange={(e) => setAdminLogin(e.target.value)} value={adminLogin}/>
+                        <input type="text" className='form-control mb-4' placeholder="Login" onChange={(e) => setAdminLogin(e.target.value)} value={adminLogin} />
                         <p>Parol</p>
-                        <input type="password" className='form-control mb-4' placeholder="Parol" onChange={(e) => setAdminPassword(e.target.value)} onKeyDown={handleKeyAdmin} value={adminPassword}/>
+                        <input type="password" className='form-control mb-4' placeholder="Parol" onChange={(e) => setAdminPassword(e.target.value)} onKeyDown={handleKeyAdmin} value={adminPassword} />
                         <button className="btn w-100 p-2 color-white mb-2" style={{ background: '#FBC400' }} onClick={openAdminPage}><strong>Kirish</strong></button>
                         <button className="btn btn-primary w-100 p-2" onClick={closeAdminLoginModul}>Orqaga qaytish</button>
                     </div>
