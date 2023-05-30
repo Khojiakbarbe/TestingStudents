@@ -66,7 +66,6 @@ export default function ExamPage() {
                 }
             })
             .catch(err => console.log(err));
-            console.log('Khojiakbarbek');
     }, []);
 
     // Modal and answers

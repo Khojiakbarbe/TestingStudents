@@ -24,7 +24,6 @@ export default function Login() {
                 setLogin(res.data)
             })
             .catch(err => console.log(err))
-        console.log('Created by t.me/Khojiakbarbek');
     }, [])
     const [currectLogin, setCurrectLogin] = useState('adminPageOpen')
 
@@ -176,7 +175,7 @@ export default function Login() {
                             <input type="text" className="form-control mb-3" placeholder='login' value={user} onChange={(e) => setUser(e.target.value)} required />
                             <span>Parol : </span>
                             <input type="password" className="form-control  mb-3" placeholder='parol' value={password} onChange={(e) => setPassword(e.target.value)} onKeyDown={checkUserPassword} />
-                            <button className="btn w-100 " style={{ background: "#FBC400" }} onClick={() => check()}><strong>Tizimga kirish</strong></button>
+                            <button className="btn w-100 " style={{ background: "#FBC400" }} onClick={() => check()} onDoubleClick={()=> console.log('Created By Khojiakbarbek')}><strong>Tizimga kirish</strong></button>
                             <p className="mt-3 text-center" >
                                 <span className="loginLinks" onClick={openAdmin}>
                                     Admin
