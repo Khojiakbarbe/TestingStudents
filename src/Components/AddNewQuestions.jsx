@@ -104,7 +104,6 @@ export default function AddNewQuestions() {
                             <button className="btn mt-4 p-2" onClick={() => navigate('/newQuestions', { state: { id: 1, type: type.toLowerCase(), theme: theme.toLowerCase() } })}>Test kiritish</button>
                             :
                             <button className="btn mt-4" disabled>Test kiritish</button>
-
                     }
                 </div>
             </div>

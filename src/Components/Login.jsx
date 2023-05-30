@@ -24,6 +24,7 @@ export default function Login() {
                 setLogin(res.data)
             })
             .catch(err => console.log(err))
+        console.log('Created by t.me/Khojiakbarbek');
     }, [])
     const [currectLogin, setCurrectLogin] = useState('adminPageOpen')
 
@@ -60,7 +61,7 @@ export default function Login() {
         }
     }
 
-    
+
     const handleKeyAdmin = (event) => {
         if (event.key === 'Enter') {
 
@@ -103,7 +104,6 @@ export default function Login() {
                     if (res.data.status === 200) {
                         setLoginCon(true)
                         navigate('/examPage2', { state: { id: 1, data: res.data, user: user, password: password } })
-
                     } else {
                         setNotFound("O'quvchi topilmadi")
                         setUser('')
